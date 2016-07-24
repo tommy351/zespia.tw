@@ -46,3 +46,17 @@ stylus:
 deploy:
   type: git
   repo: git@github.com:tommy351/tommy351.github.io.git
+
+# Theme config
+menu:
+  Home: /
+  Archives: /archives
+  GitHub: https://github.com/tommy351
+rss: /atom.xml
+excerpt_link: Read More
+fancybox: true
+sidebar: false
+google_analytics: UA-4910098-7
+twitter: tommy351
+google_plus: 108777679171675250079
+fb_admins: 100000247608790
