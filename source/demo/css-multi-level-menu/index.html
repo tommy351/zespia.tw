@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf8">
+	<title>如何利用CSS製作多級選單 - 範例</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<nav>
+		<ul>
+			<li><a href="http://www.apple.com/" target="_blank">Home</a></li>
+			<li><a href="http://store.apple.com/" target="_blank">Store</a></li>
+			<li>
+				<a href="http://www.apple.com/mac/" target="_blank">Mac</a>
+				<ul>
+					<li>
+						<a href="http://www.apple.com/mac/" target="_blank">Mac</a>
+						<ul>
+							<li><a href="http://www.apple.com/macbookair/" target="_blank">MacBook Air</a></li>
+							<li><a href="http://www.apple.com/macbookpro/" target="_blank">MacBook Pro</a></li>
+							<li><a href="http://www.apple.com/macmini/" target="_blank">Mac mini</a></li>
+							<li><a href="http://www.apple.com/imac/" target="_blank">iMac</a></li>
+							<li><a href="http://www.apple.com/macpro/" target="_blank">Mac Pro</a></li>
+							<li><a href="http://www.apple.com/macosx/" target="_blank">OS X Lion</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="http://www.apple.com/mac/" target="_blank">Applications</a>
+						<ul>
+							<li><a href="http://www.apple.com/ilife/" target="_blank">iLife</a></li>
+							<li><a href="http://www.apple.com/iwork/" target="_blank">iWork</a></li>
+							<li><a href="http://www.apple.com/safari/" target="_blank">Safari</a></li>
+							<li><a href="http://www.apple.com/aperture/" target="_blank">Aperture</a></li>
+							<li><a href="http://www.apple.com/finalcutpro/" target="_blank">Final Cut Pro</a></li>
+							<li><a href="http://www.apple.com/logicpro/" target="_blank">Logic Pro</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="http://www.apple.com/mac/" target="_blank">Accessories</a>
+						<ul>
+							<li><a href="http://www.apple.com/keyboard/" target="_blank">Apple Wireless Keyboard</a></li>
+							<li><a href="http://www.apple.com/magicmouse/" target="_blank">Magic Mouse</a></li>
+							<li><a href="http://www.apple.com/magictrackpad/" target="_blank">Magic Trackpad</a></li>
+							<li><a href="http://www.apple.com/displays/" target="_blank">Apple Thunderbolt Display</a></li>
+							<li><a href="http://www.apple.com/airportexpress/" target="_blank">Airport Express</a></li>
+							<li><a href="http://www.apple.com/airportextreme/" target="_blank">Airport Extreme</a></li>
+							<li><a href="http://www.apple.com/timecapsule/" target="_blank">Time Capsule</a></li>
+						</ul>
+					</li>
+					<li>
+						<a href="http://www.apple.com/mac/" target="_blank">Server</a>
+						<ul>
+							<li><a href="http://www.apple.com/macosx/server/" target="_blank">OS X Lion Server</a></li>
+							<li><a href="http://www.apple.com/macpro/" target="_blank">Mac Pro with Lion Server</a></li>
+							<li><a href="http://www.apple.com/remotedesktop/" target="_blank">Apple Remote Desktop</a></li>
+							<li><a href="http://www.apple.com/macmini/server/" target="_blank">Mac mini with Lion Server</a></li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="http://www.apple.com/ipod/" target="_blank">iPod</a>
+				<ul>
+					<li>
+						<a href="http://www.apple.com/ipod/" target="_blank">Products</a>
+						<ul>
+							<li><a href="http://www.apple.com/ipodshuffle/" target="_blank">iPod shuffle</a></li>
+							<li><a href="http://www.apple.com/ipodnano/" target="_blank">iPod nano</a></li>
+							<li><a href="http://www.apple.com/ipodclassic/" target="_blank">iPod classic</a></li>
+							<li>
+								<a href="http://www.apple.com/ipodtouch/" target="_blank">iPod touch</a>
+								<ul>
+									<li><a href="http://www.apple.com/ipodtouch/features/" target="_blank">Features</a></li>
+									<li><a href="http://www.apple.com/ipodtouch/built-in-apps/" target="_blank">Bulit-in Apps</a></li>
+									<li><a href="http://www.apple.com/ipodtouch/from-the-app-store/" target="_blank">From the App Store</a></li>
+									<li><a href="http://www.apple.com/ipodtouch/ios/" target="_blank">iOS</a></li>
+									<li><a href="http://www.apple.com/ipodtouch/icloud/" target="_blank">iCloud</a></li>
+									<li><a href="http://www.apple.com/ipodtouch/specs.html" target="_blank">Tech Specs</a></li>
+								</ul>
+							</li>
+							<li><a href="http://www.apple.com/appletv/" target="_blank">Apple TV</a></li>
+						</ul>
+					</li>
+					<li><a href="http://www.apple.com/ipod/accessories/" target="_blank">Accessories</a></li>
+				</ul>
+			</li>
+			<li><a href="http://www.apple.com/iphone/" target="_blank">iPhone</a></li>
+			<li><a href="http://www.apple.com/ipad/" target="_blank">iPad</a></li>
+			<li><a href="http://www.apple.com/itunes/" target="_blank">iTunes</a></li>
+			<li><a href="http://www.apple.com/support/" target="_blank">Support</a></li>
+		</ul>
+	</nav>
+	<footer>
+		Copyright &copy; 2012 SkyArrow<br>
+		<a href="http://zespia.tw/blog/2012/01/24/css-multi-level-menu/">← 回到原文</a>
+	</footer>
+	<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-4910098-7']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+<script src="//static.getclicky.com/js" type="text/javascript"></script>
+<script type="text/javascript">try{ clicky.init(171317); }catch(e){}</script>
+<noscript><p><img alt="Clicky" width="1" height="1" src="//in.getclicky.com/171317ns.gif" /></p></noscript>
+</body>
+</html>

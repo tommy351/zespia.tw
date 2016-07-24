@@ -1,0 +1,48 @@
+title: Zespia
+author: SkyArrow
+email: tommy351@gmail.com
+timezone: Asia/Taipei
+
+url: https://zespia.tw
+root: /
+permalink: blog/:year/:month/:day/:title/
+
+new_post_name: :year-:month-:day-:title.md # File name of new posts
+auto_spacing: true
+render_drafts: false
+
+highlight:
+  enable: true
+  backtick_code_block: true
+  line_number: true
+  tab_replace: '  '
+  auto_detect: false
+
+skip_render:
+  - demo/**/*
+  - lab/**/*
+  - themes/**/*
+
+archive: 1
+category: 1
+tag: 1
+
+archive_generator:
+  per_page: 0
+
+per_page: 5
+pagination_dir: page
+post_asset_folder: true
+
+date_format: MMM D YYYY
+
+disqus_shortname: zespiatw
+
+theme: landscape
+
+stylus:
+  compress: true
+
+deploy:
+  type: git
+  repo: git@github.com:tommy351/tommy351.github.io.git

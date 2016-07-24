@@ -1,0 +1,75 @@
+---
+layout: post
+title: "鍊金術士梅露露 ～亞蘭德的鍊金術士 3～"
+date: 2011-07-01 15:44
+comments: true
+tags:
+- PS3
+- 遊戲 
+---
+![相機又被老媽搶走了，反正我攝影技術也不好，乾脆直接貼官網的桌布吧（逃）](http://i.minus.com/ib1v5x6fsVI7ue.jpeg)
+
+當初聽到這款遊戲的發售消息時，還有點猶豫自己到底該不該買，因為同一系列的托托莉我玩了將近一個月，還是摸不熟系統，最後只得來了「BAD END」的結局，但當我回神之時，手中的滑鼠已經不自覺地按下了「訂購」連結，於是乎就有你眼前的這篇文章了。
+
+<!-- more -->
+
+<div class="video-container"><object width="640" height="360"><param name="movie" value="http://www.youtube.com/v/gWYwPFxRxms?version=3&amp;hl=en_US"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/gWYwPFxRxms?version=3&amp;hl=en_US" type="application/x-shockwave-flash" width="640" height="360" allowscriptaccess="always" allowfullscreen="true"></embed></object></div>
+
+本作襲承托托莉的 True End 而來。亞蘭德共和國西北方的一處小國「阿路斯王國」，是個比亞蘭德還有更多發展空間的邊境國家。在 5 年後，阿路斯將與亞蘭德合併，於是亞蘭德派遣了煉金術士「托托莉」，協助發展這個國家成為大都市，淘氣調皮的公主「梅露露」對煉金術產生了興趣，因此決定成為托托莉的弟子，然而遭到了父王的反對。不過父王最後還是心軟，決定給梅露露 3 年的時間，使這個小國的人口從 100 人提升到 3 萬人，如果達成就會繼續讓梅露露研究煉金術。
+
+{% blockquote %}    
+我操，你這爸爸好歹也進行一下開發吧，人口只有 100 人連稱為「國家」都有點困難了啊！
+{% endblockquote %}
+
+這代的畫面相較於前兩代又進步了一些，光影的處理做得更棒了，[<del>精美的3D模組也讓人感到讚嘆</del>](http://www.nicovideo.jp/watch/sm14822011)；在介面上，提供了更貼心的服務，可以直接從「開拓」和「依賴」頁面連結到調和選單，特殊的道具也做了清楚的標示。此外，這一代女主角的聲音大概是我最喜歡的，沒有前兩代過嗲的感覺。
+
+##結局
+
+目前已解出了 6 種結局，獎盃進度 70％：
+
+![](http://i.minus.com/ivI7nvYlsOlyi.jpg)
+
+![](http://i.minus.com/iSRjJ9IQifZ8K.jpg)
+
+**城での生活**（條件：無）   
+阿路斯與亞蘭德合併後，梅露露放棄了煉金術的研究，在家裡頹廢的不知道該做什麼，這或許是梅露露第一次在行動前思考吧？梅露露認為不能再這樣下去，決定為了「尋找目標」向未來邁進一步。*（這怎麼有點像BAD END的感覺？）*
+
+![](http://i.minus.com/i8FMLMHMLGOPs.jpg)
+
+**てんやわんや**（條件：人口突破 10 萬人）   
+阿路斯成為了亞蘭德國內數一數二的大都市，雖然梅露露每天工作都很忙碌，但感到相當開心。
+
+![](http://i.minus.com/i7A67kAxPV3gF.jpg)
+
+**豊かな国**（條件：打倒エアトシャッター）   
+梅露露利用煉金知識，使阿路斯成為了亞蘭德國內的第一大農業城市。
+
+エアトシャッター還挺好打的，然而真‧エアトシャッター的血比前者多了足足一倍，就算武器和防具升級到最高等級也打不贏，只好下一輪做出頂級飾品和藥品跟它拼了
+
+![](http://i.minus.com/iKnMCNHKzO3Qa.jpg)
+
+![](http://i.minus.com/ibj0ifogbNlhLE.jpg)
+
+**おとこぶろ**（條件：建設健康ランド）   
+梅露露意外的在火山發現泉源，利用煉金知識，使阿路斯成為了亞蘭德國內的溫泉觀光景點。
+
+這結局可真麻煩，必須要有足夠的時間和インゴット才有辦法達到，光是收集就要花一個月，煉成就要花兩～三個月的時間，幸好中途的福利還挺不錯的，這就是所謂的 CERO A嗎～
+
+![](http://i.minus.com/i4mm5lhI9WKtw.jpg)
+
+**人気者の今日**（條件：每位角色的好感度大於 80）   
+與每位朋友的好感度大於 80。<del>梅露露成功建立後宮。</del>
+
+托托莉x咪咪太棒了！諸君，我愛百合！我愛百合！
+
+![](http://i.minus.com/iWAUvu8Sv7RtD.jpg)
+
+**やっと計画通り**（條件：作成「若返りの薬」且煉金等級小於 50）   
+雖然成功作成了返老還童藥，然而蘿樂娜卻因師匠的私心而停留在 14 歲，且 14 歲後的記憶完全消失。
+
+可惡的 GUST 啊！明明某個 40 歲歐巴桑看起來還這麼年輕，30歲的蘿樂娜又會差多少呢！（被雙刀砍死）
+
+##連結
+
+全 CG [下載](http://www.multiupload.com/DOXTY733OZ)｜[相簿](https://picasaweb.google.com/105931860008509594725/3?authuser=0&feat=directlink)   
+[メルルのアトリエ ～アーランドの錬金術士3～ 攻略Wiki – Lostgamer](http://meruru.lostgamer.net/)

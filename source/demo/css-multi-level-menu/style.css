@@ -1,0 +1,71 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font: 300 14px "HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+  background: #f5f5f5;
+}
+
+ul {
+  background: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  white-space: nowrap; /* 避免文字換行 */
+}
+ul li {
+  position: relative; /* 使子選單依照母選單的座標顯示 */
+}
+/* 設定母選單的連結樣式 */
+ul li a {
+  text-decoration: none;
+  color: #777;
+  padding: 10px 20px;
+  display: block;
+  background: url(detail.png) bottom right no-repeat;
+}
+/* 當母選單下沒有子選單時，也就是說只有一個連結時，隱藏detail.png */
+ul li a:only-child {
+  background: none;
+}
+ul li:hover {
+  background: #777;
+}
+ul li:hover > a {
+  color: #fff;
+}
+ul li:hover > ul {
+  display: block; /* 滑鼠滑入母選單後，顯示子選單 */
+}
+nav > ul > li {
+  display: inline-block; /* 使一級選單排成一橫列 */
+}
+/* 二級選單顯示於一級選單的正下方 */
+ul ul {
+  position: absolute;
+  top: 100%;
+  list-style: none;
+  background: #fff;
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.2);
+  display: none;
+}
+/* 三級選單則顯示於二級選單的右方 */
+ul ul ul {
+  position: absolute;
+  left: 100%;
+  top: 0;
+}
+
+footer {
+  color: #999;
+  font-size: 12px;
+  margin: 10px;
+  text-align: right;
+}
+footer a {
+  color: #666;
+  text-decoration: none;
+}
+footer a:hover {
+  text-decoration: underline;
+}

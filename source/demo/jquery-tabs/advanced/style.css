@@ -1,0 +1,78 @@
+*{
+	margin: 0;
+	padding: 0;
+}
+body{
+	font: 300 14px "HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
+	width: 500px;
+	margin: 50px auto;
+	background: #eee;
+	color: #333;
+	line-height: 1.5;
+}
+a{
+	color: #258fb8;
+	text-decoration: none;
+}
+a:hover{
+	text-decoration: underline;
+}
+#tabs{
+	position: relative;
+	z-index: 1;
+}
+#tabs li{
+	background: #ddd;
+	border: 1px solid #ccc;
+	border-bottom: none;
+	display: inline-block;
+	margin-right: 5px;
+	padding: 5px 10px;
+	color: #999;
+	cursor: pointer;
+}
+#tabs li:hover{
+	color: #666;
+}
+#tabs li.enable{
+	border-bottom: 1px solid #ddd;
+	margin-bottom: -1px;
+	color: #333;
+}
+#container{
+	background: #ddd;
+	border: 1px solid #ccc;
+	box-shadow: 0 0 16px #ccc;
+	width: 500px;
+	position: relative;
+	overflow: hidden;
+}
+#contents{
+	position: absolute;
+	left: 0;
+	width: 2000px; /* 內容寬度 * 頁籤數 */
+}
+#contents > div{
+	padding: 10px 15px;
+	text-align: justify;
+	float: left;
+	width: 470px; /* 內容寬度 - 左右padding */
+}
+footer{
+	margin-top: 15px;
+	font-size: 12px;
+	color: #999;
+	text-align: right;
+}
+footer .back{
+	background: #258fb8;
+	border-radius: 15px;
+	color: #fff;
+	float: left;
+	font-weight: bold;
+	padding: 5px 15px;
+}
+footer .back:hover{
+	background: #2AA5D5;
+	text-decoration: none;
+}
