@@ -13,6 +13,6 @@ cp .travis/ssh_config ~/.ssh/config
 git config --global user.name "Tommy Chen"
 git config --global user.email tommy351@gmail.com
 # Clone the repository
-git clone git@github.com:tommy351/tommy351.github.io.git .deploy_git
+git clone --branch master git@github.com:tommy351/tommy351.github.io.git .deploy_git
 # Deploy to GitHub
 npm run deploy
