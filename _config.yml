@@ -42,10 +42,6 @@ theme: landscape
 stylus:
   compress: true
 
-deploy:
-  type: git
-  repo: git@github.com:tommy351/tommy351.github.io.git
-
 # Theme config
 menu:
   Home: /
