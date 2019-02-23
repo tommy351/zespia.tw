@@ -42,6 +42,10 @@ theme: landscape
 stylus:
   compress: true
 
+markdown:
+  render:
+    html: true
+
 # Theme config
 menu:
   Home: /
