@@ -9,7 +9,7 @@ tags:
 - Hexo
 ---
 
-![らぐほのえりか - モリサマー (id=31068919)](http://i.minus.com/ibn0sBufi4xK4S.jpg)
+{% asset_img ibn0sBufi4xK4S.jpg らぐほのえりか - モリサマー (id=31068919) %}
 
 **森夏的ㄋㄟㄋㄟ讚！**<del>有沒有最近作者都用圖片來騙人的八卦</del>
 
@@ -26,12 +26,12 @@ Hexo 發佈大約兩週之後，你可能會懷疑 Hexo 怎麼都沒有任何新
 1. 透過 [npm] 將 Hexo 升級至 0.1。
 
 		npm update -g
-  
+
 2. 升級內建的 [Light] 主題。
 
 		cd themes/light
 		git pull
-  
+
 3. 更新 `_config.yml`，以下是0.1版的預設配置，請依照個人需求自行調整。
 
 4. 修改 `package.json`。
@@ -125,7 +125,7 @@ Hexo 已事先內建了一些必須的附加元件：
   - jsfiddle：插入 [jsFiddle] 程式碼。
   - pullquote：插入 [Pull quote](http://en.wikipedia.org/wiki/Pull_quote)
   - youtube：插入 [Youtube] 影片
-  - vimeo：插入 [Vimeo] 影片 
+  - vimeo：插入 [Vimeo] 影片
 - **Console**：命令列介面（CLI）
   - init：初始化
   - config：顯示 `_config.yml` 的內容

@@ -2,20 +2,18 @@ layout: post
 title: "愛夏的煉金工房 ─ 黃昏大地之煉金術士"
 date: 2012-09-05 18:39
 comments: true
-tags: 
+tags:
 - PS3
 - 遊戲
 ---
 
-![阿霞的鍊金工房 ─ 黃昏市場之煉金術士](http://i.minus.com/ibobbTlfxZgITW.jpg)
+{% asset_img ibobbTlfxZgITW.jpg %}
 
 當初看到煉金術士系列新作的名稱時，便不禁噗哧笑了出來，這名稱實在太具有台灣風味，<del>如果主角是一位提著菜籃的歐巴桑的話絕對會變神作</del>。
 
 <!-- more -->
 
-<div class="video-container">
-<iframe width="560" height="315" src="http://www.youtube.com/embed/MQNuGj8cbKs" frameborder="0" allowfullscreen></iframe>
-</div>
+{% youtube MQNuGj8cbKs %}
 
 本作的世界觀為即將步向毀滅的世界，所有的物資都將消耗殆盡，能稱作國家的統治組織早已瓦解，人類的繁榮時代已經落幕，過去由煉金術打造的世界，如今只剩斷垣殘壁。
 
@@ -29,13 +27,13 @@ tags:
 
 這篇文章本來在7月時就該寫好了，不過一時發懶所以乾脆等到中文版推出時再發佈。中文版的品質很不錯，看起來似乎沒有什麼嚴重的問題。
 
-![](http://i.minus.com/ib29BrsOQgfTkJ.jpg)
+{% asset_img ib29BrsOQgfTkJ.jpg %}
 
 原本日文版隨附的World Guide CD是奇斯，中文版幸好不再是奇斯而是琳卡了，要不然我大概會愉悅到炸。
 
 目前只玩了一輪，已經破出三種結局，但還沒掌握出製造最佳裝備的秘訣。之前買的遊戲有一些都還沒玩，所以決定先把那些遊戲破完，目前正在很努力的玩戰鬥系統爛到爆的TOV。
 
-##結局
+## 結局
 
 因為目前找不到CG，所以先寫出結局列表吧。
 

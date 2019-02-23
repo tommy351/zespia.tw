@@ -8,7 +8,7 @@ tags:
 - JavaScript
 ---
 
-![K子 - ぬれ早苗 (id=16398495)](http://i.minus.com/iFFlrSnC6IrC8.jpg)
+{% asset_img iFFlrSnC6IrC8.jpg K子 - ぬれ早苗 (id=16398495) %}
 
 > **Stream** [strim] n. [C] 小河、溪流
 
@@ -39,11 +39,11 @@ function copy(source, destination, callback){
 function copy(source, destination, callback){
 	var rs = fs.createReadStream(source),
 		ws = fs.createWriteStream(destination);
-		
+
 	rs.pipe(ws).on('error', function(err){
 		if (err) throw err;
 	});
-	
+
 	ws.on('close', callback).on('error', function(err){
 		if (err) throw err;
 	});
@@ -56,7 +56,7 @@ Stream 使用 [EventEmitter]，當結束或發生錯誤時會觸發事件，必�
 
 這種方式實在有點麻煩，如果能寫成 `rs.pipe(ws, function(err, callback){})` 的形式就好了。
 
-![](http://i.minus.com/iwucHChl9EUD0.png)
+{% asset_img iwucHChl9EUD0.png %}
 
 根據這種方式實作的 Hexo 0.1.8，實測出來的速度是 1007 ms，而舊版為 2038 ms，平均大約快了 1.5~2 倍左右，只要改寫一點程式碼就能獲得這麼高的效能提昇，非常值得。
 

@@ -8,7 +8,7 @@ tags:
 - 遊戲
 ---
 
-![](http://i.minus.com/iFsuGusXg32tv.jpg)
+{% asset_img iFsuGusXg32tv.jpg %}
 
 各位可還記得，5pb的社長在去年的FF18宣布Steins;Gate即將推出中文化的[消息](http://gnn.gamer.com.tw/9/56049.html)，然而說好的2012年春季到了，令人望眼欲穿的中文版依然沒有任何消息。
 
@@ -22,17 +22,17 @@ tags:
 
 我購買的是PS3一般版，雖然換了新手機，不過照相技術還是一樣爛，有什麼好方法可以減少噪點？
 
-![](http://i.minus.com/ieXCDLObbv4Be.jpg)
+{% asset_img ieXCDLObbv4Be.jpg %}
 
 正面和日版差不了多少，只是Logo稍微換了位置和上面加了「命運石之門」五個中文字而已。
 
-![](http://i.minus.com/iZcaSJ02gYrws.jpg)
+{% asset_img iZcaSJ02gYrws.jpg %}
 
 背面的解說文理所當然的全中文化了。
 
-![](http://i.minus.com/iVP40V4XKbRWR.jpg)
+{% asset_img iVP40V4XKbRWR.jpg %}
 
-![](http://i.minus.com/ib1nYxaR7RS0Lp.jpg)
+{% asset_img ib1nYxaR7RS0Lp.jpg %}
 
 光碟的外觀沒有什麼差別，內附一本非常薄的中文說明書以及「命運石之門 感謝台灣」演唱會的資訊和光榮代理遊戲一貫會有的意見表。
 
@@ -40,11 +40,11 @@ tags:
 
 比起外觀，內容更加重要，命運石之門的中文化非常徹底，也非常的在地化。
 
-![](http://i.minus.com/ifRU1iaiiFNgB.jpg)
+{% asset_img ifRU1iaiiFNgB.jpg %}
 
 TIPS內的用語說明全中文化，而且還特別做了注音索引，可以用注音來查找用語。日本鄉民的常用語也被翻譯成台灣鄉民的常用語，令人遊玩時不禁會心一笑。
 
-![](http://i.minus.com/ijvONwlfUupOZ.jpg)
+{% asset_img ijvONwlfUupOZ.jpg %}
 
 除了些許錯字以外，大部分的中文化都沒什麼問題，然而最讓人感到不習慣的大概就是人物名字的翻譯了，「桶子（ダル）」被翻成了「達魯」，「菲莉絲（フェイリス）」則是被翻成了「菲伊麗絲」，大概是為了配合麻由里常常把菲伊麗絲的名字唸成「非麗絲（フェリス）」而這樣翻譯。
 
@@ -56,7 +56,7 @@ TIPS內的用語說明全中文化，而且還特別做了注音索引，可以�
 
 ## 結語
 
-![あっきー人 - シュタインズゲート記念 (id=26694282)](http://i.minus.com/i7CuYrSU6Ou2m.jpg)
+{% asset_img i7CuYrSU6Ou2m.jpg あっきー人 - シュタインズゲート記念 (id=26694282) %}
 
 雖然等待了這麼久中文版才終於發售，不過中文化的翻譯品質讓人覺得這段等待時間非常值得，要是外傳《比翼雙飛的戀人（比翼恋理のだーりん）》也能中文化就好了。
 

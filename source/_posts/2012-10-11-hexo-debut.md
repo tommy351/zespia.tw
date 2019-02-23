@@ -9,7 +9,7 @@ tags:
 - Hexo
 ---
 
-![ちり - Super sonic Child (id=29663134)](http://i.minus.com/ibpMKNkpRxVwsK.jpg)
+{% asset_img ibpMKNkpRxVwsK.jpg ちり - Super sonic Child (id=29663134) %}
 
 我想每個 [Octopress] 的使用者一定都有這樣的煩惱──隨著文章數量愈來愈多，檔案建立的速度愈來愈慢。本站目前已累積至 54 篇文章，每次建立檔案時，至少都需要花費一分鐘以上的時間。
 
@@ -27,7 +27,7 @@ tags:
 
 ## 造輪子
 
-![](http://i.minus.com/iUuOEU0Yw0JbB.png)
+{% asset_img iUuOEU0Yw0JbB.png %}
 
 那麼唯一的方式，大概只剩自造輪子了。
 
