@@ -23,16 +23,16 @@ comments: true
 
 <!-- more -->
 
-##瀏覽器支援
+## 瀏覽器支援
 
 完整支援 Mozilla Firefox,  Google Chrome, Safari, Opera, Internet Explorer 8，但 Internet Explorer 7&amp;6 有部分留言列表問題。
 
-##下載
+## 下載
 
-[正式版 (Ver. 1.0.9)](http://wordpress.org/extend/themes/download/corner.1.0.9.zip)   
+[正式版 (Ver. 1.0.9)](http://wordpress.org/extend/themes/download/corner.1.0.9.zip)
 [預覽](http://wp-themes.com/corner)
 
-##更新記錄
+## 更新記錄
 
 - 1.0.9
 	- **修改** - 修復圖片與文字中沒有留白的問題

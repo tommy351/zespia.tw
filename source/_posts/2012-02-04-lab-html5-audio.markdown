@@ -3,7 +3,7 @@ layout: post
 title: "HTML5 audio 實驗"
 date: 2012-02-04 13:29
 comments: true
-tags: 
+tags:
 - JavaScript
 - HTML5
 ---
@@ -13,7 +13,7 @@ tags:
 
 <!-- more -->
 
-##開始之前
+## 開始之前
 
 首先必須了解`audio`標籤的使用方式：
 
@@ -38,7 +38,7 @@ audio.pause();
 
 只需要懂這兩個函數，就可製作最基礎的播放器了，其他複雜的指令可參閱文末的參考出處。
 
-##介面
+## 介面
 
 寫網頁時，比起最重要的 JavaScript，我習慣先寫 CSS，最初的參考範本是 Mac 的 [CoverFlow]。
 
@@ -52,7 +52,7 @@ audio.pause();
 
 ![Ver.2 與 Ver.1 完全不像？這種事情不重要啦！](http://i.minus.com/imrTH5W7km1vj.png)
 
-##核心
+## 核心
 
 介面完成自爽一下之後，就得面對麻煩的 JavaScript 了，播放、暫停非常簡單，按鈕按下去執行鄉對應的動作即可，然而音量調整與進度條該如何處理呢？
 
@@ -109,7 +109,7 @@ audio.addEventListener('timeupdate', function(){
 }, false);
 ```
 
-##播放列表
+## 播放列表
 
 一個播放器的基礎功能就此完成，能夠播放、暫停、調整音量、調整時間。但這顯然還不夠，播放列表對於播放器而言相當重要。*（大概啦）*
 
@@ -117,7 +117,7 @@ audio.addEventListener('timeupdate', function(){
 
 與自己的邏輯奮戰大約一晚後，有播放列表、隨機播放、重複播放（單首、全部）功能的播放器於焉完成。只需要 214 行、約 6KB 的代碼*（未壓縮）*即可完成，應該能算是輕便簡易了。
 
-##後記
+## 後記
 
 播放列表的製作過程有點髒，中途還重構了幾次，所以直接看範例應該會比較快，若對於範例內的程式碼感到疑惑，可在下方留言。
 
@@ -142,7 +142,7 @@ var playlist = [
 
 [範例](http://zespia.tw/lab/coverart)｜[下載](http://zespia.tw/lab/coverart/example.zip)
 
-##參考出處
+## 參考出處
 
 - [jPlayer]
 - [小試HTML 5 audio - 黑暗執行緒](http://blog.darkthread.net/post-2011-05-15-html5-audio.aspx)

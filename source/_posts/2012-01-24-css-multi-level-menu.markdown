@@ -3,7 +3,7 @@ layout: post
 title: "如何利用 CSS 製作多級選單？"
 date: 2012-01-24
 comments: true
-tags: 
+tags:
 - CSS
 ---
 ![一般常見的選單](http://i.minus.com/ibx37Gknqf5wtK.PNG)
@@ -14,7 +14,7 @@ tags:
 
 <!-- more -->
 
-###HTML
+### HTML
 
 ``` html
 <nav>
@@ -42,7 +42,7 @@ tags:
 
 選單的 HTML 如上，所有的選單物件都是可點選的連結，理論上無限層級。
 
-###CSS
+### CSS
 
 ``` css
 ul li {
@@ -78,7 +78,7 @@ ul ul ul {
 
 [範例](http://zespia.tw/demo/css-multi-level-menu/)｜[下載](http://zespia.tw/demo/css-multi-level-menu/example.zip)
 
-##後記
+## 後記
 
 ![](http://i.minus.com/ibbaIEKvPdl6Pc.jpg)
 

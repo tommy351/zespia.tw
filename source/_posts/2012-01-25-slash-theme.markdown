@@ -3,7 +3,7 @@ layout: post
 title: "Slash — 專為 Octopress 設計的極簡主題"
 date: 2012-01-25 16:27
 comments: true
-tags: 
+tags:
 - 主題
 - Octopress
 ---
@@ -21,7 +21,7 @@ tags:
 - 支援 responsive layouts，無論電腦、手機、平板都能獲得極佳的使用體驗。
 - [更多介紹…](http://zespia.tw/Octopress-Theme-Slash/index_tw.html)
 
-##安裝
+## 安裝
 
 只需在終端機輸入以下指令，即可完成安裝：
 
@@ -32,21 +32,21 @@ tags:
 
 使用 zsh 時發生問題嗎？試試看`rake install\['slash'\]`。
 
-##Q&A
+## Q&A
 
-###如何顯示右上角的Facebook連結？
+### 如何顯示右上角的Facebook連結？
 
 在`_config.yml`新增`facebook_user`參數，並填入您的 Facebook ID。
 
-###如何編輯選單？
+### 如何編輯選單？
 
 編輯`slash`→`source`→`_includes`→`custom`→`navigation.html`。
 
-###如何隱藏頁首的Twitter訊息串？
+### 如何隱藏頁首的Twitter訊息串？
 
 刪除`slash`→`source`→`_layouts`→`default.html`的第 6 行。
 
-###如何關閉Fancybox？
+### 如何關閉Fancybox？
 
 1. 刪除`slash`→`source`→`_includes`→`after_footer.html`的第 4 行。
 2. 刪除`slash`→`source`→`javascripts`→`caption.js`第 14 行。

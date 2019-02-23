@@ -3,7 +3,7 @@ layout: post
 title: "Hello Octopress!"
 date: 2012-01-14 15:52
 comments: true
-tags: 
+tags:
 - Octopress
 - Ruby
 ---
@@ -30,9 +30,9 @@ tags:
 
 <!-- more -->
 
-##安裝
+## 安裝
 
-###Ruby
+### Ruby
 
 [Octopress] 的安裝非常簡單，首先你需要準備 [Ruby] 的環境，以下以 Mac 為示範：
 
@@ -76,7 +76,7 @@ tags:
 
 *（以上安裝步驟參考自[我這樣安裝Rails - 佑樣の技術筆記](http://killtw.k2ds.net/blog/2011/10/29/how-to-install-rails/)）*
 
-###Octopress
+### Octopress
 
 到目前為止，只不過安裝好 [Ruby] 罷了，接著才是重頭戲──[Octopress] 登場！
 
@@ -104,7 +104,7 @@ tags:
 	$ cd ~/.pow
 	$ ln -s /path-to-octopress
 
-##發佈
+## 發佈
 
 1.在 [GitHub] 建立名為`http://yourname.github.com`的 repository，`yourname`必須與你的使用者名稱相同，否則會建立專案頁面。
 
@@ -130,7 +130,7 @@ tags:
 
 若要進一步設定，請編輯 [Octopress] 根目錄中的`_config.yml`。
 
-###自定網域
+### 自定網域
 
 在`source/CNAME`輸入網域名稱
 
@@ -140,11 +140,11 @@ tags:
 
 *（以上安裝步驟參考自 [Octopress Documentation](http://octopress.org/docs/)）*
 
-##寫作
+## 寫作
 
 雖然安裝看起來很麻煩，不過寫作文章相當簡單！
 
-###文章
+### 文章
 
 	$ rake new_post['title']
 
@@ -162,10 +162,10 @@ tags:
 
 	# 單一分類
 	categories: Sass
-			
+
 	# 多重分類 (1)
 	categories: [CSS3, Sass, Media Queries]
-	
+
 	# 多重分類 (2)
 	categories:
 	- CSS3
@@ -174,11 +174,11 @@ tags:
 
 [Octopress] 完整支援 [Markdown] 語法，另外可利用`<!-- more -->`達成「詳閱全文」的效果。
 
-###分頁
+### 分頁
 
-	# 一般分頁	
+	# 一般分頁
 	$ rake new_page[your-page]
-	
+
 	# 子分頁
 	$ rake new_page[your-page/sub-page.html]
 
@@ -190,16 +190,16 @@ tags:
 	date: 2012-01-14 15:52
 	comments: true
 	sharing: true
-	footer: true	
+	footer: true
 	---
 
 操作方法與文章大同小異，同樣完整支援 [Markdown] 語法。
 
-###建立
+### 建立
 
 輸入`rake generate`即可建立文章或分頁，輸入`rake deploy`就會將文章 pull 到[GitHub]上。
 
-##結論
+## 結論
 
 經過這幾天的試用結果，老實說 [Octopress] 實在有夠難用，沒有如 [WordPress] 的強大管理介面，所有操作*（包括新增文章、分頁）*都必須透過終端；然而撰寫文章比 [WordPress] 快多了，不需忍耐 [WordPress] 慢吞吞的編輯器，在 local 用 [Markdown] 寫完就能直接 deploy 到 [GitHub] 上。
 

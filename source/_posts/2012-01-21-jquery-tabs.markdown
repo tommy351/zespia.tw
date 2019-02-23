@@ -3,7 +3,7 @@ layout: post
 title: "如何利用 jQuery 製作頁籤？"
 date: 2012-01-21 18:10
 comments: true
-tags: 
+tags:
 - JavaScript
 ---
 ![在文章中放入不相干的圖片好像已經成為定番？隨便啦](http://i.minus.com/i3hFGFugcShjF.jpg)
@@ -16,9 +16,9 @@ tags:
 
 **本文以 jQuery 1.7.1 為例。**
 
-##基礎
+## 基礎
 
-###HTML
+### HTML
 
 ``` html
 <ul id="tabs">
@@ -37,7 +37,7 @@ tags:
 
 以`ul#tabs`當作標籤，而`#contents`內則是頁籤內容。我盡可能簡化 HTML 中不必要的欄位，其他功能都將在 JS 中實現。
 
-###CSS
+### CSS
 
 ``` css
 #tabs li{
@@ -101,11 +101,11 @@ tags:
 [範例](http://zespia.tw/demo/jquery-tabs/basic/)｜
 [下載](http://zespia.tw/demo/jquery-tabs/basic/example.zip)
 
-##進階
+## 進階
 
 只有單純的顯示隱藏似乎太無趣了？那就加點動畫吧！只要稍微變更基礎結構，就能讓頁籤看起來更加華麗！
 
-###HTML
+### HTML
 
 ``` html
 <ul id="tabs">
@@ -126,7 +126,7 @@ tags:
 
 進階篇的 HTML 結構與基礎篇只有一點小差別，僅在原本的`#contents`的區塊外又包了一層`#container`。
 
-###CSS
+### CSS
 
 ``` css
 #tabs{
@@ -176,7 +176,7 @@ tags:
 
 進階篇若少了 JS 的輔助，則無法正常顯示，除非事先設定`#container`的高度。
 
-###JS
+### JS
 
 ``` js
 (function($){
@@ -226,7 +226,7 @@ tags:
 [範例](http://zespia.tw/demo/jquery-tabs/advanced/)｜
 [下載](http://zespia.tw/demo/jquery-tabs/advanced/example.zip)
 
-##後記
+## 後記
 
 ![](http://i.minus.com/ibiEDX70iCDveF.PNG)
 

@@ -15,7 +15,7 @@ comments: true
 
 <!--more-->
 
-##Google+ Hide Comments
+## Google+ Hide Comments
 
 ![](http://i.minus.com/ibezLR2xu8BKlc.jpg)
 
@@ -25,7 +25,8 @@ comments: true
 已停止更新
 {% endblockquote %}
 
-##Google+ Hover Zoom
+## Google+ Hover Zoom
+
 ![](http://i.minus.com/i4Xjzr8VGpgHM.jpg)
 
 滑鼠移入即可顯示原圖，並能從側邊的下載按鈕直接下載原圖。很簡單的功能，不過他媽的正規表達式有夠難寫，根本天書。目前正規表達式與判斷式的問題應該都修正完畢，未來預計擴充設定頁面的功能並改善效能。

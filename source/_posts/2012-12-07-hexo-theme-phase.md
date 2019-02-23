@@ -47,25 +47,25 @@ Hexo版本安裝後別忘了將`_config.yml`內的`theme`參數調整為`phase`�
 
 ## FAQ
 
-###Octopress版和Hexo版有什麼差別？
+### Octopress版和Hexo版有什麼差別？
 
 - Octopress版沒有相簿（photo）和連結（link）兩種布局
 - 部分樣式的微妙差別
 - <del>Octopress速度比較慢</del>
 
-###如何編輯選單？
+### 如何編輯選單？
 
 - Octopress版本：編輯`source/_includes/custom/navigation.html`。
 - Phase版本：編輯`_config.yml`的`menu`參數。
 
-###如何關閉Fancybox？
+### 如何關閉Fancybox？
 
 對於Chrome來說，同時執行Phase Beam和Fancybox的動畫似乎是一件很吃力的事情，所以你也可以選擇關閉Fancybox功能。
 
 - Octopress版本：刪除`source/_includes/after_footer.html`的第1行。
 - Hexo版本：`_config.yml`的`fancybox`參數調整為`false`。
 
-###如何關閉Phase Beam？
+### 如何關閉Phase Beam？
 
 我覺得用Phase還關閉Phase Beam實在是一件很沒有意義的事情，關閉了Phase Beam的Phase就只是一個背景黑漆漆的Slash而已，沒有任何特色，相較於Slash還少了一些功能，但是我還是稍微說明吧。
 

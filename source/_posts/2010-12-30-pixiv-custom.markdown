@@ -18,13 +18,13 @@ comments: true
 
 此外，此佈景主題支援部分的 WordPress 3.0 功能，「**自定選單**」以及「**自定背景**」，可支援Banner聯播，只需將圖片放置在`headers`資料夾內，頁面重新整理時便會隨機顯示圖片。
 
-##瀏覽器支援
+## 瀏覽器支援
 
-**完整支援**：Mozilla Firefox,  Google Chrome, Safari, Opera, Internet Explorer 9   
-**部分支援**：Internet Explorer 8（不支援圓角）   
+**完整支援**：Mozilla Firefox,  Google Chrome, Safari, Opera, Internet Explorer 9
+**部分支援**：Internet Explorer 8（不支援圓角）
 **不爽支援**：Internet Explorer 7以下版本。
 
-##下載
+## 下載
 
-[正式版 (Ver 2.1.5)](http://wordpress.org/extend/themes/download/pixiv-custom.2.1.5.zip)   
+[正式版 (Ver 2.1.5)](http://wordpress.org/extend/themes/download/pixiv-custom.2.1.5.zip)
 [演示](http://wp-themes.com/pixiv-custom/)
