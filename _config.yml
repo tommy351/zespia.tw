@@ -1,5 +1,5 @@
 title: Zespia
-author: SkyArrow
+author: Tommy Chen
 email: tommy351@gmail.com
 
 url: https://zespia.tw
@@ -38,9 +38,6 @@ date_format: MMM D YYYY
 disqus_shortname: zespiatw
 
 theme: landscape
-
-stylus:
-  compress: true
 
 markdown:
   render:
