@@ -1,3 +1,4 @@
+---
 title: Fetch 壓縮後會在 Chrome 上發生 Illegal Invocation 錯誤
 tags:
   - JavaScript

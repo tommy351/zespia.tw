@@ -1,3 +1,4 @@
+---
 title: Algolia DocSearch
 tags:
 - Algolia
