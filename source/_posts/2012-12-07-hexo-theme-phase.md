@@ -8,8 +8,7 @@ tags:
 - Octopress
 - Node.js
 ---
-
-![](http://i.minus.com/icsKsGRjMpstw.png)
+{% asset_img icsKsGRjMpstw.png %}
 
 在轉到Hexo之前，我一直都在使用這個[私用主題 Phase](http://zespia.tw/blog/2012/05/02/new-theme-phase/)，曾經承諾過我用膩了就公開發佈，於是今天就有這篇文章了。
 
