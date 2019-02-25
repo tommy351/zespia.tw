@@ -1,3 +1,8 @@
 [build]
   command = "npm run build"
   publish = "/public"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"
