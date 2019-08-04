@@ -12,6 +12,8 @@ tags:
 - 能夠重複利用
 - 能夠驗證設定是否正確
 
+<!-- more -->
+
 ## 現有工具
 
 一開始我先從 [awesome-kubernetes](https://github.com/ramitsurana/awesome-kubernetes#configuration) 尋找現有的設定管理工具，以下列出一些我覺得還不錯的工具以及它們的優缺點。
