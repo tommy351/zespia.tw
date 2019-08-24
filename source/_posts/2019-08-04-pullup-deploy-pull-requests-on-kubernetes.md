@@ -36,31 +36,19 @@ Pullup 在收到 pull request 事件時，會以原資源為基準複製新的�
 
 ## 安裝
 
-首先，建立新的 namespace。
+以下指令會在 `pullup` namespace 中安裝 Pullup 相關的 CRD 和各種必要元件。
 
 ```sh
-kubectl create namespace pullup
+kubectl apply -f https://github.com/tommy351/pullup/releases/latest/download/pullup-deployment.yml
 ```
 
-安裝相對應的 CRD (Custom Resource Definitions)。
+你可在 [deployment](https://github.com/tommy351/pullup/blob/master/deployment) 資料夾中檢視原始碼，YAML 檔中包含：
 
-```sh
-kubectl apply -f https://github.com/tommy351/pullup/blob/master/deployment/crds/webhook.yml
-kubectl apply -f https://github.com/tommy351/pullup/blob/master/deployment/crds/resource-set.yml
-```
-
-設定 RBAC。以下的指令僅用於讓 Pullup 能夠存取 Pullup CRD，你還必須根據[文件](https://github.com/tommy351/pullup/#rbac)來設定其他資源的 RBAC。這是為了讓使用者便於控制 Pullup 的權限。
-
-```sh
-kubectl apply -f https://github.com/tommy351/pullup/blob/master/deployment/rbac.yml
-```
-
-安裝 Pullup 的 Deployment 和 Service。
-
-```sh
-kubectl apply -f https://github.com/tommy351/pullup/blob/master/deployment/deployment.yml
-kubectl apply -f https://github.com/tommy351/pullup/blob/master/deployment/service.yml
-```
+- Pullup CRD
+- 服務帳號 (service account)
+- 用於存取 Pullup CRD、寫入事件以及 leader election 的 RBAC，你還必須根據[文件](https://github.com/tommy351/pullup/#rbac)來設定其他資源的 RBAC。這是為了讓使用者便於控制 Pullup 的權限。
+- Controller 和 webhook 的 deployment
+- Service
 
 更詳細的說明請參考[文件][Pullup]。
 
