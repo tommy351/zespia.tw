@@ -37,9 +37,6 @@ tags:
 
 第二個主題以 [Dribbble] 上的某個[點子](http://dribbble.com/shots/438559-Pointz-Map-based-service?list=tags&tag=web)為範本，搭配部分 [Production I.G] 官網的元素（雖然看不大出來）。
 
-![](http://i.minus.com/ind9tU2HtpOTz.jpg)
-
-
 我曾經認真思索過如何符合「**一眼就能看出是圈內人**」的要求，因此參考了[京都アニメーション]與 [Production I.G] 的網站，現今的動畫官網真是做得愈來愈棒了，特別是 [Guilty Crown] 的官網，華麗之餘還能包含許多 HTML5 要素。（不過那毫無章法的劇情是另一回事）
 
 ## 套版
