@@ -125,8 +125,7 @@ ln -s /path/to/myapp
 
 如果你有興趣的話，歡迎試用看看，有任何問題的話歡迎留言。
 
-<iframe src="http://ghbtns.com/github-btn.html?user=tommy351&repo=hexo&type=watch&count=true"
-  allowtransparency="true" frameborder="0" scrolling="0" width="62px" height="20px"></iframe>
+<iframe src="https://ghbtns.com/github-btn.html?user=hexojs&repo=hexo&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe>
 
 [Octopress]: http://octopress.org/
 [Jekyll]: https://github.com/mojombo/jekyll
