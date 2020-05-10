@@ -5,7 +5,7 @@ tags:
   - Node.js
   - JavaScript
 ---
-![](/images/uploads/yarn_logo.png)
+{% asset_img yarn-logo.png %}
 
 今年初隨著公司的 repo 越來越多，我們決定把 web 前端部分轉為 monorepo 的形式，一開始花了一段時間研究各個 monorepo 方案的利弊，最後決定基於 Yarn 2 打造一套自用的工具。這篇文章會大概分析一些我試過的 monorepo 方案的優缺點，以及最後用 Yarn 2 的成果。
 
@@ -122,7 +122,7 @@ Yarn 官方更是把整個 [`.yarn/cache`](https://github.com/yarnpkg/berry/tree
 
 我們把部屬流程分成了三塊：測試→編譯→發佈。
 
-![](/images/uploads/yarn_2_deploy_flow.png)
+{% asset_img deploy-flow.png %}
 
 ### 測試
 
