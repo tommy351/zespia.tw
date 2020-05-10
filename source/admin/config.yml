@@ -13,8 +13,8 @@ collections:
     label_singular: Post
     folder: source/_posts
     create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
-    preview_path: "blog/{{year}}-{{month}}-{{day}}-{{slug}}"
+    slug: "{{fields.slug}}"
+    preview_path: "blog/{{year}}/{{month}}/{{day}}/{{slug}}"
     extension: md
     format: yaml-frontmatter
     fields:
@@ -25,9 +25,16 @@ collections:
       - label: Title
         name: title
         widget: string
+      - label: Slug
+        name: slug
+        widget: string
       - label: Publish Date
         name: date
         widget: datetime
+      - label: Tags
+        name: tags
+        widget: list
+        required: false
       - label: Body
         name: body
         widget: markdown
