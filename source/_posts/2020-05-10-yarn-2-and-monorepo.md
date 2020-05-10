@@ -1,8 +1,5 @@
 ---
-layout: post
 title: Yarn 2 和 Monorepo
-slug: yarn-2-and-monorepo
-date: 2020-05-10T13:51:55.707Z
 tags:
   - Yarn
   - Node.js
