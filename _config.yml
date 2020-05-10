@@ -14,14 +14,13 @@ highlight:
   enable: true
   backtick_code_block: true
   line_number: true
-  tab_replace: '  '
+  tab_replace: "  "
   auto_detect: false
 
 skip_render:
   - demo/**/*
   - lab/**/*
   - themes/**/*
-  - admin/**/*
 
 archive: 1
 category: 1
