@@ -2,7 +2,7 @@
 layout: post
 title: Yarn 2 和 Monorepo
 slug: yarn-2-and-monorepo
-date: 2020-05-10T09:57:17.963Z
+date: 2020-05-10T13:23:30.836Z
 tags:
   - Yarn
   - Node.js
@@ -107,9 +107,17 @@ Yarn 2 預設會啟用 Zero-Installs (Plug'n'Play)，也就是把所有 dependen
 nodeLinker: node-modules
 ```
 
-## 部署流程
+### 速度
 
-轉換到 monorepo 後部署流程也必須有相應的改變，因為現在必須在同一個 monorepo 下同時部屬多個不同的網站，快速且穩定的部署流程非常重要。
+Yarn 2 比起 Yarn 1 也並非完全沒有缺點，Yarn 2 在 `yarn install` 會切分成多個步驟，分別是 Resolution、Fetch、Link，Resolution 和 Fetch 得益於新的設計會把所有 packages 儲存在 `.yarn/cache` 資料夾所以非常快，但是 Link 階段就慢一些，平均大概需要 30 秒至一分鐘以上，或許開啟 Zero-Installs 會快一些？
+
+### Vendorizing
+
+Yarn 2 會在 `.yarn` 儲存用 Webpack 編過的 Yarn 本體和擴充套件，大約佔 3 MB，這樣的好處是可以確保在不同環境下使用的 Yarn 版本都完全相同，缺點就是在 repo 裡會多了一些額外的檔案。
+
+Yarn 官方更是把整個 [.yarn/cache](https://github.com/yarnpkg/berry/tree/master/.yarn/cache) 資料夾都 commit 到 Git 上，這樣的好處或許是能夠直接省去 fetch packages 的時間，但 git clone 的時間應該也會更長。
+
+## 部署流程
 
 我們把部屬流程分成了三塊：測試→編譯→發佈。
 
@@ -117,11 +125,11 @@ nodeLinker: node-modules
 
 ### 測試
 
-在這個階段會對整個 monorepo 進行 lint 和 unit tests，目前整個過程需時大約不到 3 分鐘，所以沒有依照 workspace 拆開來執行。
+在這個階段會對整個 monorepo 進行 lint 和 unit tests，目前整個過程需時大約不到 3 分鐘，所以沒有拆開來執行。
 
 ### 編譯
 
-這個階段相對來說非常耗時，在執行前會用 `yarn changed` 來檢查 workspace 以及其依賴的套件有沒有變動，如果沒有的話就會直接跳過不做，藉此可以省下時間和成本。
+這個階段相對來說非常耗時，在執行前會用 `yarn changed` 來檢查 workspace 以及其依賴的套件有沒有變動，如果沒有的話就會直接跳過不做，藉此可以省下時間和成本。在圖中可以看到有些 job 花的時間特別短，就是因為那些沒有變動的部分都直接跳過了。
 
 ```sh
 if ! yarn changed list --git-range "$GIT_COMMIT_RANGE" | grep -q "$WORKSPACE_NAME"; then
