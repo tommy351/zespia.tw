@@ -2,7 +2,7 @@
 layout: post
 title: Yarn 2 和 Monorepo
 slug: yarn-2-and-monorepo
-date: 2020-05-10T05:58:56.701Z
+date: 2020-05-10T09:57:17.963Z
 tags:
   - Yarn
   - Node.js
@@ -14,37 +14,98 @@ tags:
 
 ### [Lerna]
 
-[Lerna] 是我一開始比較熟悉的方案，在 [Kosko](https://github.com/tommy351/kosko/) 和 [kubernetes-models-ts](https://github.com/tommy351/kubernetes-models-ts/) 都有用到，它可以同時支援 npm 和 yarn，可以自動偵測變動過的檔案，只更新有變動的 packages 並一次發佈到 npm 上。
+[Lerna] 是我一開始比較熟悉的方案，在 [Kosko](https://github.com/tommy351/kosko/) 和 [kubernetes-models-ts](https://github.com/tommy351/kubernetes-models-ts/) 都有用到，在 JavaScript monorepo 算是非常普遍的選擇。
 
-但問題是我們的 packages 全部都僅供內部使用，不需要發佈到 npm 上，所以我們實際上用不到 Lerna 那些方便的功能，還是得要自己實作一些功能才堪用。
+- 👍 支援 npm，也可以善用 Yarn 提供的 workspace 功能。
+- 👍 可以偵測檔案變動，只更新並發佈有變動的 npm packages。
+- 💩 主要是設計用來「發佈到 npm」的，如果是內部使用的話，並不需要用到這功能，必須得客製 `lerna version` 才能符合我們的需求。
 
 ### [Yarn 1]
 
-[Yarn 1] 本身提供了 workspace 的功能，但是功能非常簡陋，而且有些惱人的問題還是必須借助其他工具（例如上面提到的 Lerna）才會比較好用。
+- 👍 本身就內建了 workspace 功能，對於 monorepo 有最基本的支援。
+- 👍 效能好，會把共用的 dependencies 抽到最上層的 `node_modules` 共用避免浪費空間。
+- 💩 如果要在 workspace 之間互相引用的話，`yarn workspace @scope/a add @scope/b` 總是會試圖從 npm 下載 package，而不是先安裝 local 版本 ([yarnpkg/yarn#4878](https://github.com/yarnpkg/yarn/issues/4878))。
 
-例如要在 workspaces 之間互相引用，`yarn add` 總是會試圖從 npm 下載 package，導致錯誤發生 ([yarnpkg/yarn#4878](https://github.com/yarnpkg/yarn/issues/4878))。這種情況可以指定版號，或是改用 `lerna add`。
+### [pnpm]
+
+- 👍 本身就內建了 workspace 功能，相較於 Yarn 1 來說更強大一點。
+- 👍 能夠用 [`pnpmfile.js`](https://pnpm.js.org/en/pnpmfile) 客製 `pnpm install` 的行為，可用來限制 dependencies 版本或是竄改 `package.json`。
+- 💩 相較於 npm 和 Yarn 來說比較小眾，使用前必須先安裝。如果是 Yarn 的話，CI 和 Docker image 均有內建。
+
+### [Rush]
+
+[Rush] 是微軟推出的 JavaScript monorepo 方案，設計更加嚴謹且繁瑣。
+
+- 👍 可以同時支援 npm、yarn 和 pnpm，官方建議選用 pnpm。
+- 👍 可指定跨 workspace 之間的 dependencies 版本，避免衝突。
+- 👍 可以避免漏裝 dependencies。Yarn 會把共用 dependencies 都裝到最上層的 `node_modules`，因此所有 workspace 都能直接引用，即便沒有寫在 `package.json` 裡。pnpm 則是會把所有 dependencies 都裝到另外的資料夾，再用 symlink 連結到各個 workspace 的 `node_modules`。
+- 👍 能夠自動偵測 workspaces 之間的相依性，決定編譯順序，並實作平行編譯、增量編譯。
+- 💩 必須手動指定所有 workspace 的路徑。
+- 💩 有些功能實際上必須依賴於 pnpm，因此得先安裝 pnpm。
+
+### [Bazel]
+
+[Bazel] 是 Google 推出的跨語言 monorepo 方案，很強大也很複雜，對於我們來說，只是要支援 JavaScript 卻要寫這麼多設定，實在讓人頭痛。
+
+- 👍 能夠快取並增量編譯。
+- 👍 能夠處理編譯、測試、部署，可以說是一條龍的方案。
+- 💩 有獨特的 DSL 和生態系，學習成本很高，除非像 Angular 提供了現成的套件，否則設定很花時間。
+
+## [Yarn 2]
+
+在我研究的這段期間，Yarn 2 剛好推出了 RC 版，相較於 Yarn 1 變化非常大，詳細內容可以參考 [Introducing Yarn 2](https://dev.to/arcanis/introducing-yarn-2-4eh1)。
+
+### 更完善的 Workspace 支援
+
+現在 `yarn workspaces foreach` 的功能更完善，有點接近 Lerna。
+
+```sh
+yarn workspaces foreach --parallel --interlaced --topological run ...
+```
+
+Workspace 之間要相互引用時，不再出現上面提到的 `yarn add` 問題。
 
 ```sh
 yarn workspace @scope/a add @scope/b
 ```
 
-### [pnpm]
+### 限制 dependencies 版本
 
-[pnpm] 也內建了 workspace 的功能，相較於 Yarn 1 更強大了一些，提供了 [pnpmfile.js](https://pnpm.js.org/en/pnpmfile) 可以用來限制 dependency 的版本，有點類似 yarn 的 [`resolutions`](https://classic.yarnpkg.com/en/docs/selective-version-resolutions) 但更加彈性。
+透過新功能 [Constraints](https://yarnpkg.com/features/constraints)，可以限制 dependencies 的版本。例如下面這段可以用來確保每個 workspace 所用的 dependencies 版本統一。
 
-但是 pnpm 的問題在於它相對 npm 和 yarn 來說更加小眾，必須要在電腦上、CI 和 Docker image 裡另外安裝 pnpm。
+```prolog
+gen_enforced_dependency(WorkspaceCwd, DependencyIdent, DependencyRange2, DependencyType) :-
+  workspace_has_dependency(WorkspaceCwd, DependencyIdent, DependencyRange, DependencyType),
+  workspace_has_dependency(OtherWorkspaceCwd, DependencyIdent, DependencyRange2, DependencyType2),
+  DependencyRange \= DependencyRange2.
+```
 
-### [Rush]
+### 容易擴充
 
-[Rush] 是微軟出的 JavaScript monorepo 方案，可以同時支援 npm, yarn 和 pnpm，對於 pnpm 的支援最佳。它相對來說比較嚴謹和繁瑣，不像 pnpm 或 Yarn 可以自動搜尋 workspaces，Rush 必須要自行在 `rush.json` 內指定 `projects`，除此之外還可以限制 dependency 的版本，避免版本不一致或是漏裝 dependency。
+所有功能幾乎都是以擴充套件的形式實作的，官方本身提供了一些非常好用的擴充套件。我們用到了：
 
-Rush 必須要額外搭配 pnpm 才有最佳效果，這使它有跟 pnpm 類似的問題，此外就是它的設定稍顯複雜，不容易上手。
+- [constraints](https://github.com/yarnpkg/berry/tree/master/packages/plugin-constraints) - 提供了上面提到的 constraint 功能。
+- [typescript](https://github.com/yarnpkg/berry/tree/master/packages/plugin-typescript) - 在安裝 dependencies 的時候順便安裝對應的 `@types/` 套件。
+- [workspace-tools](https://github.com/yarnpkg/berry/tree/master/packages/plugin-workspace-tools) - 提供了上面提到的 `yarn workspaces foreach` 功能。
 
-### [Bazel]
+如果要自己實作擴充套件也非常簡單，透過 Yarn 2 的 API 可以輕鬆地得到每個 workspace 的狀態。我們自己也實作了一些簡單的擴充套件：
 
-[Bazel] 是 Google 的跨語言 monorepo 方案，比上面提到的任何一個都要複雜許多，可以用來處理跨語言間的 dependencies，能夠快取並增量編譯，甚至還能夠 build Docker image，可以說是終極的一條龍方案。但問題就在於它真的太複雜了，它有自己的 DSL 和生態系，如果像是 Angular 那樣提供了現成的 Bazel 套件的話或許可以考慮，但自己從頭開始真的太難了。
+- [changed](https://github.com/Dcard/yarn-plugins/tree/master/packages/changed) - 偵測有變動的 workspaces。
+- [tsconfig-references](https://github.com/Dcard/yarn-plugins/tree/master/packages/tsconfig-references) - 在安裝 dependencies 的時候順便更新 `tsconfig.json` 的 `references`。
 
-## [Yarn 2]
+### Zero-Installs
+
+Yarn 2 預設會啟用 Zero-Installs (Plug'n'Play)，也就是把所有 dependencies 安裝到 `.yarn` 資料夾，完全消滅了 `node_modules` 的存在，藉此解決效能和 `node_modules` 占用太多硬碟空間的問題。
+
+這個功能需要 toolchain 的配合，因為這個徹底改寫了 Node.js 的 module resolution 機制，雖然目前很多主流的工具都支援了 Plug'n'Play，但是 VSCode 目前沒有辦法預覽套件內容，因為 Yarn 2 用壓縮檔儲存所有套件，開發時非常不便，所以我們目前還是關閉了這個功能。
+
+```yaml
+nodeLinker: node-modules
+```
+
+## 部署流程
+
+轉換到 monorepo 後部署流程也必須有相應的改變。
 
 [Lerna]: https://lerna.js.org/
 [pnpm]: https://pnpm.js.org/en/
