@@ -13,8 +13,8 @@ collections:
     label_singular: Post
     folder: source/_posts
     create: true
-    slug: "{{fields.slug}}"
-    preview_path: "blog/{{year}}/{{month}}/{{day}}/{{slug}}"
+    slug: "{{year}}-{{month}}-{{day}}-{{fields.slug}}"
+    preview_path: "blog/{{year}}/{{month}}/{{day}}/{{fields.slug}}"
     extension: md
     format: yaml-frontmatter
     fields:
