@@ -21,6 +21,7 @@ skip_render:
   - demo/**/*
   - lab/**/*
   - themes/**/*
+  - admin/**/*
 
 archive: 1
 category: 1
