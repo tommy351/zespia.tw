@@ -13,29 +13,29 @@ tags:
 
 ## 現有 Monorepo 方案
 
-### [Lerna](https://lerna.js.org/)
+### [Lerna]
 
-[Lerna](https://lerna.js.org/) 是我一開始比較熟悉的方案，在 [Kosko](https://github.com/tommy351/kosko/) 和 [kubernetes-models-ts](https://github.com/tommy351/kubernetes-models-ts/) 都有用到，算是 JavaScript monorepo 非常普遍的選擇。
+[Lerna] 是我一開始比較熟悉的方案，在 [Kosko](https://github.com/tommy351/kosko/) 和 [kubernetes-models-ts](https://github.com/tommy351/kubernetes-models-ts/) 都有用到，算是 JavaScript monorepo 非常普遍的選擇。
 
 * 👍 支援 npm，也可以善用 Yarn 提供的 workspace 功能。
 * 👍 可以偵測檔案變動，只更新並發佈有變動的 npm packages。
 * 💩 主要是設計用來「發佈到 npm」的，如果是內部使用的話，並不需要用到這功能，必須得客製 `lerna version` 才能符合我們的需求。
 
-### [Yarn](https://classic.yarnpkg.com/lang/en/)
+### [Yarn]
 
 * 👍 本身就內建了 workspace 功能，對於 monorepo 有最基本的支援。
 * 👍 效能好，會把共用的 dependencies 抽到最上層的 `node_modules` 共用避免浪費空間。
 * 💩 如果要在 workspace 之間互相引用的話，`yarn workspace @scope/a add @scope/b` 總是會試圖從 npm 下載 package，而不是先安裝 local 版本 ([yarnpkg/yarn#4878](https://github.com/yarnpkg/yarn/issues/4878))。
 
-### [pnpm](https://pnpm.js.org/en/)
+### [pnpm]
 
 * 👍 本身就內建了 workspace 功能，相較於 Yarn 1 來說更強大一點。
 * 👍 能夠用 [`pnpmfile.js`](https://pnpm.js.org/en/pnpmfile) 客製 `pnpm install` 的行為，可用來限制 dependencies 版本或是竄改 `package.json`。
 * 💩 相較於 npm 和 Yarn 來說比較小眾，使用前必須先安裝。如果是 Yarn 的話，CI 和 Docker image 均有內建。
 
-### [Rush](https://rushjs.io/)
+### [Rush]
 
-[Rush](https://rushjs.io/) 是微軟推出的 JavaScript monorepo 方案，設計更加嚴謹且繁瑣。
+[Rush] 是微軟推出的 JavaScript monorepo 方案，設計更加嚴謹且繁瑣。
 
 * 👍 可以同時支援 npm、Yarn 和 pnpm，官方建議選用 pnpm。
 * 👍 可指定跨 workspace 之間的 dependencies 版本，避免衝突。
@@ -44,15 +44,15 @@ tags:
 * 💩 必須手動指定所有 workspace 的路徑。
 * 💩 有些功能實際上必須依賴於 pnpm，因此得先安裝 pnpm。
 
-### [Bazel](https://bazel.build/)
+### [Bazel]
 
-[Bazel](https://bazel.build/) 是 Google 推出的跨語言 monorepo 方案，很強大也很複雜，對於我們來說，只是要支援 JavaScript 卻要寫這麼多設定，實在讓人頭痛。
+[Bazel] 是 Google 推出的跨語言 monorepo 方案，很強大也很複雜，對於我們來說，只是要支援 JavaScript 卻要寫這麼多設定，實在讓人頭痛。
 
 * 👍 能夠快取並增量編譯。
 * 👍 能夠處理編譯、測試、部署，可以說是一條龍的方案。
 * 💩 有獨特的 DSL 和生態系，學習成本很高，除非像 Angular 有現成的套件，否則設定很花時間。
 
-## [Yarn 2](https://yarnpkg.com/)
+## [Yarn 2]
 
 在我研究的這段期間，Yarn 2 剛好推出了 RC 版，相較於 Yarn 1 變化非常大，詳細內容可以參考 [Introducing Yarn 2](https://dev.to/arcanis/introducing-yarn-2-4eh1)。
 
@@ -144,4 +144,12 @@ fi
 
 ### 發佈
 
-最後要發佈到正式環境時，會利用 [semantic-release](https://semantic-release.gitbook.io/semantic-release/) 更新版號，把測試環境的 Docker image 複製到正式環境上，一切就大功告成了。
+最後要發佈到正式環境時，會利用 [semantic-release] 更新版號，把測試環境的 Docker image 複製到正式環境上，一切就大功告成了。
+
+[Lerna]: https://lerna.js.org/
+[Yarn]: https://classic.yarnpkg.com/
+[pnpm]: https://pnpm.js.org/
+[Rush]: https://rushjs.io/
+[Bazel]: https://bazel.build/
+[Yarn 2]: https://yarnpkg.com/
+[semantic-release]: https://semantic-release.gitbook.io/semantic-release/
