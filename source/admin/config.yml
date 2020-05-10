@@ -9,18 +9,14 @@ public_folder: /images/uploads
 
 collections:
   - name: post
-    label: Posts
-    label_singular: Post
+    label: Post
     folder: source/_posts
     create: true
-    slug: "{{year}}-{{month}}-{{day}}-{{fields.slug}}"
-    preview_path: "blog/{{year}}/{{month}}/{{day}}/{{fields.slug}}"
-    extension: md
-    format: yaml-frontmatter
+    slug: "{{fields.slug}}"
     fields:
       - label: Layout
         name: layout
-        widget: hidden
+        widget: string
         default: post
       - label: Title
         name: title
@@ -28,9 +24,9 @@ collections:
       - label: Slug
         name: slug
         widget: string
-      - label: Publish Date
-        name: date
-        widget: datetime
+        hint: "Format: YYYY-MM-DD-slug"
+        pattern:
+          ['\d{4}-\d{2}-\d{2}-.+', 'The format must be "YYYY-MM-DD-slug"']
       - label: Tags
         name: tags
         widget: list
