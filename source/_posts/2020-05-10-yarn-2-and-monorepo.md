@@ -2,7 +2,7 @@
 layout: post
 title: Yarn 2 和 Monorepo
 slug: yarn-2-and-monorepo
-date: 2020-05-10T13:23:30.836Z
+date: 2020-05-10T13:51:55.707Z
 tags:
   - Yarn
   - Node.js
@@ -75,7 +75,9 @@ yarn workspace @scope/a add @scope/b
 
 ### 限制 dependencies 版本
 
-透過新功能 [Constraints](https://yarnpkg.com/features/constraints)，可以限制 dependencies 的版本。例如下面這段可以用來確保每個 workspace 所用的 dependencies 版本統一。
+透過新功能 [Constraints](https://yarnpkg.com/features/constraints)，可以限制 dependencies 的版本，在官方的 [`constraints.pro`](https://github.com/yarnpkg/berry/blob/master/constraints.pro) 可以看到許多有趣的範例。
+
+例如下面這段可以用來確保每個 workspace 所用的 dependencies 版本統一。
 
 ```prolog
 gen_enforced_dependency(WorkspaceCwd, DependencyIdent, DependencyRange2, DependencyType) :-
