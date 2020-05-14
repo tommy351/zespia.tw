@@ -7,9 +7,9 @@ hexo.extend.helper.register('page_title', function() {
     title = '彙整';
 
     if (this.is_month()) {
-      title += `: ${page.year}/${page.month}`
+      title += `: ${this.page.year}/${this.page.month}`
     } else if (this.is_year()) {
-      title += `: ${page.year}`;
+      title += `: ${this.page.year}`;
     }
   } else if (this.is_category()) {
     title = `分類: ${this.page.category}`;
