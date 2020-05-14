@@ -40,13 +40,13 @@ tags:
 
 然後在執行 `tsc` 時加上 `-b` 選項以及要編譯的專案路徑，就能順利編譯。
 
-```sh
+```shell
 tsc -b packages/x-core packages/x-cli
 ```
 
 因為專案比較多，所以我另外寫了一個 script 自動找出所有需要編譯的專案路徑。
 
-{% code build.js lang:js https://github.com/tommy351/kosko/blob/master/scripts/build.js Source %}
+```js
 "use strict";
 
 const spawn = require("cross-spawn");
@@ -63,17 +63,17 @@ console.log(TSC, ...args);
 spawn.sync(TSC, args, {
   stdio: "inherit"
 });
-{% endcode %}
+```
 
 執行 `tsc` 時加上 `--watch` 就能夠監看檔案變化並自動重新編譯。
 
-```sh
+```shell
 tsc -b packages/x-core packages/x-cli --watch
 ```
 
 執行 `tsc` 時加上 `--clean` 則是能夠自動根據 `outDir` 設定清除編譯後的檔案。
 
-```sh
+```shell
 tsc -b packages/x-core packages/x-cli --clean
 ```
 

@@ -38,7 +38,7 @@ Pullup 在收到 pull request 事件時，會以原資源為基準複製新的�
 
 以下指令會在 `pullup` namespace 中安裝 Pullup 相關的 CRD 和各種必要元件。
 
-```sh
+```shell
 kubectl apply -f https://github.com/tommy351/pullup/releases/latest/download/pullup-deployment.yml
 ```
 

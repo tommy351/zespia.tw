@@ -1,0 +1,27 @@
+.paginator {
+  @apply pt-12 flex justify-center items-center leading-none;
+
+  > * {
+    @apply mx-2;
+  }
+
+  .page-number, .extend {
+    @apply text-accent font-mono py-1 px-2 rounded border-accent border-opacity-50 border-2;
+
+    &:hover, &.current {
+      @apply bg-accent bg-opacity-25;
+    }
+
+    &.current {
+      @apply font-bold;
+    }
+  }
+
+  .extend {
+    @apply border-transparent;
+  }
+
+  .space {
+    @apply text-gray-500;
+  }
+}

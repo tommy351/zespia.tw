@@ -60,13 +60,13 @@ tags:
 
 現在 `yarn workspaces foreach` 的功能更完善，有點接近 Lerna。
 
-```sh
+```shell
 yarn workspaces foreach --parallel --interlaced --topological run ...
 ```
 
 Workspace 之間相互引用時，不再出現上面提到的 `yarn add` 問題。
 
-```sh
+```shell
 yarn workspace @scope/a add @scope/b
 ```
 
@@ -134,7 +134,7 @@ Yarn 官方更是把整個 [`.yarn/cache`](https://github.com/yarnpkg/berry/tree
 
 檢查的 script 如下，只需要三行，非常簡短。
 
-```sh
+```shell
 if ! yarn changed list --git-range "$GIT_COMMIT_RANGE" | grep -q "$WORKSPACE_NAME"; then
   circleci-agent step halt
 fi

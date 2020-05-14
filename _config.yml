@@ -11,7 +11,7 @@ auto_spacing: true
 render_drafts: false
 
 highlight:
-  enable: true
+  enable: false
   backtick_code_block: true
   line_number: true
   tab_replace: "  "
@@ -37,11 +37,12 @@ date_format: MMM D YYYY
 
 disqus_shortname: zespiatw
 
-theme: landscape
+theme: tlwd
 
 markdown:
   render:
     html: true
+    langPrefix: line-numbers language-
 
 # Theme config
 menu:
