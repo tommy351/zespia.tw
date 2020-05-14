@@ -1,7 +1,7 @@
 'use strict';
 
 hexo.extend.helper.register('page_title', function() {
-  let title = this.page.title;
+  let title = this.page && this.page.title || '';
 
   if (this.is_archive()) {
     title = '彙整';
