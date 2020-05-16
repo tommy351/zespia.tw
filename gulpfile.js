@@ -135,7 +135,6 @@ function rewriteHtml() {
       img.attr('srcset', srcs.join(','));
       img.attr('width', fullImg.imageMeta.width);
       img.attr('height', fullImg.imageMeta.height);
-      img.attr('loading', 'lazy');
     });
   })).pipe(dest('public'));
 }
