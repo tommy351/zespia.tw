@@ -30,7 +30,13 @@ function multiMaxWidth(widths) {
       .filter(x => x < file.imageMeta.width)
       .map(maxWidth => {
         const clone = file.clone();
-        clone.scale = { maxWidth };
+
+        clone.scale = {
+          maxWidth,
+          format: file.imageMeta.format,
+          formatOptions: { progressive: true }
+        };
+
         return clone;
       });
 
