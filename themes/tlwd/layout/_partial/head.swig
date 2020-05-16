@@ -8,7 +8,7 @@
   <meta charset="utf-8">
   <title>{{ page_title() }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  {{ open_graph({ twitter_id: 'tommy351', fb_admins: '100000247608790' }) }}
+  {{ open_graph({ twitter_id: 'tommy351', fb_admins: '100000247608790', language: 'zh_TW' }) }}
   {{ css('css/tlwd-style') }}
   <link rel="icon" href="/favicon.png">
   {{ defer_css('/css/prism/vsc-dark-plus.css') }}
