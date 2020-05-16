@@ -1,0 +1,11 @@
+.header-nav {
+  @apply flex justify-end py-6;
+
+  a {
+    @apply ml-6;
+
+    &:hover {
+      @apply text-accent;
+    }
+  }
+}

@@ -63,13 +63,13 @@ tags:
 
 ### 安裝
 
-```sh
+```shell
 npm install kosko -g
 ```
 
 ### 初始化
 
-```sh
+```shell
 kosko init example
 cd example
 npm install
@@ -77,7 +77,7 @@ npm install
 
 ### 產生 YAML
 
-```sh
+```shell
 # 輸出到 console
 kosko generate
 
@@ -89,13 +89,13 @@ kosko generate | kubectl apply -f -
 
 其實在執行 `kosko generate` 時也會順帶驗證，這個指令只是用來方便在 CI 上跑測試時不會把設定輸出到 log。
 
-```sh
+```shell
 kosko validate
 ```
 
 ### 轉移現有的 YAML
 
-```sh
+```shell
 # 單一檔案
 kosko migrate -f nginx-deployment.yml
 
@@ -107,7 +107,7 @@ kosko migrate -f nginx
 
 預設的資料夾結構參考 [ksonnet]，`components` 資料夾用來放 manifests，`environments` 則是各環境的參數。
 
-```sh
+```shell
 .
 ├── components
 │   ├── nginx.js
@@ -134,7 +134,7 @@ component = "components/#{component}/#{environment}"
 
 上述的設定改變了 component environments 的檔案路徑，變成了下列的結構：
 
-```sh
+```shell
 .
 ├── components
 │   ├── nginx

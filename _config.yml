@@ -11,7 +11,7 @@ auto_spacing: true
 render_drafts: false
 
 highlight:
-  enable: true
+  enable: false
   backtick_code_block: true
   line_number: true
   tab_replace: "  "
@@ -33,26 +33,13 @@ per_page: 5
 pagination_dir: page
 post_asset_folder: true
 
-date_format: MMM D YYYY
+date_format: MMM D, YYYY
 
 disqus_shortname: zespiatw
 
-theme: landscape
+theme: tlwd
 
 markdown:
   render:
     html: true
-
-# Theme config
-menu:
-  Home: /
-  Archives: /archives
-  GitHub: https://github.com/tommy351
-rss: /atom.xml
-excerpt_link: Read More
-fancybox: true
-sidebar: false
-google_analytics: UA-4910098-7
-twitter: tommy351
-google_plus: 108777679171675250079
-fb_admins: 100000247608790
+    langPrefix: line-numbers language-

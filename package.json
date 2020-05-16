@@ -6,10 +6,11 @@
     "version": "4.2.0"
   },
   "scripts": {
-    "build": "hexo generate",
+    "build": "NODE_ENV=production hexo generate",
     "start": "hexo server"
   },
   "dependencies": {
+    "autoprefixer": "^9.7.6",
     "hexo": "^4.2.0",
     "hexo-generator-archive": "^1.0.0",
     "hexo-generator-category": "^1.0.0",
@@ -20,7 +21,11 @@
     "hexo-renderer-ejs": "^1.0.0",
     "hexo-renderer-markdown-it": "^4.1.0",
     "hexo-renderer-stylus": "^1.1.0",
-    "hexo-server": "^1.0.0"
+    "hexo-server": "^1.0.0",
+    "postcss": "^7.0.30",
+    "postcss-import": "^12.0.1",
+    "postcss-nested": "^4.2.1",
+    "tailwindcss": "^1.4.6"
   },
   "devDependencies": {}
 }
