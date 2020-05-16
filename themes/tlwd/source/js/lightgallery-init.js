@@ -1,4 +1,6 @@
 (function() {
+  'use strict';
+
   const articles = document.getElementsByClassName('article-body');
 
   function freezeBodyWhenOpen(element) {

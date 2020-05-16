@@ -17,5 +17,6 @@
   <script src="https://cdn.jsdelivr.net/npm/prismjs@{{ theme.prism_version }}/plugins/show-language/prism-show-language.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/lightgallery.js@{{ theme.lightgallery_version }}/dist/js/lightgallery.min.js"></script>
   {{ js('js/lightgallery-init') }}
+  {{ js('js/prism-hooks') }}
 </body>
 </html>
