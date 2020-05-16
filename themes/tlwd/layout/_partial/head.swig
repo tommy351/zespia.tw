@@ -1,6 +1,7 @@
 {% macro defer_css(href) %}
-<link rel="preload" href="{{ href }}" as="style" onload="this.onload=null;this.rel='stylesheet'">
-<noscript><link rel="stylesheet" href="{{ href }}"></noscript>
+{# We must use single quotes here because Netlify will replace the href with CDN links. #}
+<link rel='preload' href='{{ href }}' as='style' onload='this.onload=null;this.rel="stylesheet"'>
+<noscript><link rel='stylesheet' href='{{ href }}'></noscript>
 {% endmacro %}
 
 <head>
