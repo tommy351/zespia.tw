@@ -1,6 +1,6 @@
 'use strict';
 
-const { colors } = require('tailwindcss/defaultTheme');
+const { colors, spacing } = require('tailwindcss/defaultTheme');
 
 module.exports = {
   purge: [
@@ -16,6 +16,11 @@ module.exports = {
       accent: colors.indigo[400],
       content: colors.gray[200],
       background: colors.gray[900]
+    },
+    padding: {
+      ...spacing,
+      '3/4': `${3 / 4 * 100}%`,
+      '9/16': `${9 / 16 * 100}%`
     }
   },
   variants: {},

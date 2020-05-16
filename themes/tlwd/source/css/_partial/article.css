@@ -9,12 +9,10 @@
   @apply relative;
 
   &::before {
-    @apply absolute pointer-events-none;
+    @apply absolute pointer-events-none top-0 left-0;
 
     content: '';
     border-width: var(--stripe-size) 0 0 var(--stripe-size);
-    top: 0;
-    left: 0;
     width: var(--stripe-width);
     height: var(--stripe-height);
     border-image-source: radial-gradient(farthest-corner at 0 0, theme('colors.accent'), transparent);
@@ -27,12 +25,10 @@
   @apply relative;
 
   &::before {
-    @apply absolute pointer-events-none;
+    @apply absolute pointer-events-none bottom-0 right-0;
 
     content: '';
     border-width: 0 var(--stripe-size) var(--stripe-size) 0;
-    right: 0;
-    bottom: 0;
     width: var(--stripe-width);
     height: var(--stripe-height);
     border-image-source: radial-gradient(farthest-corner at 100% 100%, theme('colors.accent'), transparent);
@@ -97,7 +93,7 @@
   }
 
   :not(pre) > code {
-    @apply font-mono text-accent;
+    @apply text-accent;
   }
 
   ul {
@@ -121,15 +117,10 @@
   }
 
   .video-container {
-    @apply relative;
-    padding-bottom: 56.25%;
+    @apply relative pb-9/16;
 
     > * {
       @apply absolute inset-0 w-full h-full;
     }
   }
-}
-
-.article-image-link {
-  display: block;
 }

@@ -4,6 +4,7 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+@import "_partial/utils.css";
 @import "_partial/header.css";
 @import "_partial/article.css";
 @import "_partial/paginator.css";
