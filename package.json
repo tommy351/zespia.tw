@@ -6,11 +6,21 @@
     "version": "4.2.0"
   },
   "scripts": {
-    "build": "NODE_ENV=production hexo generate",
-    "start": "hexo server"
+    "build": "npm-run-all build:*",
+    "build:hexo": "NODE_ENV=production hexo generate",
+    "build:gulp": "gulp",
+    "start": "hexo server",
+    "clean": "del public db.json"
   },
   "dependencies": {
     "autoprefixer": "^9.7.6",
+    "del-cli": "^3.0.1",
+    "flat-map": "^1.0.0",
+    "gulp": "^4.0.2",
+    "gulp-cheerio": "^1.0.0",
+    "gulp-image": "^6.1.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-scale-images": "^2.1.0",
     "hexo": "^4.2.0",
     "hexo-generator-archive": "^1.0.0",
     "hexo-generator-category": "^1.0.0",
@@ -22,10 +32,12 @@
     "hexo-renderer-markdown-it": "^4.1.0",
     "hexo-renderer-stylus": "^1.1.0",
     "hexo-server": "^1.0.0",
+    "npm-run-all": "^4.1.5",
     "postcss": "^7.0.30",
     "postcss-import": "^12.0.1",
     "postcss-nested": "^4.2.1",
-    "tailwindcss": "^1.4.6"
+    "tailwindcss": "^1.4.6",
+    "through2": "^3.0.1"
   },
   "devDependencies": {}
 }
