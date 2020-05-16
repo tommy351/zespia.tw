@@ -91,7 +91,8 @@ function compressImage() {
     .pipe(readImageMeta())
     .pipe(image({
       // Disable this because it is super slow
-      zopflipng: false
+      zopflipng: false,
+      jpegRecompress: true
     }))
     .pipe(rename(path => {
       path.dirname = `images/compressed/${path.dirname}`;
