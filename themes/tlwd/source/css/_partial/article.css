@@ -120,3 +120,7 @@
     @apply text-sm py-2 text-center;
   }
 }
+
+.article-image-link {
+  display: block;
+}

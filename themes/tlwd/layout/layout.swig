@@ -14,5 +14,7 @@
   <script src="https://cdn.jsdelivr.net/npm/prismjs@{{ theme.prism_version }}/plugins/line-numbers/prism-line-numbers.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@{{ theme.prism_version }}/plugins/toolbar/prism-toolbar.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/prismjs@{{ theme.prism_version }}/plugins/copy-to-clipboard/prism-copy-to-clipboard.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lightgallery.js@{{ theme.lightgallery_version }}/dist/js/lightgallery.min.js"></script>
+  {{ js('js/lightgallery-init') }}
 </body>
 </html>
