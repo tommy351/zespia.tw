@@ -119,6 +119,15 @@
   figcaption {
     @apply text-sm py-2 text-center;
   }
+
+  .video-container {
+    @apply relative;
+    padding-bottom: 56.25%;
+
+    > * {
+      @apply absolute inset-0 w-full h-full;
+    }
+  }
 }
 
 .article-image-link {
