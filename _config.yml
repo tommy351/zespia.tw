@@ -46,3 +46,6 @@ markdown:
   render:
     html: true
     langPrefix: line-numbers language-
+
+pretty_urls:
+  trailing_index: false
