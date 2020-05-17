@@ -6,6 +6,10 @@
 
 <head>
   <meta charset="utf-8">
+  <link rel="preconnect" href="https://fonts.googleapis.com/" crossorigin>
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com/">
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net/">
+  <link rel="dns-prefetch" href="https://{{ config.disqus_shortname }}.disqus.com/">
   <title>{{ page_title() }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   {{ open_graph({ twitter_id: 'tommy351', fb_admins: '100000247608790', language: 'zh_TW' }) }}
