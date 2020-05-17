@@ -11,6 +11,11 @@ const rename = require('gulp-rename');
 const webp = require('gulp-webp');
 const { groupBy, mapValues, maxBy } = require('lodash');
 const mime = require('mime-types');
+const rev = require('gulp-rev');
+const revRewrite = require('gulp-rev-rewrite');
+const terser = require('gulp-terser');
+const filter = require('gulp-filter');
+const sourcemaps = require('gulp-sourcemaps');
 
 let imageResults = {};
 
@@ -132,71 +137,97 @@ function convertWebP() {
     .pipe(collectImages());
 }
 
+function minifyAssets() {
+  const jsFilter = filter('**/*.js', { restore: true });
+
+  return src([
+    'public/css/**/*.css',
+    'public/js/**/*.js',
+    '!public/**/*.min.*'
+  ], { base: 'public' })
+    .pipe(sourcemaps.init())
+    .pipe(jsFilter)
+    .pipe(terser())
+    .pipe(jsFilter.restore)
+    .pipe(rev())
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest('public/build'))
+    .pipe(rev.manifest())
+    .pipe(dest('public/build'));
+}
+
 function rewriteHtml() {
   return src([
     'public/**/*.html',
     '!public/demo/**/*.html'
-  ]).pipe(cheerio(($, file) => {
-    $('img').each((index, element) => {
-      let img = $(element);
-      const src = img.attr('data-orig') || img.attr('src');
-      const files = getImageResults(src);
-      if (!files || !files.length) return;
+  ])
+    .pipe(revRewrite({
+      manifest: src('public/build/rev-manifest.json'),
+      prefix: '/build/'
+    }))
+    .pipe(cheerio(($, file) => {
+      $('img').each((index, element) => {
+        let img = $(element);
+        const src = img.attr('data-orig') || img.attr('src');
+        const files = getImageResults(src);
+        if (!files || !files.length) return;
 
-      const srcType = mime.lookup(src);
+        const srcType = mime.lookup(src);
 
-      const groups = mapValues(
-        groupBy(files, file => mime.lookup(file.extname)),
-        files => files.sort((a, b) => getImageWidth(a) - getImageWidth(b))
-      );
+        const groups = mapValues(
+          groupBy(files, file => mime.lookup(file.extname)),
+          files => files.sort((a, b) => getImageWidth(a) - getImageWidth(b))
+        );
 
-      const fullImg = maxBy(
-        files.filter(file => mime.lookup(file.extname) === srcType),
-        file => getImageWidth(file)
-      );
+        const fullImg = maxBy(
+          files.filter(file => mime.lookup(file.extname) === srcType),
+          file => getImageWidth(file)
+        );
 
-      if (!fullImg) {
-        throw new Error(`Unable to find the full image for ${src}`);
-      }
+        if (!fullImg) {
+          throw new Error(`Unable to find the full image for ${src}`);
+        }
 
-      let picture = img.parent('picture');
+        let picture = img.parent('picture');
 
-      if (!picture || !picture.length) {
-        img.wrap('<picture></picture>');
-        picture = img.parent('picture');
-      }
+        if (!picture || !picture.length) {
+          img.wrap('<picture></picture>');
+          picture = img.parent('picture');
+        }
 
-      picture.empty();
-      picture.attr('width', fullImg.imageMeta.width);
-      picture.attr('height', fullImg.imageMeta.height);
+        picture.empty();
+        picture.attr('width', fullImg.imageMeta.width);
+        picture.attr('height', fullImg.imageMeta.height);
 
-      const otherFormats = Object.keys(groups).filter(type => {
-        return type !== srcType;
+        const otherFormats = Object.keys(groups).filter(type => {
+          return type !== srcType;
+        });
+
+        for (const type of otherFormats) {
+          const source = $('<source></source>');
+          source.attr('type', type);
+          setSrcSet(source, groups[type]);
+          picture.append(source);
+        }
+
+        if (!img.attr('data-orig')) {
+          img.attr('data-orig', src);
+        }
+
+        img.attr('src', `/${fullImg.relative}`);
+        img.attr('width', fullImg.imageMeta.width);
+        img.attr('height', fullImg.imageMeta.height);
+        setSrcSet(img, groups[srcType]);
+        picture.append(img);
       });
-
-      for (const type of otherFormats) {
-        const source = $('<source></source>');
-        source.attr('type', type);
-        setSrcSet(source, groups[type]);
-        picture.append(source);
-      }
-
-      if (!img.attr('data-orig')) {
-        img.attr('data-orig', src);
-      }
-
-      img.attr('src', `/${fullImg.relative}`);
-      img.attr('width', fullImg.imageMeta.width);
-      img.attr('height', fullImg.imageMeta.height);
-      setSrcSet(img, groups[srcType]);
-      picture.append(img);
-    });
-  })).pipe(dest('public'));
+    }))
+    .pipe(dest('public'));
 }
 
 exports.default = series(
   compressImage,
   resizeImage,
   convertWebP,
+  minifyAssets,
   rewriteHtml
 );

@@ -1,13 +1,11 @@
 title: Zespia
 author: Tommy Chen
-email: tommy351@gmail.com
 
 url: https://zespia.tw
 root: /
 permalink: blog/:year/:month/:day/:title/
 
 new_post_name: :year-:month-:day-:title.md # File name of new posts
-auto_spacing: true
 render_drafts: false
 
 highlight:
@@ -21,6 +19,9 @@ skip_render:
   - demo/**/*
   - lab/**/*
   - themes/**/*
+
+include:
+  - _headers
 
 archive: 1
 category: 1
@@ -36,6 +37,7 @@ post_asset_folder: true
 date_format: MMM D, YYYY
 
 disqus_shortname: zespiatw
+google_analytics: UA-4910098-7
 
 theme: tlwd
 
@@ -43,3 +45,6 @@ markdown:
   render:
     html: true
     langPrefix: line-numbers language-
+
+pretty_urls:
+  trailing_index: false
