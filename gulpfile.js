@@ -165,7 +165,9 @@ function rewriteHtml() {
       picture.attr('height', fullImg.imageMeta.height);
       picture.empty();
 
-      const otherFormats = Object.keys(groups).filter(ext => ext !== fullImg.extname);
+      const otherFormats = Object.keys(groups).filter(ext => {
+        return mime.lookup(ext) !== mime.lookup(fullImg.extname);
+      });
 
       for (const ext of otherFormats) {
         const source = $('<source></source>');
