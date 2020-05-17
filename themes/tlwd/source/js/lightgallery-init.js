@@ -55,7 +55,8 @@
   function setupImageCaption(img) {
     const figure = img.parentNode;
     let caption = figure.querySelector('figcaption');
-    const title = img.title || img.querySelector('img').title;
+    const fallbackImg = img.querySelector('img') || {};
+    const title = img.title || fallbackImg.title;
 
     if (!caption && title) {
       caption = document.createElement('figcaption');

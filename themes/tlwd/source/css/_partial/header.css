@@ -2,7 +2,7 @@
   @apply flex justify-end py-6;
 
   a {
-    @apply ml-6;
+    @apply ml-6 text-content text-opacity-75;
 
     &:hover {
       @apply text-accent;
