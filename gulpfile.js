@@ -82,7 +82,10 @@ function getImageResults(src) {
 }
 
 function setSrcSet(element, files) {
+  const maxWidth = 768;
+
   element.attr('srcset', files.map(file => `/${file.relative} ${getImageWidth(file)}w`));
+  element.attr('sizes', `(max-width: ${maxWidth}px) 100vw, ${maxWidth}px`);
 }
 
 function compressImage() {
@@ -109,7 +112,7 @@ function compressImage() {
 function resizeImage() {
   return src('public/images/compressed/**/*.{jpg,jpeg,png}', { base: 'public' })
     .pipe(readImageMeta())
-    .pipe(multiMaxWidth([320, 640, 1280]))
+    .pipe(multiMaxWidth([320, 640, 1024, 1600]))
     .pipe(scaleImages())
     .pipe(rename(path => {
       path.dirname = path.dirname.replace('images/compressed', 'images/resized');
@@ -181,6 +184,8 @@ function rewriteHtml() {
       }
 
       img.attr('src', `/${fullImg.relative}`);
+      img.attr('width', fullImg.imageMeta.width);
+      img.attr('height', fullImg.imageMeta.height);
       setSrcSet(img, groups[fullImg.extname]);
       picture.append(img);
     });
