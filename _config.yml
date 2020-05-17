@@ -37,6 +37,7 @@ post_asset_folder: true
 date_format: MMM D, YYYY
 
 disqus_shortname: zespiatw
+google_analytics: UA-4910098-7
 
 theme: tlwd
 
