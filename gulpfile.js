@@ -13,6 +13,9 @@ const { groupBy, mapValues, maxBy } = require('lodash');
 const mime = require('mime-types');
 const rev = require('gulp-rev');
 const revRewrite = require('gulp-rev-rewrite');
+const terser = require('gulp-terser');
+const filter = require('gulp-filter');
+const sourcemaps = require('gulp-sourcemaps');
 
 let imageResults = {};
 
@@ -134,18 +137,23 @@ function convertWebP() {
     .pipe(collectImages());
 }
 
-function setRevision() {
+function minifyAssets() {
+  const jsFilter = filter('**/*.js', { restore: true });
+
   return src([
     'public/css/**/*.css',
     'public/js/**/*.js',
     '!public/**/*.min.*'
   ], { base: 'public' })
+    .pipe(sourcemaps.init())
+    .pipe(jsFilter)
+    .pipe(terser())
+    .pipe(jsFilter.restore)
     .pipe(rev())
-    .pipe(rename({ suffix: '.min' }))
-    .pipe(dest('public'))
-    .pipe(rev.manifest({
-    }))
-    .pipe(dest('public'));
+    .pipe(sourcemaps.write('.'))
+    .pipe(dest('public/build'))
+    .pipe(rev.manifest())
+    .pipe(dest('public/build'));
 }
 
 function rewriteHtml() {
@@ -154,7 +162,8 @@ function rewriteHtml() {
     '!public/demo/**/*.html'
   ])
     .pipe(revRewrite({
-      manifest: src('public/rev-manifest.json')
+      manifest: src('public/build/rev-manifest.json'),
+      prefix: '/build/'
     }))
     .pipe(cheerio(($, file) => {
       $('img').each((index, element) => {
@@ -219,6 +228,6 @@ exports.default = series(
   compressImage,
   resizeImage,
   convertWebP,
-  setRevision,
+  minifyAssets,
   rewriteHtml
 );
