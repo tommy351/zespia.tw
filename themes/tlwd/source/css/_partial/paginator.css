@@ -5,7 +5,7 @@
     @apply mx-2;
   }
 
-  .page-number, .extend {
+  .page-number {
     @apply text-accent font-mono py-1 px-2 rounded border-accent border-opacity-50 border-2;
 
     &:hover, &.current {
@@ -18,10 +18,37 @@
   }
 
   .extend {
-    @apply border-transparent;
+    @apply bg-no-repeat bg-center rounded;
+    text-indent: -9999px;
+    width: 27px;
+    height: 27px;
+
+    /*
+      Change the color of SVG icons
+      https://codepen.io/sosuke/pen/Pjoqqp
+    */
+    filter: invert(54%) sepia(97%) saturate(435%) hue-rotate(194deg) brightness(99%) contrast(95%);
+
+    &:hover {
+      @apply bg-accent bg-opacity-25;
+    }
   }
 
   .space {
-    @apply text-gray-500;
+    @apply bg-no-repeat bg-center;
+
+    width: 24px;
+    height: 24px;
+    text-indent: -9999px;
+    background-image: url("../images/more_horiz-white-18dp.svg");
+    filter: brightness(75%);
+  }
+
+  .prev {
+    background-image: url("../images/arrow_back-white-18dp.svg");
+  }
+
+  .next {
+    background-image: url("../images/arrow_forward-white-18dp.svg");
   }
 }

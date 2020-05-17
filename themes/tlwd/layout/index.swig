@@ -7,8 +7,8 @@
 {% if page.total > 1 %}
   <nav class="paginator">
     {{ paginator({
-      prev_text: '🡨',
-      next_text: '🡪',
+      prev_text: '上一頁',
+      next_text: '下一頁',
       escape: false
     }) }}
   </nav>
