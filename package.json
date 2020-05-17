@@ -14,6 +14,7 @@
   },
   "dependencies": {
     "autoprefixer": "^9.7.6",
+    "cssnano": "^4.1.10",
     "del-cli": "^3.0.1",
     "flat-map": "^1.0.0",
     "gulp": "^4.0.2",

@@ -6,7 +6,12 @@ const processor = postcss([
   require('postcss-import'),
   require('tailwindcss'),
   require('postcss-nested'),
-  require('autoprefixer')
+  require('autoprefixer'),
+  ...process.env.NODE_ENV === 'production' ? [
+    require('cssnano')({
+      preset: 'default'
+    })
+  ] : [],
 ]);
 
 hexo.extend.renderer.register('css', 'css', async data => {
