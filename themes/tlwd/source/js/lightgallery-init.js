@@ -46,10 +46,14 @@
     }
 
     const fallbackImg = img.querySelector('img') || { dataset: {} };
+    const srcset = img.srcset || fallbackImg.srcset;
 
     figure.dataset.src = img.src || fallbackImg.src;
-    figure.dataset.srcset = img.srcset || fallbackImg.srcset;
     figure.dataset.downloadUrl = img.dataset.orig || fallbackImg.dataset.orig || figure.dataset.src;
+
+    if (srcset) {
+      figure.dataset.srcset = srcset;
+    }
   }
 
   function setupImageCaption(img) {
