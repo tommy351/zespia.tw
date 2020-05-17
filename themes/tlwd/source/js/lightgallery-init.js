@@ -3,6 +3,10 @@
 
   const articles = document.getElementsByClassName('article-body');
 
+  // Create a fake picturefill function which does nothing at all.
+  // This can hide the errors from lightgallery.
+  window.picturefill = function() {};
+
   function freezeBodyWhenOpen(element) {
     let scrollX = 0;
     let scrollY = 0;
@@ -41,7 +45,11 @@
       figure.appendChild(img);
     }
 
-    figure.dataset.src = img.src || img.querySelector('img').src;
+    const fallbackImg = img.querySelector('img') || {};
+
+    figure.dataset.src = img.src || fallbackImg.src;
+    figure.dataset.srcset = img.srcset || fallbackImg.srcset;
+    figure.dataset.downloadUrl = img.dataset.orig || fallbackImg.dataset.orig || figure.dataset.src;
   }
 
   function setupImageCaption(img) {
