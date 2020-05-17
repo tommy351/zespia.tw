@@ -3,7 +3,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" defer></script>
 
-<script src="https://cdn.jsdelivr.net/npm/prismjs@{{ theme.prism_version }}/components/prism-core.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@{{ theme.prism_version }}/components/prism-core.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/prismjs@{{ theme.prism_version }}/plugins/autoloader/prism-autoloader.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/prismjs@{{ theme.prism_version }}/plugins/line-numbers/prism-line-numbers.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/prismjs@{{ theme.prism_version }}/plugins/toolbar/prism-toolbar.min.js" defer></script>
