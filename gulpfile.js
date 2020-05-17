@@ -8,6 +8,9 @@ const through = require('through2');
 const cheerio = require('gulp-cheerio');
 const image = require('gulp-image');
 const rename = require('gulp-rename');
+const webp = require('gulp-webp');
+const { groupBy, mapValues, maxBy } = require('lodash');
+const mime = require('mime-types');
 
 let imageResults = {};
 
@@ -68,16 +71,18 @@ function getImageWidth(file) {
 }
 
 function getImageResults(src) {
-  const compressed = imageResults[trimPrefix(src, '/')];
-  if (!compressed || !compressed.length) return [];
+  const files = imageResults[trimPrefix(src, '/')] || [];
+  const result = [];
 
-  const resized = imageResults[compressed[0].relative];
-
-  if (resized && resized.length) {
-    compressed.push(...resized);
+  for (const file of files) {
+    result.push(file, ...getImageResults(file.relative));
   }
 
-  return compressed.sort((a, b) => getImageWidth(a) - getImageWidth(b));
+  return result;
+}
+
+function setSrcSet(element, files) {
+  element.attr('srcset', files.map(file => `/${file.relative} ${getImageWidth(file)}w`));
 }
 
 function compressImage() {
@@ -113,30 +118,78 @@ function resizeImage() {
     .pipe(collectImages());
 }
 
+function convertWebP() {
+  return src([
+    'public/images/**/*.{jpg,jpeg,png}'
+  ], { base: 'public' })
+    .pipe(readImageMeta())
+    .pipe(webp())
+    .pipe(rename({ extname: '.webp' }))
+    .pipe(dest('public'))
+    .pipe(collectImages());
+}
+
 function rewriteHtml() {
   return src([
     'public/**/*.html',
     '!public/demo/**/*.html'
   ]).pipe(cheerio(($, file) => {
     $('img').each((index, element) => {
-      const img = $(element);
+      let img = $(element);
       const src = img.attr('data-orig') || img.attr('src');
       const files = getImageResults(src);
       if (!files || !files.length) return;
 
-      const fullImg = files[files.length - 1];
-      const srcs = files.map(file => `/${file.relative} ${getImageWidth(file)}w`);
+      const groups = mapValues(
+        groupBy(files, file => file.extname),
+        files => files.sort((a, b) => getImageWidth(a) - getImageWidth(b))
+      );
+
+      const fullImg = maxBy(
+        files.filter(file => file.extname !== '.webp'),
+        file => getImageWidth(file)
+      );
+
+      if (!fullImg) {
+        throw new Error(`Unable to find the full image for ${src}`);
+      }
+
+      let picture = img.parent('picture');
+
+      if (!picture || !picture.length) {
+        img.wrap('<picture></picture>');
+        picture = img.parent('picture');
+      }
+
+      picture.attr('width', fullImg.imageMeta.width);
+      picture.attr('height', fullImg.imageMeta.height);
+      picture.empty();
+
+      const otherFormats = Object.keys(groups).filter(ext => {
+        return mime.lookup(ext) !== mime.lookup(fullImg.extname);
+      });
+
+      for (const ext of otherFormats) {
+        const source = $('<source></source>');
+        source.attr('type', mime.lookup(ext));
+        setSrcSet(source, groups[ext]);
+        picture.append(source);
+      }
 
       if (!img.attr('data-orig')) {
         img.attr('data-orig', src);
       }
 
       img.attr('src', `/${fullImg.relative}`);
-      img.attr('srcset', srcs.join(','));
-      img.attr('width', fullImg.imageMeta.width);
-      img.attr('height', fullImg.imageMeta.height);
+      setSrcSet(img, groups[fullImg.extname]);
+      picture.append(img);
     });
   })).pipe(dest('public'));
 }
 
-exports.default = series(compressImage, resizeImage, rewriteHtml);
+exports.default = series(
+  compressImage,
+  resizeImage,
+  convertWebP,
+  rewriteHtml
+);
