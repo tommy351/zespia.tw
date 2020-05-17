@@ -41,7 +41,7 @@
       figure.appendChild(img);
     }
 
-    figure.dataset.src = img.src;
+    figure.dataset.src = img.src || img.querySelector('img').src;
   }
 
   function setupImageCaption(img) {
@@ -61,7 +61,7 @@
   }
 
   for (const article of articles) {
-    const images = article.getElementsByTagName('img');
+    const images = article.querySelectorAll('picture, :not(picture) > img');
 
     for (const img of images) {
       wrapImage(img);
