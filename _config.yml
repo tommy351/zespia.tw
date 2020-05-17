@@ -22,6 +22,9 @@ skip_render:
   - lab/**/*
   - themes/**/*
 
+include:
+  - _headers
+
 archive: 1
 category: 1
 tag: 1
