@@ -45,7 +45,7 @@
       figure.appendChild(img);
     }
 
-    const fallbackImg = img.querySelector('img') || {};
+    const fallbackImg = img.querySelector('img') || { dataset: {} };
 
     figure.dataset.src = img.src || fallbackImg.src;
     figure.dataset.srcset = img.srcset || fallbackImg.srcset;
