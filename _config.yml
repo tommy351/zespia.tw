@@ -1,13 +1,11 @@
 title: Zespia
 author: Tommy Chen
-email: tommy351@gmail.com
 
 url: https://zespia.tw
 root: /
 permalink: blog/:year/:month/:day/:title/
 
 new_post_name: :year-:month-:day-:title.md # File name of new posts
-auto_spacing: true
 render_drafts: false
 
 highlight:
