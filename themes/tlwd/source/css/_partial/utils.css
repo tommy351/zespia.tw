@@ -4,19 +4,15 @@
   &::-webkit-scrollbar {
     @apply w-3;
 
-    &-track {
-      @apply bg-gray-800 bg-opacity-50;
-    }
-
     &-thumb {
       @apply bg-gray-600 bg-opacity-50;
 
       &:hover {
-        @apply bg-opacity-100;
+        @apply bg-opacity-75;
       }
 
       &:active {
-        @apply bg-opacity-75;
+        @apply bg-opacity-100;
       }
     }
   }
