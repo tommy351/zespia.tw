@@ -22,7 +22,7 @@
 }
 
 .article-footer {
-  @apply relative;
+  @apply relative pt-6 flex justify-end;
 
   &::before {
     @apply absolute pointer-events-none bottom-0 right-0;
@@ -38,7 +38,7 @@
 }
 
 .tag-list {
-  @apply list-none flex;
+  @apply list-none flex flex-wrap justify-end;
 }
 
 .tag-list-item {

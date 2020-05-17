@@ -19,7 +19,7 @@
     繼續閱讀
   </a>
   {% endif %}
-  <footer class="article-footer flex justify-end">
+  <footer class="article-footer">
     {{ list_tags(post.tags, { show_count: false }) }}
   </footer>
 </article>
