@@ -47,10 +47,11 @@
   function setupImageCaption(img) {
     const figure = img.parentNode;
     let caption = figure.querySelector('figcaption');
+    const title = img.title || img.querySelector('img').title;
 
-    if (!caption && img.title) {
+    if (!caption && title) {
       caption = document.createElement('figcaption');
-      caption.innerText = img.title;
+      caption.innerText = title;
       figure.appendChild(caption);
     }
 
