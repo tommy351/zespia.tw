@@ -143,13 +143,15 @@ function rewriteHtml() {
       const files = getImageResults(src);
       if (!files || !files.length) return;
 
+      const srcType = mime.lookup(src);
+
       const groups = mapValues(
-        groupBy(files, file => file.extname),
+        groupBy(files, file => mime.lookup(file.extname)),
         files => files.sort((a, b) => getImageWidth(a) - getImageWidth(b))
       );
 
       const fullImg = maxBy(
-        files.filter(file => file.extname !== '.webp'),
+        files.filter(file => mime.lookup(file.extname) === srcType),
         file => getImageWidth(file)
       );
 
@@ -164,18 +166,18 @@ function rewriteHtml() {
         picture = img.parent('picture');
       }
 
+      picture.empty();
       picture.attr('width', fullImg.imageMeta.width);
       picture.attr('height', fullImg.imageMeta.height);
-      picture.empty();
 
-      const otherFormats = Object.keys(groups).filter(ext => {
-        return mime.lookup(ext) !== mime.lookup(fullImg.extname);
+      const otherFormats = Object.keys(groups).filter(type => {
+        return type !== srcType;
       });
 
-      for (const ext of otherFormats) {
+      for (const type of otherFormats) {
         const source = $('<source></source>');
-        source.attr('type', mime.lookup(ext));
-        setSrcSet(source, groups[ext]);
+        source.attr('type', type);
+        setSrcSet(source, groups[type]);
         picture.append(source);
       }
 
@@ -186,7 +188,7 @@ function rewriteHtml() {
       img.attr('src', `/${fullImg.relative}`);
       img.attr('width', fullImg.imageMeta.width);
       img.attr('height', fullImg.imageMeta.height);
-      setSrcSet(img, groups[fullImg.extname]);
+      setSrcSet(img, groups[srcType]);
       picture.append(img);
     });
   })).pipe(dest('public'));
