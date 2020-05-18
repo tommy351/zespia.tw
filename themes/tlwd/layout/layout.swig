@@ -7,5 +7,6 @@
     {{ body }}
     {{ partial('_partial/footer') }}
   </div>
+  {{ js('js/register-sw') }}
 </body>
 </html>
