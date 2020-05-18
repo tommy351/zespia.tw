@@ -129,3 +129,7 @@
 .token.table {
   display: inline;
 }
+
+.utterances {
+  @apply pt-8;
+}

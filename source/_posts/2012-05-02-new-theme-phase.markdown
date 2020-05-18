@@ -6,6 +6,7 @@ comments: true
 tags:
 - Octopress
 - 主題
+comment_service: disqus
 ---
 
 {% asset_img iMujOkELjjcra.png %}

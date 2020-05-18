@@ -4,6 +4,7 @@ tags:
 - JavaScript
 - Node.js
 - Google
+comment_service: disqus
 ---
 
 {% asset_img 45547375.jpg Tea@ナケナシ - ろこどる！ (id=45547375) %}

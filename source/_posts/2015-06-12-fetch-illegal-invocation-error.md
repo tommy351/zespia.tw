@@ -2,6 +2,7 @@
 title: Fetch 壓縮後會在 Chrome 上發生 Illegal Invocation 錯誤
 tags:
   - JavaScript
+comment_service: disqus
 ---
 
 {% asset_img 50392856.jpg wara - れっつごー シアン ♪ (id=50392856) %}

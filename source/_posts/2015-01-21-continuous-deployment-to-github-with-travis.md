@@ -4,6 +4,7 @@ tags:
 - Travis CI
 - GitHub
 - Hexo
+comment_service: disqus
 ---
 {% asset_img 48083477.png 志田 - 熊 (id=48083477) %}
 

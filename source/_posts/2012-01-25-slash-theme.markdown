@@ -6,6 +6,7 @@ comments: true
 tags:
 - 主題
 - Octopress
+comment_service: disqus
 ---
 [Octopress] 雖然預設主題相當漂亮，支援眾多 HTML5 的新特性，但每個網誌都是同一個主題，令人有些厭煩。在決定轉移到 [Octopress] 的第一刻起，我就開始著手設計適用於 [Octopress] 的主題，在今天終於把檔案整理完畢，集合成一個獨立的 repo。
 

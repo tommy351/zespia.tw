@@ -3,6 +3,7 @@ title: 超級槍彈辯駁 2 再會了絕望學園
 tags:
 - PS Vita
 - 遊戲
+comment_service: disqus
 ---
 {% asset_img 002.jpg %}
 

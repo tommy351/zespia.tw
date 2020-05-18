@@ -5,6 +5,7 @@ tags:
   - Node.js
   - JavaScript
   - Monorepo
+comment_service: utterances
 ---
 {% asset_img yarn-logo.png %}
 

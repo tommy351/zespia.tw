@@ -6,6 +6,7 @@ comments: true
 tags:
 - Node.js
 - JavaScript
+comment_service: disqus
 ---
 
 {% asset_img iFFlrSnC6IrC8.jpg K子 - ぬれ早苗 (id=16398495) %}

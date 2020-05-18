@@ -7,6 +7,7 @@ tags:
 - JavaScript
 - Node.js
 - Hexo
+comment_service: disqus
 ---
 
 {% asset_img ibpMKNkpRxVwsK.jpg ちり - Super sonic Child (id=29663134) %}

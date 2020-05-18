@@ -4,6 +4,7 @@ tags:
 - Ansible
 - DevOps
 - Google Cloud Platform
+comment_service: disqus
 ---
 最近忙著佈署新的測試伺服器，而 Google Cloud Platform 剛好有提供 $300 兩個月的免費試用，且在台灣又有設點，所以我就決定拿 Google Compute Engine 來建置測試伺服器了。
 
@@ -13,7 +14,7 @@ tags:
 
 ``` ini
 [webservers]
-1.2.3.4 ansible_ssh_user=john 
+1.2.3.4 ansible_ssh_user=john
 5.6.7.8 ansible_ssh_user=john
 
 [dbservers]
@@ -53,9 +54,9 @@ pip install "apache-libcloud<0.20"
 接著修改 `gce.ini` 的設定，在檔案底部可以看到這三行：
 
 ``` ini
-gce_service_account_email_address = 
-gce_service_account_pem_file_path = 
-gce_project_id = 
+gce_service_account_email_address =
+gce_service_account_pem_file_path =
+gce_project_id =
 ```
 
 - `gce_service_account_email_address` - 服務帳戶的 Email 位址

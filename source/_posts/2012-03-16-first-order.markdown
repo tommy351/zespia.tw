@@ -6,6 +6,7 @@ comments: true
 tags:
 - WordPress
 - 主題
+comment_service: disqus
 ---
 {% asset_img iNmV7aO65tXdE.jpg ユイザキ - ミサカとおしゃべりしよ (id=22543726) %}
 

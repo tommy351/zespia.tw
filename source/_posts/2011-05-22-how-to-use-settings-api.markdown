@@ -3,8 +3,9 @@ layout: post
 title: "如何使用 Settings API 製作佈景後台選項？"
 date: 2011-05-22 16:02
 comments: true
-tags: 
+tags:
 - WordPress
+comment_service: disqus
 ---
 隨著 WordPress 版本號的推進，不只系統越變越肥大，外掛、佈景主題的條件也越來越嚴苛，全部規定必須使用官方的現有函數製作，雖然 WordPress 的函數庫真的很豐富很好用，不過這麼獨裁的規定著實讓人很不爽。
 
@@ -30,7 +31,7 @@ if ( file_exists( TEMPLATEPATH.'/function-admin.php' ) ) {
 class theme_option {
 	// 建立選項區段
 	private $sections;
- 
+
 	// 各個選項的預設值
 	private $defaults = array(
 		'test_checkbox' => '0', // 0 為停用，1 為啟用
@@ -39,30 +40,30 @@ class theme_option {
 		'test_radio' => 'one',
 		'test_textarea' => ''
 	);
- 
+
 	// checkbox的陣列，如果選項類型是 checkbox 的話，可能會出一些 "Undefined Index" 的問題，所以需要特別處理
 	private $checkboxes;
- 
+
 	// 初始化
 	public function __construct() {
 		$this->checkboxes = array();
- 
+
 		$this->sections['general'] = 'General';
 		$this->sections['reading'] = 'Reading';
 		$this->sections['other'] = 'Other';
- 
+
 		// 將各個選項的預設值寫入資料庫
 		$DBOptions = get_option('pixiv_options');
 		$defaults = $this->defaults;
- 
+
 		if ( !is_array($DBOptions) ) $DBOptions = array();
- 
+
 		foreach ( $DBOptions as $key => $value ) {
 			if ( isset($DBOptions[$key]) )
 				$defaults[$key] = $DBOptions[$key];
 		}
 		update_option('pixiv_options', $defaults);
- 
+
 		add_action( 'admin_menu', array( &$this, 'add_pages' ) );
 		add_action( 'admin_init', array( &$this, 'register_settings' ) );
 	}
@@ -97,9 +98,9 @@ public function create_setting( $args = array() ) {
 		'before'	=> '', // 選項前的文字
 		'after'		=> '' // 選項後的文字
 	);
- 
+
 	extract( wp_parse_args( $args, $defaults ) );
- 
+
 	$field_args = array(
 		'type'		=> $type,
 		'id'		=> $id,
@@ -110,9 +111,9 @@ public function create_setting( $args = array() ) {
 		'before'	=> $before,
 		'after'		=> $after
 	);
- 
+
 	add_settings_field( $id, $title, array( $this, 'display_settings' ), 'test-settings', $section, $field_args );
- 
+
 	// 若選項類型為checkbox，將其加入checkboxes陣列
 	if ( $type = 'checkbox' )
 		$this->checkboxes[] = $id;
@@ -126,11 +127,11 @@ public function create_setting( $args = array() ) {
 ``` php
 public function register_settings() {
 	register_setting( 'test_options', 'test_options', array( &$this, 'validate_settings' ) );
- 
+
 	// 新增選項區段
 	foreach ( $this->sections as $slug => $title )
 		add_settings_section( $slug, '', array( &$this, 'display_section' ), 'test-settings' );
- 
+
 	// checkbox 設定
 	$this->create_setting( array (
 		'id'		=> 'test_checkbox',
@@ -224,41 +225,41 @@ public function display_section() {
 ``` php
 public function display_settings( $args = array() ) {
 	extract( $args );
- 
+
 	// 取得資料庫內的現有選項
 	$options = get_option('test_options');
- 
+
 	// 以下顯示 register_settings 內所設定的選項參數
- 
+
 	// 如果設定了 class 參數，顯示 class 參數
 	if ( $class != '' )
 		echo '<div class="' . $class . '">';
- 
+
 	// 如果設定了選項敘述，顯示選項敘述
 	if ( $desc != '' )
 		echo $desc . '<br />';
- 
+
 	// 如果設定了 before 參數，在選項前顯示 before 參數
 	if ( $before != '' )
 		echo '<label for="' . $id . '">' . $before . '</label>';
- 
+
 	// 偵測選項類型，以下內容可依個人喜好自行設定
 	switch ( $type ) {
 		case 'checkbox':
 			echo '<input type="checkbox" id="' . $id . '" name="test_options[' . $id . ']" value="1"'.checked( $options[$id], 1, false ) . ' />';
- 
+
 			break;
- 
+
 		case 'select':
 			echo '<select name="test_options[' . $id . ']">';
- 
+
 			foreach ( $choices as $value => $label )
 				echo '<option value="' . $value . '"' . selected( $options[$id], $value, false ) . '>' . $label . '</option>';
- 
+
 			echo '</select>';
- 
+
 			break;
- 
+
 		case 'radio':
 			$i = 0;
 			foreach ( $choices as $value => $label ) {
@@ -267,25 +268,25 @@ public function display_settings( $args = array() ) {
 					echo '<br />';
 				$i++;
 			}
- 
+
 			break;
- 
+
 		case 'textarea':
 			echo '<textarea id="' . $id . '" name="test_options[' . $id . ']" cols="95%" rows="10">' . $options[$id] . '</textarea>';
- 
+
 			break;
- 
+
 		case 'text':
 		default:
 			echo '<input type="text" id="' . $id . '" name="test_options[' . $id . ']" value="' . $options[$id] . '" maxlength="' . $maxlength . '" />';
- 
+
 			break;
 	}
- 
+
 	// 如果設定了 after 參數，在選項後顯示 after 參數
 	if ( $after != '' )
 		echo '<label for="' . $id . '">' . $after . '</label>';
- 
+
 	// 如果設定了 class 參數，以 div 包含選項
 	if ( $class != '' )
 		echo '</div>';
@@ -296,41 +297,41 @@ public function display_settings( $args = array() ) {
 
 ``` php
 public function validate_settings( $input ) {
- 
+
 	$options = get_option('test_options');
 	$valid_input = $options;
- 
+
 	$submit = ( ! empty( $input['submit'] ) ? true : false );
 	$reset = ( ! empty( $input['reset'] ) ? true : false );
- 
+
 	if ( $submit ) {
 		// 若 checkbox 停用，補 "0" 儲存至資料庫
 		foreach ( $this->checkboxes as $id ) {
 			if ( isset( $options[$id] ) && ! isset( $input[$id] ) )
 				$input[$id] = '0';
 		}
- 
+
 		$valid_input = $input;
- 
+
 	} elseif ( $reset ) {
 		// 使用事先設定的預設值寫入資料庫
 		$valid_input = $this->defaults;
 	}
- 
+
 	return $valid_input;
 }
 ```
 
 ##自定 JavaScript 與 CSS 樣式
 
-如果只是基本的主題選項的話，第四步便可以宣告結束了，但如果想要進一步的設定 Javascript 與 CSS 樣式呢？你可以加入以下的函數，直接引入外部檔案，或是直接寫在 PHP 檔案也可以。   
+如果只是基本的主題選項的話，第四步便可以宣告結束了，但如果想要進一步的設定 Javascript 與 CSS 樣式呢？你可以加入以下的函數，直接引入外部檔案，或是直接寫在 PHP 檔案也可以。
 *※ 附註：若直接使用 $ 當作 jQuery 標籤的話，可能會有衝突問題，請使用其他字串代替，或改為`jQuery(document).ready(function($){...});`*
 
 ``` php
 public function styles() {
 	wp_enqueue_style('testAdminCSS', get_template_directory_uri().'/admin/admin.css');
 }
- 
+
 // 引入 Javascript
 public function scripts() {
 	wp_enqueue_script('testAdminJS', get_template_directory_uri().'/admin/admin.js');
@@ -355,14 +356,14 @@ add_action( 'admin_print_styles-' . $admin_page, array( &$this, 'styles' ) );
 </div>
 ```
 
-這樣選項頁面就會出現各個區段的連結文字了，接下來只要透過 Javascript 包裝表格，搭配 CSS 控制表格顯示即可。   
+這樣選項頁面就會出現各個區段的連結文字了，接下來只要透過 Javascript 包裝表格，搭配 CSS 控制表格顯示即可。
 *※ ID必須符合`__construct`函數中的參數，前面再加上上述程式碼的前綴字元。*
 
 ``` js
 jQuery(document).ready(function($){
 	var cookie = $.cookie('pixiv_tabs') || 0;
 	showTab(cookie);
- 
+
 	$("#pixiv_switch a").click(function(){
 		var tab = $(this).prop('id').replace(/tab/,'');
 		showTab(tab);
@@ -375,7 +376,7 @@ function showTab(id){
 	jQuery('form#test table').eq(id).fadeIn();
 	jQuery.cookie('test_tabs',id,{expires: 0.5});
 }
- 
+
 /**
  * Cookie plugin
  *
@@ -430,7 +431,7 @@ jQuery.cookie = function(name, value, options) {
 
 ``` php
 $option = get_options('test_options');
- 
+
 // checkbox 的情況
 if ( $options['test_checkbox'] ) {
 	...
@@ -439,13 +440,13 @@ if ( $options['test_checkbox'] ) {
 }
 // 也可使用以下寫法
 $options['test_checkbox'] ? ... : ...;
- 
+
 // text, textarea 的情況
 if ( $options['test_text'] ) {
 	echo $options['test_text'];
 	...
 }
- 
+
 // select, radio 的情況
 if ( $options['test_select'] == 'one' ) {
 	...
@@ -458,9 +459,9 @@ if ( $options['test_select'] == 'one' ) {
 
 ##參考出處
 
-[Extended WordPress Settings API Tutorial](http://alisothegeek.com/2011/01/wordpress-settings-api-tutorial-1/)   
-[Incorporating the Settings API in WordPress Themes](http://www.chipbennett.net/2011/02/17/incorporating-the-settings-api-in-wordpress-themes)   
-[WordPress Codex](http://codex.wordpress.org/Main_Page)   
+[Extended WordPress Settings API Tutorial](http://alisothegeek.com/2011/01/wordpress-settings-api-tutorial-1/)
+[Incorporating the Settings API in WordPress Themes](http://www.chipbennett.net/2011/02/17/incorporating-the-settings-api-in-wordpress-themes)
+[WordPress Codex](http://codex.wordpress.org/Main_Page)
 [jQuery cookie plugin](https://github.com/carhartl/jquery-cookie)
 
 ##後記
