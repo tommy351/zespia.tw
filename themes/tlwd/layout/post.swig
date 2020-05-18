@@ -14,6 +14,7 @@ this.language = 'zh_TW';
 var d = document, s = d.createElement('script');
 s.src = 'https://{{ config.disqus_shortname }}.disqus.com/embed.js';
 s.setAttribute('data-timestamp', +new Date());
+s.setAttribute('defer', '');
 (d.head || d.body).appendChild(s);
 })();
 </script>
