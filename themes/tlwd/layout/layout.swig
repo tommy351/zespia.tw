@@ -7,5 +7,6 @@
     {{ body }}
     {{ partial('_partial/footer') }}
   </div>
+  {{ partial('_partial/service-worker') }}
 </body>
 </html>

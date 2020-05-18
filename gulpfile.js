@@ -17,6 +17,7 @@ const terser = require('gulp-terser');
 const filter = require('gulp-filter');
 const sourcemaps = require('gulp-sourcemaps');
 const svg2png = require('gulp-svg2png');
+const workbox = require('workbox-build');
 
 let imageResults = {};
 
@@ -243,11 +244,28 @@ function generateIcons() {
     .pipe(dest('public/images/icons'));
 }
 
+async function generateServiceWorker() {
+  const { warnings } = await workbox.generateSW({
+    globDirectory: 'public',
+    globPatterns: [
+      'build/**/*.{js,css}'
+    ],
+    swDest: 'public/sw.js',
+    clientsClaim: true,
+    skipWaiting: true
+  });
+
+  for (const warning of warnings) {
+    console.warn(warning);
+  }
+}
+
 exports.default = series(
   generateIcons,
   compressImage,
   resizeImage,
   convertWebP,
   minifyAssets,
+  generateServiceWorker,
   rewriteHtml
 );
