@@ -244,20 +244,15 @@ function generateIcons() {
     .pipe(dest('public/images/icons'));
 }
 
-async function generateServiceWorker() {
-  const { warnings } = await workbox.generateSW({
+async function injectSWManifest() {
+  await workbox.injectManifest({
     globDirectory: 'public',
     globPatterns: [
       'build/**/*.{js,css}'
     ],
-    swDest: 'public/sw.js',
-    clientsClaim: true,
-    skipWaiting: true
+    swSrc: 'themes/tlwd/source/sw.js',
+    swDest: 'public/sw.js'
   });
-
-  for (const warning of warnings) {
-    console.warn(warning);
-  }
 }
 
 exports.default = series(
@@ -266,6 +261,6 @@ exports.default = series(
   resizeImage,
   convertWebP,
   minifyAssets,
-  generateServiceWorker,
+  injectSWManifest,
   rewriteHtml
 );

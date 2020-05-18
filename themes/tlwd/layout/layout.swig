@@ -7,6 +7,6 @@
     {{ body }}
     {{ partial('_partial/footer') }}
   </div>
-  {{ partial('_partial/service-worker') }}
+  {{ js('js/register-sw') }}
 </body>
 </html>
