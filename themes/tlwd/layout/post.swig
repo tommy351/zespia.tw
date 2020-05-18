@@ -8,7 +8,7 @@
   repo="tommy351/zespia.tw"
   issue-term="[zespia.tw/post] {{ page.slug }}"
   label="utterances/comment"
-  theme="github-dark"
+  theme="dark-blue"
   crossorigin="anonymous"
   async>
 </script>
