@@ -16,6 +16,7 @@ const revRewrite = require('gulp-rev-rewrite');
 const terser = require('gulp-terser');
 const filter = require('gulp-filter');
 const sourcemaps = require('gulp-sourcemaps');
+const svg2png = require('gulp-svg2png');
 
 let imageResults = {};
 
@@ -99,6 +100,7 @@ function compressImage() {
     '!public/demo/**/*',
     '!public/images/compressed/**/*',
     '!public/images/resized/**/*',
+    '!public/images/icons/**/*',
     '!public/favicon.png'
   ], { base: 'public' })
     .pipe(readImageMeta())
@@ -128,7 +130,8 @@ function resizeImage() {
 
 function convertWebP() {
   return src([
-    'public/images/**/*.{jpg,jpeg,png}'
+    'public/images/**/*.{jpg,jpeg,png}',
+    '!public/images/icons/**/*'
   ], { base: 'public' })
     .pipe(readImageMeta())
     .pipe(webp())
@@ -224,7 +227,24 @@ function rewriteHtml() {
     .pipe(dest('public'));
 }
 
+function generateIcons() {
+  return src('source/_assets/logo.svg')
+    .pipe(svg2png({ width: 1024, height: 1024 }))
+    .pipe(readImageMeta())
+    .pipe(multiMaxWidth([
+      // favicon
+      32,
+      // manifest
+      48, 96, 128, 144, 192, 256, 512,
+      // iOS
+      120, 152, 180
+    ]))
+    .pipe(scaleImages())
+    .pipe(dest('public/images/icons'));
+}
+
 exports.default = series(
+  generateIcons,
   compressImage,
   resizeImage,
   convertWebP,

@@ -26,6 +26,7 @@
     "gulp-rev-rewrite": "^3.0.3",
     "gulp-scale-images": "^2.1.0",
     "gulp-sourcemaps": "^2.6.5",
+    "gulp-svg2png": "^2.0.2",
     "gulp-terser": "^1.2.0",
     "gulp-webp": "^4.0.1",
     "hexo": "^4.2.0",

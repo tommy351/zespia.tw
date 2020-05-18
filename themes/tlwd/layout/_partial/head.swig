@@ -8,8 +8,21 @@
 
   <!-- Meta -->
   <title>{{ page_title() }}</title>
+  {% if !is_post() %}
+  <meta name="description" content="A blog about web development and programming.">
+  {% endif %}
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="icon" href="/favicon.png">
+  <link rel="manifest" href="/manifest.json">
+  {% for size in [32, 48, 96, 128, 144, 192, 256, 512] %}
+    <link rel="icon" href="/images/icons/logo.{{ size }}w.png" sizes="{{ size }}x{{ size }}">
+  {%- endfor %}
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="apple-mobile-web-app-title" content="{{ config.title }}">
+
+  {% for size in [120, 152, 180] %}
+  <link rel="apple-touch-icon" href="/images/icons/logo.{{ size }}w.png" sizes="{{ size }}x{{ size }}">
+  {%- endfor %}
 
   <!-- Google fonts -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap&text=Zespia0123456789">
