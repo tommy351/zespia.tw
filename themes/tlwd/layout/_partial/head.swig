@@ -16,6 +16,7 @@
   {% for size in [32, 48, 96, 128, 144, 192, 256, 512] %}
     <link rel="icon" href="/images/icons/logo.{{ size }}w.png" sizes="{{ size }}x{{ size }}">
   {%- endfor %}
+  <meta name="theme-color" content="#7f9cf5">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   <meta name="apple-mobile-web-app-title" content="{{ config.title }}">

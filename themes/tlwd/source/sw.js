@@ -3,8 +3,8 @@
 importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js');
 
 const { skipWaiting, clientsClaim } = workbox.core;
-const { registerRoute } = workbox.routing;
-const { CacheFirst, StaleWhileRevalidate } = workbox.strategies;
+const { registerRoute, NavigationRoute  } = workbox.routing;
+const { CacheFirst, StaleWhileRevalidate, NetworkFirst } = workbox.strategies;
 const { CacheableResponsePlugin } = workbox.cacheableResponse;
 const { ExpirationPlugin } = workbox.expiration;
 const { precacheAndRoute, cleanupOutdatedCaches } = workbox.precaching;
@@ -12,11 +12,27 @@ const { precacheAndRoute, cleanupOutdatedCaches } = workbox.precaching;
 skipWaiting();
 clientsClaim();
 
+// Navigation route
+workbox.navigationPreload.enable();
+registerRoute(new NavigationRoute(
+  new NetworkFirst({
+    cacheName: 'cached-navigations',
+    plugins: [
+      new ExpirationPlugin({
+        maxEntries: 30
+      }),
+      new CacheableResponsePlugin({
+        statuses: [0, 200]
+      })
+    ]
+  })
+));
+
 // Cache the Google Fonts stylesheets with a stale-while-revalidate strategy.
 registerRoute(
   ({ url }) => url.origin === 'https://fonts.googleapis.com',
   new StaleWhileRevalidate({
-    cacheName: 'google-fonts-stylesheets',
+    cacheName: 'google-fonts-stylesheets'
   })
 );
 
@@ -27,16 +43,17 @@ registerRoute(
     cacheName: 'google-fonts-webfonts',
     plugins: [
       new CacheableResponsePlugin({
-        statuses: [0, 200],
+        statuses: [0, 200]
       }),
       new ExpirationPlugin({
         maxAgeSeconds: 60 * 60 * 24 * 365,
-        maxEntries: 30,
+        maxEntries: 30
       })
     ]
   })
 );
 
+// jsdelivr
 registerRoute(
   ({ url }) => url.origin === 'https://cdn.jsdelivr.net',
   new CacheFirst({
@@ -49,5 +66,6 @@ registerRoute(
   })
 );
 
+// Precache
 cleanupOutdatedCaches();
 precacheAndRoute(self.__WB_MANIFEST || []);
