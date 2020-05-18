@@ -5,6 +5,7 @@ tags:
 - JavaScript
 - Lerna
 - Monorepo
+comment_service: utterances
 ---
 最近在開發公司內部使用的工具時，心血來潮想用 [Lerna] 來管理 [monorepo]，但是又想用 [TypeScript]，結果碰到了一些編譯上的問題，例如套件之間互相依賴時，TypeScript 不知道依賴關係而無法了解編譯順序，導致整個 monorepo 無法編譯成功。
 

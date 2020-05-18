@@ -7,6 +7,7 @@ tags:
 - Node.js
 - JavaScript
 - Hexo
+comment_service: disqus
 ---
 
 {% asset_img ibn0sBufi4xK4S.jpg らぐほのえりか - モリサマー (id=31068919) %}

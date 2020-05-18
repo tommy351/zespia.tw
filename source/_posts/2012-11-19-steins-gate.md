@@ -6,6 +6,7 @@ comments: true
 tags:
 - PS3
 - 遊戲
+comment_service: disqus
 ---
 
 {% asset_img iFsuGusXg32tv.jpg %}

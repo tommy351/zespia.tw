@@ -3,6 +3,7 @@ title: Pullup – 在 Kubernetes 上部署與測試 Pull Request
 tags:
   - Kubernetes
   - Go
+comment_service: utterances
 ---
 
 本篇接續{% post_link kosko-kubernetes-in-javascript 上一篇文章 %}，是我在 Dcard 開發的第二個 Kubernetes 工具。

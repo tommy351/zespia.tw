@@ -2,6 +2,7 @@
 title: Algolia DocSearch
 tags:
 - Algolia
+comment_service: disqus
 ---
 {% asset_img algolia-docsearch.jpg %}
 

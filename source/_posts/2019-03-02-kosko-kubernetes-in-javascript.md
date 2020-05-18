@@ -3,6 +3,7 @@ title: Kosko – 用 JavaScript 管理 Kubernetes
 tags:
   - Kubernetes
   - JavaScript
+comment_service: utterances
 ---
 {% asset_img costco.jpg %}
 

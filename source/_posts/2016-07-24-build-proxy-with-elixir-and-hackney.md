@@ -3,6 +3,7 @@ title: 用 Elixir 和 hackney 做 proxy
 tags:
 - Elixir
 - hackney
+comment_service: disqus
 ---
 {% asset_img 58015555.png hibimegane - おにんぎょうあそび (id=58015555) %}
 
@@ -69,7 +70,7 @@ defmodule Proxy do
   import Plug.Conn
 
   def init(opts), do: opts
-  
+
   def call(conn, _) do
     {:ok, client} = :hackney.request(method_to_atom(method), make_url(url), conn.req_headers, :stream, [])
 
@@ -77,11 +78,11 @@ defmodule Proxy do
     |> write_proxy(client)
     |> read_proxy(client)
   end
-  
+
   defp method_to_atom(method) do
     method |> String.downcase |> String.to_atom
   end
-  
+
   defp make_url(conn) do
     base = "http://localhost:4000" <> conn.request_path
 
@@ -90,7 +91,7 @@ defmodule Proxy do
       qs -> base <> "?" <> qs
     end
   end
-  
+
   defp write_proxy(conn, client) do
     case read_body(conn, []) do
       {:ok, body, conn} ->
@@ -102,7 +103,7 @@ defmodule Proxy do
         write_proxy(conn, client)
     end
   end
-  
+
   defp read_proxy(conn, client) do
     {:ok, status, headers, client} = :hackney.start_response(client)
     {:ok, body} = :hackney.body(client)
@@ -134,13 +135,13 @@ end
 ``` elixir
 defp read_body(conn, client) do
   {:ok, status, headers, client} = :hackney.start_response(client)
-  
+
   case List.Keyfind(headers, "transfer-encoding", 0) do
     {_, "chunked"} ->
       conn
       |> send_chunked(status)
       |> stream_body(client)
-      
+
     _ ->
       {:ok, body} = :hackney.body(client)
       conn |> send_resp(status, body)
@@ -158,7 +159,7 @@ defp stream_body(conn, client) do
     {:ok, body} ->
       {:ok, conn} = chunk(conn, body)
       stream_body(conn, client)
-        
+
     :done -> conn
   end
 end

@@ -4,6 +4,7 @@ date: 2014-05-05 16:53:39
 tags:
 - JavaScript
 - Stylus
+comment_service: disqus
 ---
 
 {% asset_img 43049066.jpg 駒野・C・ローサ - ほの綺羅 (id=43049066) %}

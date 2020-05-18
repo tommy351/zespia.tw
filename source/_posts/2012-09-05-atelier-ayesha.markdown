@@ -1,3 +1,4 @@
+---
 layout: post
 title: "愛夏的煉金工房 ─ 黃昏大地之煉金術士"
 date: 2012-09-05 18:39
@@ -5,6 +6,7 @@ comments: true
 tags:
 - PS3
 - 遊戲
+comment_service: disqus
 ---
 
 {% asset_img ibobbTlfxZgITW.jpg %}

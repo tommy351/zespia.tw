@@ -2,6 +2,17 @@
   {{ partial('_partial/article', { post: page, index: false }) }}
 </main>
 
+{% if page.comment_service === 'utterances' %}
+<script
+  src="https://utteranc.es/client.js"
+  repo="tommy351/zespia.tw"
+  issue-term="[zespia.tw/post] {{ page.slug }}"
+  label="utterances/comment"
+  theme="github-dark"
+  crossorigin="anonymous"
+  async>
+</script>
+{% elif page.comment_service === 'disqus' && config.disqus_shortname %}
 <div id="disqus_thread" class="pt-16"></div>
 <script>
 var disqus_config = function () {
@@ -19,3 +30,4 @@ s.setAttribute('defer', '');
 })();
 </script>
 <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+{% endif %}

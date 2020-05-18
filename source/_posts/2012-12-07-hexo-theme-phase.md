@@ -7,6 +7,7 @@ tags:
 - Hexo
 - Octopress
 - Node.js
+comment_service: disqus
 ---
 {% asset_img icsKsGRjMpstw.png %}
 

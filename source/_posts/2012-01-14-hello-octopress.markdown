@@ -6,6 +6,7 @@ comments: true
 tags:
 - Octopress
 - Ruby
+comment_service: disqus
 ---
 [ACSite](http://www.acsite.net/tw/) 的空間即將在2012/1/31到期，而我又懶得續約，這時看到愈來愈多部落客都從 [WordPress] 轉移到 [Octopress]，便開始試用 [Octopress]。
 
