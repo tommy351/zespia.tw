@@ -53,6 +53,7 @@
     "postcss-import": "^12.0.1",
     "postcss-load-config": "^2.1.0",
     "postcss-nested": "^4.2.1",
+    "postcss-svgo": "^4.0.2",
     "postcss-url": "^8.0.0",
     "prismjs": "^1.20.0",
     "rollup": "^2.10.5",
