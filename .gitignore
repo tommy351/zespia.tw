@@ -3,3 +3,5 @@ node_modules
 public
 db.json
 *.log
+/themes/tlwd/source/**/*.js
+/themes/tlwd/source/**/*.js.map

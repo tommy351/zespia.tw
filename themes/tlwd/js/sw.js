@@ -1,19 +1,16 @@
-'use strict';
-
-importScripts('https://storage.googleapis.com/workbox-cdn/releases/5.1.2/workbox-sw.js');
-
-const { skipWaiting, clientsClaim } = workbox.core;
-const { registerRoute, NavigationRoute  } = workbox.routing;
-const { CacheFirst, StaleWhileRevalidate, NetworkFirst } = workbox.strategies;
-const { CacheableResponsePlugin } = workbox.cacheableResponse;
-const { ExpirationPlugin } = workbox.expiration;
-const { precacheAndRoute, cleanupOutdatedCaches } = workbox.precaching;
+import { skipWaiting, clientsClaim } from 'workbox-core';
+import { registerRoute, NavigationRoute } from 'workbox-routing';
+import { CacheFirst, StaleWhileRevalidate, NetworkFirst } from 'workbox-strategies';
+import { CacheableResponsePlugin } from 'workbox-cacheable-response';
+import { ExpirationPlugin } from 'workbox-expiration';
+import { precacheAndRoute, cleanupOutdatedCaches } from 'workbox-precaching';
+import { enable as enableNavigationPreload } from 'workbox-navigation-preload';
 
 skipWaiting();
 clientsClaim();
 
 // Navigation route
-workbox.navigationPreload.enable();
+enableNavigationPreload();
 registerRoute(new NavigationRoute(
   new NetworkFirst({
     cacheName: 'cached-navigations',

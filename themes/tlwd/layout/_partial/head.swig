@@ -37,8 +37,7 @@
   {{ open_graph({ twitter_id: 'tommy351', fb_admins: '100000247608790', language: 'zh_TW' }) }}
 
   <!-- 3rd party libs -->
-  {{ partial('prism')}}
-  {{ partial('lightgallery') }}
+  <script src="/js/app.js" defer></script>
 
   <!-- Google Analytics -->
   {{ partial('_partial/google-analytics') }}
