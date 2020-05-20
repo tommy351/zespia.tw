@@ -1,5 +1,3 @@
-import 'clipboard';
-
 import Prism from 'prismjs';
 
 import 'prismjs/plugins/autoloader/prism-autoloader';
