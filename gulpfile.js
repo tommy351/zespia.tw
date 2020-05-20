@@ -251,7 +251,8 @@ async function injectSWManifest() {
       'build/**/*.{js,css}'
     ],
     swSrc: 'themes/tlwd/source/sw.js',
-    swDest: 'public/sw.js'
+    swDest: 'public/sw.js',
+    dontCacheBustURLsMatching: /^build\//
   });
 }
 
