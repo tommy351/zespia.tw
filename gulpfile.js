@@ -13,8 +13,6 @@ const { groupBy, mapValues, maxBy } = require('lodash');
 const mime = require('mime-types');
 const rev = require('gulp-rev');
 const revRewrite = require('gulp-rev-rewrite');
-const terser = require('gulp-terser');
-const filter = require('gulp-filter');
 const sourcemaps = require('gulp-sourcemaps');
 const svg2png = require('gulp-svg2png');
 const workbox = require('workbox-build');
@@ -141,18 +139,14 @@ function convertWebP() {
     .pipe(collectImages());
 }
 
-function minifyAssets() {
-  const jsFilter = filter('**/*.js', { restore: true });
-
+function revAssets() {
   return src([
     'public/css/**/*.css',
-    'public/js/**/*.js',
-    '!public/**/*.min.*'
+    'public/js/**/*.js'
   ], { base: 'public' })
-    .pipe(sourcemaps.init())
-    .pipe(jsFilter)
-    .pipe(terser())
-    .pipe(jsFilter.restore)
+    .pipe(sourcemaps.init({
+      loadMaps: true
+    }))
     .pipe(rev())
     .pipe(sourcemaps.write('.'))
     .pipe(dest('public/build'))
@@ -261,7 +255,7 @@ exports.default = series(
   compressImage,
   resizeImage,
   convertWebP,
-  minifyAssets,
+  revAssets,
   injectSWManifest,
   rewriteHtml
 );

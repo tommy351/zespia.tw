@@ -1,22 +1,10 @@
 'use strict';
 
 const postcss = require('postcss');
+const loadConfig = require('postcss-load-config');
 
-const processor = postcss([
-  require('postcss-import'),
-  require('tailwindcss'),
-  require('postcss-url')({
-    url: 'inline',
-    optimizeSvgEncode: true
-  }),
-  require('postcss-nested'),
-  require('autoprefixer'),
-  ...process.env.NODE_ENV === 'production' ? [
-    require('cssnano')({
-      preset: 'default'
-    })
-  ] : [],
-]);
+const { plugins } = loadConfig.sync();
+const processor = postcss(plugins);
 
 hexo.extend.renderer.register('css', 'css', async data => {
   const result = await processor.process(data.text, {
