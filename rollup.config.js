@@ -15,6 +15,7 @@ const entry = (input, output) => ({
     sourcemap: process.env.NODE_ENV === 'production',
     compact: true
   },
+  preserveEntrySignatures: 'strict',
   plugins: [
     replace({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
