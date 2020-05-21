@@ -9,11 +9,11 @@ import { join } from 'path';
 const THEME_DIR = 'themes/tlwd';
 
 const entry = (input, output) => ({
-  input: join(THEME_DIR, input),
+  input,
   output: {
-    file: join(THEME_DIR, output),
-    format: 'iife',
-    sourcemap: process.env.NODE_ENV === 'production'
+    ...output,
+    sourcemap: process.env.NODE_ENV === 'production',
+    compact: true
   },
   plugins: [
     replace({
@@ -22,7 +22,8 @@ const entry = (input, output) => ({
     resolve(),
     commonjs(),
     babel({
-      exclude: 'node_modules/**'
+      exclude: 'node_modules/**',
+      babelHelpers: 'bundled'
     }),
     postcss(),
     ...process.env.NODE_ENV === 'production' ? [terser()] : []
@@ -30,6 +31,13 @@ const entry = (input, output) => ({
 });
 
 export default [
-  entry('js/app.js', 'source/js/app.js'),
-  entry('js/sw.js', 'source/sw.js')
+  entry(join(THEME_DIR, 'js/app.js'), {
+    dir: join(THEME_DIR, 'source/js'),
+    chunkFileNames: 'chunks/[name]-[hash].js',
+    format: 'es'
+  }),
+  entry(join(THEME_DIR, 'js/sw.js'), {
+    file: join(THEME_DIR, 'source/sw.js'),
+    format: 'iife'
+  })
 ];

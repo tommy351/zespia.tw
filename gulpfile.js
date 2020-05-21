@@ -142,7 +142,8 @@ function convertWebP() {
 function revAssets() {
   return src([
     'public/css/**/*.css',
-    'public/js/**/*.js'
+    'public/js/**/*.js',
+    '!public/js/chunks/**'
   ], { base: 'public' })
     .pipe(sourcemaps.init({
       loadMaps: true
@@ -151,6 +152,13 @@ function revAssets() {
     .pipe(sourcemaps.write('.'))
     .pipe(dest('public/build'))
     .pipe(rev.manifest())
+    .pipe(dest('public/build'));
+}
+
+function copyJsChunks() {
+  return src([
+    'public/js/chunks/**',
+  ], { base: 'public' })
     .pipe(dest('public/build'));
 }
 
@@ -249,6 +257,7 @@ exports.default = series(
   resizeImage,
   convertWebP,
   revAssets,
+  copyJsChunks,
   injectSWManifest,
   rewriteHtml
 );
