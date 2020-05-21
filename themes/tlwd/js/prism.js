@@ -15,7 +15,3 @@ import 'prismjs/plugins/show-language/prism-show-language';
 Prism.plugins.autoloader.languages_path = 'https://cdn.jsdelivr.net/npm/prismjs@1.20.0/components/';
 
 Prism.highlightAll();
-
-Prism.hooks.add('complete', env => {
-  env.element.parentNode.classList.add('scrollbar-dark');
-});

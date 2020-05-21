@@ -36,54 +36,9 @@ function freezeBodyWhenOpen(element) {
   });
 }
 
-function wrapImage(img) {
-  let figure = img.parentNode;
-
-  if (figure.tagName.toUpperCase() !== 'FIGURE') {
-    figure = document.createElement('figure');
-    img.parentNode.insertBefore(figure, img);
-    figure.appendChild(img);
-  }
-
-  const fallbackImg = img.querySelector('img') || { dataset: {} };
-  const srcset = img.srcset || fallbackImg.srcset;
-
-  figure.dataset.src = img.src || fallbackImg.src;
-  figure.dataset.downloadUrl = img.dataset.orig || fallbackImg.dataset.orig || figure.dataset.src;
-
-  if (srcset) {
-    figure.dataset.srcset = srcset;
-  }
-}
-
-function setupImageCaption(img) {
-  const figure = img.parentNode;
-  let caption = figure.querySelector('figcaption');
-  const fallbackImg = img.querySelector('img') || {};
-  const title = img.title || fallbackImg.title;
-
-  if (!caption && title) {
-    caption = document.createElement('figcaption');
-    caption.innerText = title;
-    figure.appendChild(caption);
-  }
-
-  if (!caption) return;
-
-  caption.classList.add('caption');
-  figure.dataset.subHtml = '.caption';
-}
-
 for (const article of articles) {
-  const images = article.querySelectorAll('picture, :not(picture) > img');
-
-  for (const img of images) {
-    wrapImage(img);
-    setupImageCaption(img);
-  }
-
   lightGallery(article, {
-    selector: 'figure',
+    selector: 'figure[data-src]',
     subHtmlSelectorRelative: true
   });
 
