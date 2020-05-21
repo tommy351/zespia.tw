@@ -207,7 +207,9 @@ function rewriteHtml() {
         img.attr('height', fullImg.imageMeta.height);
         setSrcSet(img, groups[srcType]);
 
-        picture.parent('figure').attr('data-srcset', img.attr('srcset'));
+        const figure = picture.parent('figure');
+        figure.attr('data-src', img.attr('src'));
+        figure.attr('data-srcset', img.attr('srcset'));
       });
     }))
     .pipe(dest('public'));

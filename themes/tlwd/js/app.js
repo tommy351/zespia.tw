@@ -1,3 +1,5 @@
+import 'core-js';
+
 import './prism';
 import './lightgallery';
 

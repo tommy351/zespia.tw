@@ -3,6 +3,7 @@ import commonjs from '@rollup/plugin-commonjs';
 import replace from '@rollup/plugin-replace';
 import { terser } from 'rollup-plugin-terser';
 import postcss from 'rollup-plugin-postcss';
+import babel from '@rollup/plugin-babel';
 import { join } from 'path';
 
 const THEME_DIR = 'themes/tlwd';
@@ -20,6 +21,9 @@ const entry = (input, output) => ({
     }),
     resolve(),
     commonjs(),
+    babel({
+      exclude: 'node_modules/**'
+    }),
     postcss(),
     ...process.env.NODE_ENV === 'production' ? [terser()] : []
   ]

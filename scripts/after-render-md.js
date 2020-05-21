@@ -54,5 +54,5 @@ hexo.extend.filter.register('after_render:html', function(str, data) {
     figure.attr('data-sub-html', '.caption');
   });
 
-  return $.html();
+  return $('body').html();
 });
