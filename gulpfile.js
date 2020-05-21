@@ -142,7 +142,8 @@ function convertWebP() {
 function revAssets() {
   return src([
     'public/css/**/*.css',
-    'public/js/**/*.js'
+    'public/js/**/*.js',
+    '!public/js/chunks/**'
   ], { base: 'public' })
     .pipe(sourcemaps.init({
       loadMaps: true
@@ -151,6 +152,13 @@ function revAssets() {
     .pipe(sourcemaps.write('.'))
     .pipe(dest('public/build'))
     .pipe(rev.manifest())
+    .pipe(dest('public/build'));
+}
+
+function copyJsChunks() {
+  return src([
+    'public/js/chunks/**',
+  ], { base: 'public' })
     .pipe(dest('public/build'));
 }
 
@@ -164,9 +172,9 @@ function rewriteHtml() {
       prefix: '/build/'
     }))
     .pipe(cheerio(($, file) => {
-      $('img').each((index, element) => {
-        let img = $(element);
-        const src = img.attr('data-orig') || img.attr('src');
+      $('img[data-orig]').each((index, element) => {
+        const img = $(element);
+        const src = img.attr('data-orig');
         const files = getImageResults(src);
         if (!files || !files.length) return;
 
@@ -186,37 +194,30 @@ function rewriteHtml() {
           throw new Error(`Unable to find the full image for ${src}`);
         }
 
-        let picture = img.parent('picture');
+        const picture = img.parent('picture');
+        if (!picture.length) return;
 
-        if (!picture || !picture.length) {
-          img.wrap('<picture></picture>');
-          picture = img.parent('picture');
-        }
-
-        picture.empty();
         picture.attr('width', fullImg.imageMeta.width);
         picture.attr('height', fullImg.imageMeta.height);
+        picture.children('source').remove();
 
-        const otherFormats = Object.keys(groups).filter(type => {
+        picture.prepend(...Object.keys(groups).filter(type => {
           return type !== srcType;
-        });
-
-        for (const type of otherFormats) {
-          const source = $('<source></source>');
+        }).map(type => {
+          const source = $('<source/>');
           source.attr('type', type);
           setSrcSet(source, groups[type]);
-          picture.append(source);
-        }
-
-        if (!img.attr('data-orig')) {
-          img.attr('data-orig', src);
-        }
+          return source;
+        }));
 
         img.attr('src', `/${fullImg.relative}`);
         img.attr('width', fullImg.imageMeta.width);
         img.attr('height', fullImg.imageMeta.height);
         setSrcSet(img, groups[srcType]);
-        picture.append(img);
+
+        const figure = picture.parent('figure');
+        figure.attr('data-src', img.attr('src'));
+        figure.attr('data-srcset', img.attr('srcset'));
       });
     }))
     .pipe(dest('public'));
@@ -256,6 +257,7 @@ exports.default = series(
   resizeImage,
   convertWebP,
   revAssets,
+  copyJsChunks,
   injectSWManifest,
   rewriteHtml
 );

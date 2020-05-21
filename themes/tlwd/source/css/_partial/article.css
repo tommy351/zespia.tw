@@ -37,26 +37,6 @@
   }
 }
 
-.tag-list {
-  @apply list-none flex flex-wrap justify-end;
-}
-
-.tag-list-item {
-  @apply pl-2;
-}
-
-.tag-list-link {
-  @apply text-sm text-accent;
-
-  &:hover {
-    @apply underline;
-  }
-
-  &::before {
-    content: '#';
-  }
-}
-
 .article-body {
   @apply leading-relaxed;
 

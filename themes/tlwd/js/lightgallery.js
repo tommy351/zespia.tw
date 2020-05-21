@@ -5,13 +5,13 @@ const articles = document.getElementsByClassName('article-body');
 
 // Create a fake picturefill function which does nothing at all.
 // This can hide the errors from lightgallery.
-window.picturefill = function() {};
+window.picturefill = () => {};
 
 function freezeBodyWhenOpen(element) {
   let scrollX = 0;
   let scrollY = 0;
 
-  element.addEventListener('onBeforeOpen', function (e) {
+  element.addEventListener('onBeforeOpen', () => {
     const scrollBarWidth = window.innerWidth - document.body.clientWidth;
     const scrollBarHeight = window.innerHeight - document.body.clientHeight;
     scrollX = window.scrollX;
@@ -25,7 +25,7 @@ function freezeBodyWhenOpen(element) {
     document.body.style.paddingBottom = `${scrollBarHeight}px`;
   });
 
-  element.addEventListener('onCloseAfter', function (e) {
+  element.addEventListener('onCloseAfter', () => {
     document.body.style.position = '';
     document.body.style.left = '';
     document.body.style.top = '';
@@ -36,54 +36,42 @@ function freezeBodyWhenOpen(element) {
   });
 }
 
-function wrapImage(img) {
-  let figure = img.parentNode;
+// https://davidwalsh.name/detect-webp
+async function isWebPSupported() {
+  if (!window.createImageBitmap) return false;
 
-  if (figure.tagName.toUpperCase() !== 'FIGURE') {
-    figure = document.createElement('figure');
-    img.parentNode.insertBefore(figure, img);
-    figure.appendChild(img);
-  }
+  const res = await fetch('data:image/webp;base64,UklGRh4AAABXRUJQVlA4TBEAAAAvAAAAAAfQ//73v/+BiOh/AAA=');
+  const blob = await res.blob();
 
-  const fallbackImg = img.querySelector('img') || { dataset: {} };
-  const srcset = img.srcset || fallbackImg.srcset;
-
-  figure.dataset.src = img.src || fallbackImg.src;
-  figure.dataset.downloadUrl = img.dataset.orig || fallbackImg.dataset.orig || figure.dataset.src;
-
-  if (srcset) {
-    figure.dataset.srcset = srcset;
+  try {
+    createImageBitmap(blob);
+    return true;
+  } catch {
+    return false;
   }
 }
 
-function setupImageCaption(img) {
-  const figure = img.parentNode;
-  let caption = figure.querySelector('figcaption');
-  const fallbackImg = img.querySelector('img') || {};
-  const title = img.title || fallbackImg.title;
+const webpSupported = isWebPSupported();
 
-  if (!caption && title) {
-    caption = document.createElement('figcaption');
-    caption.innerText = title;
-    figure.appendChild(caption);
+async function replaceWithWebP(element) {
+  if (!await webpSupported) return;
+
+  const figures = element.querySelectorAll('figure[data-src]');
+
+  for (const figure of figures) {
+    const webpSource = figure.querySelector('source[type="image/webp"]');
+
+    if (webpSource && webpSource.srcset) {
+      figure.dataset.srcset = webpSource.srcset;
+    }
   }
-
-  if (!caption) return;
-
-  caption.classList.add('caption');
-  figure.dataset.subHtml = '.caption';
 }
 
 for (const article of articles) {
-  const images = article.querySelectorAll('picture, :not(picture) > img');
-
-  for (const img of images) {
-    wrapImage(img);
-    setupImageCaption(img);
-  }
+  replaceWithWebP(article);
 
   lightGallery(article, {
-    selector: 'figure',
+    selector: 'figure[data-src]',
     subHtmlSelectorRelative: true
   });
 
