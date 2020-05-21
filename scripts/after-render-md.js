@@ -35,11 +35,17 @@ hexo.extend.filter.register('after_render:html', function(str, data) {
 
     figure.attr('data-src', src);
     figure.attr('data-download-url', src);
+    figure.attr('itemprop', 'image');
+    figure.attr('itemscope', '');
+    figure.attr('itemtype', 'https://schema.org/ImageObject');
+
+    img.attr('itemprop', 'url');
 
     let figcaption = figure.children('figcaption');
 
     if (figcaption.length) {
       figcaption.addClass('caption');
+      figcaption.attr('itemprop', 'description');
       figure.attr('data-sub-html', '.caption');
       return;
     }
@@ -50,6 +56,7 @@ hexo.extend.filter.register('after_render:html', function(str, data) {
     figcaption = $('<figcaption/>');
     figcaption.html(title);
     figcaption.addClass('caption');
+    figcaption.attr('itemprop', 'description');
     figure.append(figcaption);
     figure.attr('data-sub-html', '.caption');
   });
