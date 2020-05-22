@@ -1,3 +1,5 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
 <head>
   <meta charset="utf-8">
 
@@ -12,33 +14,26 @@
   <meta name="description" content="A blog about web development and programming.">
   {% endif %}
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="manifest" href="/manifest.json">
-  {% for size in [32, 48, 96, 128, 144, 192, 256, 512] %}
-    <link rel="icon" href="/images/icons/logo.{{ size }}w.png" sizes="{{ size }}x{{ size }}">
-  {%- endfor %}
-  <meta name="theme-color" content="#7f9cf5">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="{{ config.title }}">
-
-  {% for size in [120, 152, 180] %}
-  <link rel="apple-touch-icon" href="/images/icons/logo.{{ size }}w.png" sizes="{{ size }}x{{ size }}">
-  {%- endfor %}
 
   <!-- Google fonts -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Major+Mono+Display&display=swap&text=Zespia0123456789">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inconsolata&display=swap">
 
-  <!-- CSS -->
-  {{ css('css/tlwd-style') }}
-  {{ defer_css('/css/prism/vsc-dark-plus.css') }}
-
   <!-- Open graph -->
   {{ open_graph({ twitter_id: 'tommy351', fb_admins: '100000247608790', language: 'zh_TW' }) }}
-
-  <!-- 3rd party libs -->
-  <script src="/js/app.js" defer type="module"></script>
 
   <!-- Google Analytics -->
   {{ partial('_partial/google-analytics') }}
 </head>
+<body class="bg-background text-content antialiased scrollbar-dark">
+  <div class="container max-w-3xl mx-auto px-4 flex flex-col min-h-screen">
+    <div class="flex-grow">
+      {{ partial('_partial/header') }}
+      {{ body }}
+    </div>
+    <div class="flex-shrink-0">
+      {{ partial('_partial/footer') }}
+    </div>
+  </div>
+</body>
+</html>

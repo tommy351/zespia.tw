@@ -1,9 +1,11 @@
 import { Workbox } from 'workbox-window';
 
-import('./prism');
-import('./lightgallery');
+import '../css/app.css';
 
-if ('serviceWorker' in navigator) {
+import(/* webpackChunkName: "prism" */ './prism');
+import(/* webpackChunkName: "lightgallery" */ './lightgallery');
+
+if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
   const wb = new Workbox('/sw.js');
   wb.register();
 }

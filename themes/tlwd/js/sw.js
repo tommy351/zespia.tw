@@ -1,29 +1,12 @@
 import { skipWaiting, clientsClaim } from 'workbox-core';
-import { registerRoute, NavigationRoute } from 'workbox-routing';
-import { CacheFirst, StaleWhileRevalidate, NetworkFirst } from 'workbox-strategies';
+import { registerRoute } from 'workbox-routing';
+import { CacheFirst, StaleWhileRevalidate } from 'workbox-strategies';
 import { CacheableResponsePlugin } from 'workbox-cacheable-response';
 import { ExpirationPlugin } from 'workbox-expiration';
 import { precacheAndRoute, cleanupOutdatedCaches } from 'workbox-precaching';
-import { enable as enableNavigationPreload } from 'workbox-navigation-preload';
 
 skipWaiting();
 clientsClaim();
-
-// Navigation route
-enableNavigationPreload();
-registerRoute(new NavigationRoute(
-  new NetworkFirst({
-    cacheName: 'cached-navigations',
-    plugins: [
-      new ExpirationPlugin({
-        maxEntries: 30
-      }),
-      new CacheableResponsePlugin({
-        statuses: [0, 200]
-      })
-    ]
-  })
-));
 
 // Cache the Google Fonts stylesheets with a stale-while-revalidate strategy.
 registerRoute(
@@ -65,4 +48,4 @@ registerRoute(
 
 // Precache
 cleanupOutdatedCaches();
-precacheAndRoute(self.__WB_MANIFEST || []);
+precacheAndRoute(self.__WB_MANIFEST);
