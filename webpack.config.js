@@ -1,7 +1,6 @@
 'use strict';
 
 const path = require('path');
-const webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const HtmlWebpackHarddiskPlugin = require('html-webpack-harddisk-plugin');
@@ -15,7 +14,7 @@ const isProd = NODE_ENV === 'production';
 
 module.exports = {
   mode: NODE_ENV,
-  devtool: isProd ? 'source-map' : 'eval',
+  devtool: isProd ? 'source-map' : 'cheap-module-source-map',
   entry: {
     app: path.join(THEME_DIR, 'js/app.js')
   },
@@ -25,7 +24,11 @@ module.exports = {
     publicPath: '/'
   },
   optimization: {
-    runtimeChunk: 'single'
+    runtimeChunk: 'single',
+    moduleIds: 'hashed',
+    splitChunks: {
+      chunks: 'all'
+    }
   },
   module: {
     rules: [
@@ -102,9 +105,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(NODE_ENV)
-    }),
     new CleanWebpackPlugin({
       cleanAfterEveryBuildPatterns: [
         path.join(THEME_DIR, 'source/**/*.swig')
@@ -118,16 +118,6 @@ module.exports = {
     }),
     new HtmlWebpackHarddiskPlugin({
       outputPath: path.join(THEME_DIR, 'layout')
-    }),
-    new InjectManifest({
-      swSrc: path.join(THEME_DIR, 'js/sw.js'),
-      swDest: path.join(THEME_DIR, 'source/sw.js'),
-      exclude: [
-        /assets\//,
-        /\.map$/,
-        /\.swig$/
-      ],
-      dontCacheBustURLsMatching: /^\/build\//
     }),
     new FaviconsWebpackPlugin({
       logo: path.join(__dirname, 'source/_assets/logo.svg'),
@@ -154,8 +144,20 @@ module.exports = {
         }
       }
     }),
-    ...isProd ? [new MiniCssExtractPlugin({
-      filename: 'build/[name].[contenthash].css'
-    })] : []
+    ...isProd ? [
+      new InjectManifest({
+        swSrc: path.join(THEME_DIR, 'js/sw.js'),
+        swDest: path.join(THEME_DIR, 'source/sw.js'),
+        exclude: [
+          /assets\//,
+          /\.map$/,
+          /\.swig$/
+        ],
+        dontCacheBustURLsMatching: /^\/build\//
+      }),
+      new MiniCssExtractPlugin({
+        filename: 'build/[name].[contenthash].css'
+      })
+    ] : []
   ]
 };
