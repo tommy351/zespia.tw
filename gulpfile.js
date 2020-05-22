@@ -162,6 +162,26 @@ function copyJsChunks() {
     .pipe(dest('public/build'));
 }
 
+function rewriteJsChunks() {
+  function replaceJsPrefix(filename) {
+    if (filename.startsWith('js/')) {
+      return '../' + trimPrefix(filename, 'js/');
+    }
+
+    return filename;
+  }
+
+  return src([
+    'public/build/js/chunks/*.js'
+  ], { base: 'public' })
+    .pipe(revRewrite({
+      manifest: src('public/build/rev-manifest.json'),
+      modifyUnreved: replaceJsPrefix,
+      modifyReved: replaceJsPrefix
+    }))
+    .pipe(dest('public'));
+}
+
 function rewriteHtml() {
   return src([
     'public/**/*.html',
@@ -259,5 +279,6 @@ exports.default = series(
   revAssets,
   copyJsChunks,
   injectSWManifest,
-  rewriteHtml
+  rewriteHtml,
+  rewriteJsChunks
 );
