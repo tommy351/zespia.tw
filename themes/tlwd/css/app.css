@@ -1,0 +1,8 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+@import "utils.css";
+@import "header.css";
+@import "article.css";
+@import "paginator.css";

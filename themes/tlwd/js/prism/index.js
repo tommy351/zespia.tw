@@ -1,4 +1,5 @@
 import Prism from 'prismjs';
+import './vsc-dark-plus.css';
 
 Promise.all([
   import('./autoloader'),

@@ -11,11 +11,6 @@ const rename = require('gulp-rename');
 const webp = require('gulp-webp');
 const { groupBy, mapValues, maxBy } = require('lodash');
 const mime = require('mime-types');
-const rev = require('gulp-rev');
-const revRewrite = require('gulp-rev-rewrite');
-const sourcemaps = require('gulp-sourcemaps');
-const svg2png = require('gulp-svg2png');
-const workbox = require('workbox-build');
 
 let imageResults = {};
 
@@ -96,11 +91,12 @@ function setSrcSet(element, files) {
 function compressImage() {
   return src([
     'public/**/*.{jpg,jpeg,png,svg,gif}',
+    '!public/assets/**/*',
+    '!public/build/**/*',
     '!public/demo/**/*',
     '!public/images/compressed/**/*',
     '!public/images/resized/**/*',
-    '!public/images/icons/**/*',
-    '!public/favicon.png'
+    '!public/images/icons/**/*'
   ], { base: 'public' })
     .pipe(readImageMeta())
     .pipe(image({
@@ -129,8 +125,7 @@ function resizeImage() {
 
 function convertWebP() {
   return src([
-    'public/images/**/*.{jpg,jpeg,png}',
-    '!public/images/icons/**/*'
+    'public/images/**/*.{jpg,jpeg,png}'
   ], { base: 'public' })
     .pipe(readImageMeta())
     .pipe(webp())
@@ -139,58 +134,11 @@ function convertWebP() {
     .pipe(collectImages());
 }
 
-function revAssets() {
-  return src([
-    'public/css/**/*.css',
-    'public/js/**/*.js',
-    '!public/js/chunks/**'
-  ], { base: 'public' })
-    .pipe(sourcemaps.init({
-      loadMaps: true
-    }))
-    .pipe(rev())
-    .pipe(sourcemaps.write('.'))
-    .pipe(dest('public/build'))
-    .pipe(rev.manifest())
-    .pipe(dest('public/build'));
-}
-
-function copyJsChunks() {
-  return src([
-    'public/js/chunks/**',
-  ], { base: 'public' })
-    .pipe(dest('public/build'));
-}
-
-function rewriteJsChunks() {
-  function replaceJsPrefix(filename) {
-    if (filename.startsWith('js/')) {
-      return '../' + trimPrefix(filename, 'js/');
-    }
-
-    return filename;
-  }
-
-  return src([
-    'public/build/js/chunks/*.js'
-  ], { base: 'public' })
-    .pipe(revRewrite({
-      manifest: src('public/build/rev-manifest.json'),
-      modifyUnreved: replaceJsPrefix,
-      modifyReved: replaceJsPrefix
-    }))
-    .pipe(dest('public'));
-}
-
 function rewriteHtml() {
   return src([
     'public/**/*.html',
     '!public/demo/**/*.html'
   ])
-    .pipe(revRewrite({
-      manifest: src('public/build/rev-manifest.json'),
-      prefix: '/build/'
-    }))
     .pipe(cheerio(($, file) => {
       $('img[data-orig]').each((index, element) => {
         const img = $(element);
@@ -243,42 +191,9 @@ function rewriteHtml() {
     .pipe(dest('public'));
 }
 
-function generateIcons() {
-  return src('source/_assets/logo.svg')
-    .pipe(svg2png({ width: 1024, height: 1024 }))
-    .pipe(readImageMeta())
-    .pipe(multiMaxWidth([
-      // favicon
-      32,
-      // manifest
-      48, 96, 128, 144, 192, 256, 512,
-      // iOS
-      120, 152, 180
-    ]))
-    .pipe(scaleImages())
-    .pipe(dest('public/images/icons'));
-}
-
-async function injectSWManifest() {
-  await workbox.injectManifest({
-    globDirectory: 'public',
-    globPatterns: [
-      'build/**/*.{js,css}'
-    ],
-    swSrc: 'themes/tlwd/source/sw.js',
-    swDest: 'public/sw.js',
-    dontCacheBustURLsMatching: /^build\//
-  });
-}
-
 exports.default = series(
-  generateIcons,
   compressImage,
   resizeImage,
   convertWebP,
-  revAssets,
-  copyJsChunks,
-  injectSWManifest,
-  rewriteHtml,
-  rewriteJsChunks
+  rewriteHtml
 );

@@ -1,5 +1,7 @@
 import { Workbox } from 'workbox-window';
 
+import '../css/app.css';
+
 import('./prism');
 import('./lightgallery');
 
