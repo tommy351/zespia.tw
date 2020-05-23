@@ -49,13 +49,13 @@ Google API 採用 OAuth 2.0 認證，然而認證方式與我們平常所熟悉�
 
 一個完整的 JWT 應具備以下內容：
 
-``` plain
+```plain
 {Base64url encoded header}.{Base64url encoded claim set}.{Base64url encoded signature}
 ```
 
 第一部分是 **Header**，此部份用來指示 JWT 所使用的演算法及類型，在存取 Google API 時，我們使用 RSA SHA256 演算法，因此內容為：
 
-```
+```json
 {
   "alg": "RS256",
   "typ": "JWT"
@@ -64,7 +64,7 @@ Google API 採用 OAuth 2.0 認證，然而認證方式與我們平常所熟悉�
 
 第二部分是 **Claim set**，此部份是 JWT 的主要資料部分，內容如下：
 
-```
+```json
 {
    "iss": "761326798069-r5mljlln1rd4lrbhg75efgigp36m78j5@developer.gserviceaccount.com",
    "scope": "https://www.googleapis.com/auth/analytics.readonly",
@@ -84,13 +84,13 @@ Google API 採用 OAuth 2.0 認證，然而認證方式與我們平常所熟悉�
 
 在介紹第三部分之前，請先將前兩部分的資料以 Base64 方式編碼，並以 `.` 串接。如果你不知道怎麼在 Node.js 內進行 Base64 編碼，可參考以下程式碼：
 
-``` js
+```js
 new Buffer(str).toString('base64');
 ```
 
 第三部分是 **Signature**，即是將前兩部分的編碼字串以 Private key 加密後的結果，你可從剛剛下載的 JSON private key 中的 `private_key` 欄位取得 Private key，並參考以下的程式碼取得加密字串。
 
-``` js
+```js
 var crypto = require('crypto');
 
 crypto.createSign('sha256').update(jwt).sign(privateKey, 'base64');
@@ -125,7 +125,7 @@ request.post('https://accounts.google.com/o/oauth2/token', {
 
 若所有資料正確無誤的話，應該可得到以下回應：
 
-```
+```json
 {
   "access_token" : "1/8xbJqaOZXSUZbHLl5EOtu1pxz3fmmetKx9W8CV4t79M",
   "token_type" : "Bearer",
@@ -143,7 +143,7 @@ request.post('https://accounts.google.com/o/oauth2/token', {
 
 此外，還必須取得「資源數據編號」，別搞錯，這個可不是追蹤編號喔！完成後，使用以下方式即可取得資料。
 
-``` plain
+```plain
 Authorization: Bearer {oauth2-token}
 
 GET https://www.googleapis.com/analytics/v3/data/ga

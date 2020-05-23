@@ -23,7 +23,7 @@ comment_service: disqus
 因此，我花了一個晚上嘗試出了透過免費的 Travis CI 服務自動佈署的方法，首先你必須用 `ssh-keygen` 製作一個 SSH Key，供 GitHub 當作 Deploy key 使用。
 
 ``` bash
-$ ssh-keygen -t rsa -C "your_email@example.com"
+ssh-keygen -t rsa -C "your_email@example.com"
 ```
 
 在製作 SSH key 時，請把 passphrase 留空，因為在 Travis 上輸入密碼很麻煩，我目前還找不到比較簡便的方式，如果各位知道的話歡迎提供給我。
@@ -37,13 +37,13 @@ $ ssh-keygen -t rsa -C "your_email@example.com"
 首先，安裝 Travis 的命令列工具：
 
 ``` bash
-$ gem install travis
+gem install travis
 ```
 
 在安裝完畢後，透過命令列工具登入到 Travis：
 
 ``` bash
-$ travis login --auto
+travis login --auto
 ```
 
 如此一來，我們就能透過 Travis 提供的命令列工具加密剛剛所製作的 Private key，並把它上傳到 Travis 上供日後使用。
@@ -51,13 +51,13 @@ $ travis login --auto
 假設 Private key 的檔案名稱為 `ssh_key`， Travis 會加密並產生 `ssh_key.enc`，並自動在 `.travis.yml` 的 `before_install` 欄位中，自動插入解密指令。
 
 ``` bash
-$ travis encrypt-file ssh_key --add
+travis encrypt-file ssh_key --add
 ```
 
 正常來說 Travis 會自動解析目前的 repo 並把 Private key 上傳到相對應的 repo，但有時可能會秀逗，這時你必須在指令後加上 `-r` 選項來指定 repo 名稱，例如：
 
 ``` bash
-$ travis encrypt-file ssh_key --add -r hexojs/site
+travis encrypt-file ssh_key --add -r hexojs/site
 ```
 
 ## 設定 .travis.yml
@@ -75,33 +75,33 @@ Host github.com
 因為剛剛修改了 `ssh_key.enc` 的位址，所以我們要順帶修改剛剛 Travis 在 `.travis.yml` 幫我們插入的那條解密指令。請注意，**不要照抄這段指令**，每個人的環境變數都不一樣。
 
 ``` bash
-- openssl aes-256-cbc -K $encrypted_06b8e90ac19b_key -iv $encrypted_06b8e90ac19b_iv -in .travis/ssh_key.enc -out ~/.ssh/id_rsa -d
+openssl aes-256-cbc -K $encrypted_06b8e90ac19b_key -iv $encrypted_06b8e90ac19b_iv -in .travis/ssh_key.enc -out ~/.ssh/id_rsa -d
 ```
 
 這條指令會利用 openssl 解密 Private key，並把解密後的檔案存放在 `~/.ssh/id_rsa`，接著指定這個檔案的權限：
 
 ``` bash
-- chmod 600 ~/.ssh/id_rsa
+chmod 600 ~/.ssh/id_rsa
 ```
 
 然後，把 Private key 加入到系統中：
 
 ``` bash
-- eval $(ssh-agent)
-- ssh-add ~/.ssh/id_rsa
+eval $(ssh-agent)
+ssh-add ~/.ssh/id_rsa
 ```
 
 記得剛剛我們製作的 `ssh_config` 檔案嗎？別忘了把他複製到 `~/.ssh` 資料夾：
 
 ``` bash
-- cp .travis/ssh_config ~/.ssh/config
+cp .travis/ssh_config ~/.ssh/config
 ```
 
 為了讓 `git` 操作能順利進行，我們必須先設定 `git` 的使用者資訊：
 
 ``` bash
-- git config --global user.name "Tommy Chen"
-- git config --global user.email tommy351@gmail.com
+git config --global user.name "Tommy Chen"
+git config --global user.email tommy351@gmail.com
 ```
 
 最後的結果可能如下，如果你和我一樣使用 Hexo 的話可以參考看看：

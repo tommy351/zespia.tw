@@ -13,7 +13,7 @@ comment_service: disqus
 
 <!-- more -->
 
-##基礎架構
+## 基礎架構
 
 首先，建立一個空白的`php`檔案，以下以`function-admin.php`為例，實際情況依個人設定而有差異。然後，在`function.php`寫入下列程式碼，以引入`function-admin.php`這個外部檔案。
 
@@ -73,7 +73,7 @@ class theme_option {
 
 初始化完成後，接著就可邁入下一個步驟「**註冊設定**」。
 
-##註冊設定
+## 註冊設定
 
 為了要讓佈景選項出現在選單上，新增一個名為`add_pages`的函數：
 
@@ -185,7 +185,7 @@ public function register_settings() {
 
 到了這裡，只不過是設定了各個選項的數值罷了，選項頁面還是一片空白，喝點水休息一下，下一步就要正式設定選項頁面的內容了。
 
-##顯示頁面
+## 顯示頁面
 
 首先，新增一個名為`display_page`的函數。
 
@@ -218,7 +218,7 @@ public function display_section() {
 }
 ```
 
-##顯示選項
+## 顯示選項
 
 到目前為止，主題選項頁面還是一片白，加入`display_settings`函數後，主題選項頁面就擁有最基礎的樣貌了。
 
@@ -322,7 +322,7 @@ public function validate_settings( $input ) {
 }
 ```
 
-##自定 JavaScript 與 CSS 樣式
+## 自定 JavaScript 與 CSS 樣式
 
 如果只是基本的主題選項的話，第四步便可以宣告結束了，但如果想要進一步的設定 Javascript 與 CSS 樣式呢？你可以加入以下的函數，直接引入外部檔案，或是直接寫在 PHP 檔案也可以。
 *※ 附註：若直接使用 $ 當作 jQuery 標籤的話，可能會有衝突問題，請使用其他字串代替，或改為`jQuery(document).ready(function($){...});`*
@@ -425,7 +425,7 @@ jQuery.cookie = function(name, value, options) {
 };
 ```
 
-##套用
+## 套用
 
 這個步驟相對而言就比較簡單了，首先在想要套用選項的位置加入以下程式碼，並設定
 
@@ -457,7 +457,7 @@ if ( $options['test_select'] == 'one' ) {
 }
 ```
 
-##參考出處
+## 參考出處
 
 [Extended WordPress Settings API Tutorial](http://alisothegeek.com/2011/01/wordpress-settings-api-tutorial-1/)
 [Incorporating the Settings API in WordPress Themes](http://www.chipbennett.net/2011/02/17/incorporating-the-settings-api-in-wordpress-themes)

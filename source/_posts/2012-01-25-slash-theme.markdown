@@ -24,10 +24,12 @@ comment_service: disqus
 
 只需在終端機輸入以下指令，即可完成安裝：
 
-	$ cd octopress
-	$ git clone git://github.com/tommy351/Octopress-Theme-Slash.git .themes/slash
-	$ rake install['slash']
-	$ rake generate
+```shell
+cd octopress
+git clone git://github.com/tommy351/Octopress-Theme-Slash.git .themes/slash
+rake install['slash']
+rake generate
+```
 
 使用 zsh 時發生問題嗎？試試看`rake install\['slash'\]`。
 

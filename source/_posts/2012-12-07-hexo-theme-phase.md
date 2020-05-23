@@ -29,7 +29,7 @@ Phase Beam 動態背景的效果非常絢麗，但是也非常吃資源，電腦
 
 Octopress 版本：
 
-```
+```shell
 cd octopress
 git clone git://github.com/tommy351/octopress-theme-phase.git .themes/phase
 rake install['phase']
@@ -38,7 +38,7 @@ rake generate
 
 為了推廣 Hexo，順便把主題移植過去了，往後的主題開發都會以Hexo為主，但仍會以MIT License開放原始碼，想要在Octopress使用的人可以自行開發移植版本。
 
-```
+```shell
 cd hexo
 git clone git://github.com/tommy351/hexo-theme-phase.git themes/phase
 ```

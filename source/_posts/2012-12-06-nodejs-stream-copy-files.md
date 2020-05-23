@@ -21,7 +21,7 @@ comment_service: disqus
 
 原本的檔案複製方式是：
 
-```
+```js
 function copy(source, destination, callback){
 	fs.readFile(source, function(err, file){
 		if (err) throw err;
@@ -36,7 +36,7 @@ function copy(source, destination, callback){
 
 用 [Stream] 的方式來複製檔案，相較於原本的方式，也只不過是多了幾行程式碼而已，如下：
 
-```
+```js
 function copy(source, destination, callback){
 	var rs = fs.createReadStream(source),
 		ws = fs.createWriteStream(destination);
