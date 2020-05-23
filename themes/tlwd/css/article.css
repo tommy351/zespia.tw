@@ -124,7 +124,7 @@
     }
 
     td {
-      @apply border border-gray-600;
+      @apply border-t border-gray-600;
     }
   }
 }

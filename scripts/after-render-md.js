@@ -61,7 +61,7 @@ hexo.extend.filter.register('after_render:html', function(str, data) {
     figure.attr('data-sub-html', '.caption');
   });
 
-  $('table').wrap('<div class="table-responsive"/>')
+  $('table').wrap('<div class="table-responsive scrollbar-dark"/>')
 
   return $('body').html();
 });
