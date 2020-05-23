@@ -17,3 +17,7 @@
     }
   }
 }
+
+.table-responsive {
+  @apply max-w-full overflow-auto;
+}

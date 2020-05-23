@@ -76,12 +76,16 @@
     @apply text-accent;
   }
 
+  ul, ol {
+    @apply pl-8;
+  }
+
   ul {
-    @apply list-disc list-inside;
+    @apply list-disc;
   }
 
   ol {
-    @apply list-decimal list-inside;
+    @apply list-decimal;
   }
 
   strong {
@@ -101,6 +105,26 @@
 
     > * {
       @apply absolute inset-0 w-full h-full;
+    }
+  }
+
+  picture {
+    @apply flex justify-center;
+  }
+
+  table {
+    @apply table-auto;
+
+    th, td {
+      @apply px-4 py-2;
+    }
+
+    th {
+      @apply text-left;
+    }
+
+    td {
+      @apply border border-gray-600;
     }
   }
 }
