@@ -1,11 +1,22 @@
-.header-nav {
-  @apply flex justify-end py-6;
+.header-icon-btn {
+  @apply w-8 h-8 opacity-75 bg-center bg-no-repeat ml-2;
+  filter: invert(100%);
+  background-size: 1.25rem;
 
-  a {
-    @apply ml-6 text-content text-opacity-75;
+  &:hover {
+    @apply opacity-100;
+    filter: invert(54%) sepia(97%) saturate(435%) hue-rotate(194deg) brightness(99%) contrast(95%);
+  }
 
-    &:hover {
-      @apply text-accent;
-    }
+  &.rss {
+    background-image: url("../images/rss.svg");
+  }
+
+  &.github {
+    background-image: url("../images/github.svg");
+  }
+
+  &.twitter {
+    background-image: url("../images/twitter.svg");
   }
 }

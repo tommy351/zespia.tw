@@ -5,17 +5,19 @@
 <article id="{{ post.layout }}-{{ post.slug }}" class="article-container" itemscope itemtype="https://schema.org/Article">
   <header class="article-header">
     <div class="text-accent leading-none pb-2 text-sm">
-      {{ date(post.date, config.date_format) }}
+      {{- date(post.date, config.date_format) -}}
     </div>
     <h1 class="text-2xl lg:text-3xl font-light leading-tight pt-2" itemprop="headline">
-      <a class="block hover:text-accent" href="{{ url_for(post.path) }}">{{ post.title }}</a>
+      <a class="block hover:text-accent" href="{{ url_for(post.path) }}">
+        {{- post.title -}}
+      </a>
     </h1>
   </header>
   <div class="article-body" itemprop="articleBody">
     {% if post.excerpt && index %}
-      {{ post.excerpt }}
+      {{- post.excerpt -}}
     {% else %}
-      {{ post.content }}
+      {{- post.content -}}
     {% endif %}
   </div>
   {% if index %}
