@@ -1,0 +1,18 @@
+{% macro section_title(title) %}
+<h2 class="text-2xl my-6">{{ title }}</h2>
+{% endmacro %}
+
+<main>
+  <h1 class="text-3xl">{{ page.title }}</h1>
+  <div class="article-body">
+    {{ page.content }}
+  </div>
+  {{ section_title('技能') }}
+  <ul class="flex flex-wrap">
+    {% for skill in page.skills %}
+      <li class="bg-gray-800 rounded-full px-4 py-2 mr-4 mb-4 shadow-base">{{ skill }}</li>
+    {% endfor %}
+  </ul>
+  {{ section_title('開源專案') }}
+  {{ partial('_partial/project-card-list', { projects: page.projects }) }}
+</main>
