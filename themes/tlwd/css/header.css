@@ -1,6 +1,5 @@
 .header-icon-btn {
   @apply w-8 h-8 opacity-75 bg-center bg-no-repeat ml-2;
-  filter: invert(100%);
   background-size: 1.25rem;
 
   &:hover {
