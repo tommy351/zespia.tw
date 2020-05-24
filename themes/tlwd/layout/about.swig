@@ -15,4 +15,6 @@
   </ul>
   {{ section_title('開源專案') }}
   {{ partial('_partial/project-card-list', { projects: page.projects }) }}
+  {{ section_title('玩具') }}
+  {{ partial('_partial/project-card-list', { projects: page.toys }) }}
 </main>
