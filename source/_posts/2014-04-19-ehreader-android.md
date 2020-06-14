@@ -96,6 +96,10 @@ Android 雖然提供了所見即所得的介面編輯器，但若要進行進一
 
 - [GitHub][E-Hentai 閱讀器]
 
+## 🚧 停止開發
+
+本專案已停止開發，請改用 [EH Redux](https://github.com/tommy351/eh-redux)。
+
 [E-Hentai]: http://e-hentai.org/
 [E-Hentai 閱讀器]: https://github.com/tommy351/ehreader-android
 [Hexo]: http://hexo.io/
