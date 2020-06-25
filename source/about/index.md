@@ -10,6 +10,7 @@ skills:
   - Docker
   - Kubernetes
   - Elixir
+  - Flutter
 projects:
   - name: Hexo
     language: JavaScript
@@ -48,6 +49,10 @@ toys:
     language: Elixir
     description: Schema validator inspired by Joi.
     url: https://github.com/tommy351/mayo
+  - name: EH Redux
+    language: Dart
+    description: A E-Hentai Reader written in Flutter.
+    url: https://github.com/tommy351/eh-redux
   - name: E-Hentai Reader
     language: Java
     description: E-Hentai Reader for Android.
