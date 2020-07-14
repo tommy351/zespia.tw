@@ -72,7 +72,7 @@ await methodChannel.invokeMethod('uninterceptKeyDown');
 
 ## EventChannel
 
-[EventChannel] 用於讓 Flutter 監聽從 Android/iOS 傳來的事件，這次會用在監聽 keydown 事件。
+[EventChannel] 讓 Flutter 能夠監聽從 Android/iOS 傳來的事件，這次會用在監聽 keydown 事件。
 
 首先是 Android 的部分，在原本的 `configureFlutterEngine` 額外新增了一個 `EventChannel`，並用 Rx subject 來傳遞 keydown 事件。
 
@@ -137,17 +137,18 @@ final eventChannel = EventChannel('com.example/event');
 // 訂閱事件
 final subscription = eventChannel.receiveBroadcastStream().listen((event) {
   final code = event as String;
+  // ...
 });
 
 // 取消訂閱
 subscription.cancel();
 ```
 
-這樣就能從 Flutter 監聽音量鍵的事件了，實際上的範例可以參考 [EH Redux] 的 [MainActivity.kt](https://github.com/tommy351/eh-redux/blob/v0.5.1/android/app/src/main/kotlin/app/ehredux/MainActivity.kt) 和 [key_event.dart](https://github.com/tommy351/eh-redux/blob/master/lib/utils/key_event.dart)；更複雜一點的可以參考 [hardware_buttons]，它同時實作了 Android 和 iOS 的部分。
+這樣就能從 Flutter 監聽音量鍵的事件了。實際上的範例可以參考 [EH Redux] 的 [MainActivity.kt](https://github.com/tommy351/eh-redux/blob/v0.5.1/android/app/src/main/kotlin/app/ehredux/MainActivity.kt) 和 [key_event.dart](https://github.com/tommy351/eh-redux/blob/master/lib/utils/key_event.dart)；更複雜一點的可以參考 [hardware_buttons]，它同時實作了 Android 和 iOS 的部分。
 
 ## 結語
 
-上上週的時候把 [P5S](https://p5s.jp/) 玩完一輪了，這真的是一款非常優秀的遊戲，與其說是無雙，不如說更像動作 RPG，需要花一點時間適應；而劇情上也很不錯，補完了一些原本在本傳裡戲份比較少的角色劇情，像是佑介和春，感覺角色更加生動了。
+上上週的時候把 [P5S](https://p5s.jp/) 玩完一輪了，這真的是一款非常優秀的遊戲，與其說是無雙，不如說更像動作 RPG，需要花一點時間適應；而劇情上也很不錯，補完了一些原本在本傳裡戲份比較少的角色的劇情，像是佑介和春，感覺角色更加生動了。
 
 那麼究竟是為什麼明明遊戲都玩完了，卻還是沒有繼續開發 app 呢，主要是因為最近接觸到[赤井はあと](https://www.youtube.com/channel/UC1CfXB_kRs3C-zaeTG3oGyg)拍的一堆狂氣廢片後，讓我開始踏入 Hololive 的坑，又開始浪費時間看 Vtuber 了😜。我預計從這周末開始應該就會重啟開發，應該吧。
 
