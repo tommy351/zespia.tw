@@ -36,6 +36,10 @@ projects:
     language: Go
     description: A golden file testing (snapshot testing) library for gomega.
     url: https://github.com/tommy351/goldga
+  - name: rdb-go
+    language: Go
+    description: Parse Redis RDB dump files.
+    url: https://github.com/tommy351/rdb-go
 toys:
   - name: Layercake
     language: Go
