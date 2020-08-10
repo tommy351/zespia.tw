@@ -1,20 +1,17 @@
 <svg version="1.1" viewBox="0 0 800 100" xmlns="http://www.w3.org/2000/svg" style="background-color: #fff">
   <style>
-    rect {
-      stroke: #000;
-      stroke-width: 2px;
-    }
-
     text {
       font-size: 20px;
       font-family: Helvetica, Arial, sans-serif;
     }
   </style>
-  <rect x="20" y="16" width="400" height="40" fill="#95eefe"/>
+  <g stroke="#000" stroke-width="2px">
+    <rect x="20" y="16" width="400" height="40" fill="#95eefe"/>
+    <rect x="400" y="16" width="200" height="40" fill="#95eefe"/>
+    <rect x="600" y="16" width="180" height="40" fill="#fff"/>
+  </g>
   <text x="20" y="80">Offset = 0</text>
-  <rect x="400" y="16" width="200" height="40" fill="#95eefe"/>
   <text x="400" y="80" text-anchor="middle">Capacity</text>
-  <rect x="600" y="16" width="180" height="40" fill="#fff"/>
   <text x="600" y="80" text-anchor="middle">Length</text>
   <text x="780" y="80" text-anchor="end">Capacity′</text>
 </svg>
