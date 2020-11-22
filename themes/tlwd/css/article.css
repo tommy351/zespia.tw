@@ -127,6 +127,14 @@
       @apply border-t border-gray-600;
     }
   }
+
+  blockquote {
+    @apply pl-4 border-solid border-l-2 border-accent;
+
+    > * {
+      @apply my-6;
+    }
+  }
 }
 
 /* Fix .table in tailwind.css override the display attribute */
