@@ -55,7 +55,7 @@
     "postcss": "^7.0.30",
     "postcss-loader": "^3.0.0",
     "postcss-nested": "^4.2.1",
-    "prismjs": "^1.21.0",
+    "prismjs": "^1.23.0",
     "style-loader": "^1.2.1",
     "tailwindcss": "^1.4.6",
     "through2": "^3.0.1",
