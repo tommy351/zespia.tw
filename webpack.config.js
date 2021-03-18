@@ -19,7 +19,9 @@ module.exports = {
     app: path.join(THEME_DIR, 'js/app.js')
   },
   output: {
-    filename: 'build/[name].[contenthash].js',
+    // FIXME: Use fullhash instead of contenthash because html-webpack-plugin
+    // can't get the correct filename
+    filename: 'build/[name].[fullhash].js',
     path: path.join(THEME_DIR, 'source'),
     publicPath: '/'
   },
@@ -157,7 +159,9 @@ module.exports = {
         dontCacheBustURLsMatching: /^\/build\//
       }),
       new MiniCssExtractPlugin({
-        filename: 'build/[name].[contenthash].css'
+        // FIXME: Use fullhash instead of contenthash because html-webpack-plugin
+        // can't get the correct filename
+        filename: 'build/[name].[fullhash].css'
       })
     ] : []
   ]
