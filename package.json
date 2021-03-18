@@ -24,6 +24,7 @@
     "css-loader": "^5.1.3",
     "cssnano": "^4.1.10",
     "del-cli": "^3.0.1",
+    "favicons": "^6.2.1",
     "favicons-webpack-plugin": "^5.0.2",
     "file-loader": "^6.0.0",
     "flat-map": "^1.0.0",
