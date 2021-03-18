@@ -5,7 +5,7 @@
 <main>
   <h1 class="text-3xl">{{ page.title }}</h1>
   <div class="article-body">
-    {{ page.content }}
+    {{ page.content | safe }}
   </div>
   {{ section_title('技能') }}
   <ul class="flex flex-wrap">
@@ -14,7 +14,7 @@
     {% endfor %}
   </ul>
   {{ section_title('開源專案') }}
-  {{ partial('_partial/project-card-list', { projects: page.projects }) }}
+  {{ partial('_partial/project-card-list', { projects: page.projects }) | safe }}
   {{ section_title('玩具') }}
-  {{ partial('_partial/project-card-list', { projects: page.toys }) }}
+  {{ partial('_partial/project-card-list', { projects: page.toys }) | safe }}
 </main>

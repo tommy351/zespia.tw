@@ -7,7 +7,7 @@
 
 <!-- Meta -->
 <title>{{ page_title() }}</title>
-{% if !is_post() %}
+{% if not is_post() %}
 <meta name="description" content="A blog about web development and programming.">
 {% endif %}
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -17,7 +17,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inconsolata&display=swap">
 
 <!-- Open graph -->
-{{ open_graph({ twitter_id: 'tommy351', fb_admins: '100000247608790', language: 'zh_TW' }) }}
+{{ open_graph({ twitter_id: 'tommy351', fb_admins: '100000247608790', language: 'zh_TW' }) | safe }}
 
 <!-- Google Analytics -->
-{{ partial('_partial/google-analytics') }}
+{{ partial('_partial/google-analytics') | safe }}

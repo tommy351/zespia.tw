@@ -4,4 +4,4 @@ public
 db.json
 *.log
 /themes/tlwd/source/
-/themes/tlwd/layout/layout.swig
+/themes/tlwd/layout/layout.njk

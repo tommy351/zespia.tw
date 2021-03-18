@@ -4,7 +4,7 @@ const { colors } = require('tailwindcss/defaultTheme');
 
 module.exports = {
   purge: [
-    'themes/tlwd/layout/**/*.swig'
+    'themes/tlwd/layout/**/*.njk'
   ],
   theme: {
     fontFamily: {
