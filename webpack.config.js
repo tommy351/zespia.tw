@@ -25,7 +25,7 @@ module.exports = {
   },
   optimization: {
     runtimeChunk: 'single',
-    moduleIds: 'hashed',
+    moduleIds: 'deterministic',
     splitChunks: {
       chunks: 'all'
     }
@@ -64,16 +64,17 @@ module.exports = {
           {
             loader: 'postcss-loader',
             options: {
-              ident: 'postcss',
               sourceMap: isProd,
-              plugins: [
-                require('tailwindcss'),
-                require('postcss-nested'),
-                require('autoprefixer'),
-                ...isProd ? [require('cssnano')({
-                  preset: 'default'
-                })] : []
-              ]
+              postcssOptions: {
+                plugins: [
+                  require('tailwindcss'),
+                  require('postcss-nested'),
+                  require('autoprefixer'),
+                  ...isProd ? [require('cssnano')({
+                    preset: 'default'
+                  })] : []
+                ]
+              }
             }
           }
         ]
