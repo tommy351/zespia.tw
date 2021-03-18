@@ -1,6 +1,6 @@
 <main class="space-y-16">
-  {% for post in page.posts %}
-    {{ partial('_partial/article', { post: post, index: true }) }}
+  {% for post in page.posts.toArray() %}
+    {{ partial('_partial/article', { post: post, index: true }) | safe }}
   {% endfor %}
 </main>
 
@@ -10,6 +10,6 @@
       prev_text: '上一頁',
       next_text: '下一頁',
       escape: false
-    }) }}
+    }) | safe }}
   </nav>
 {% endif %}

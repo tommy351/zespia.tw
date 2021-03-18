@@ -1,5 +1,5 @@
 <main>
-  {{ partial('_partial/article', { post: page, index: false }) }}
+  {{ partial('_partial/article', { post: page, index: false }) | safe }}
 </main>
 
 {% if page.comment_service === 'utterances' %}
@@ -12,12 +12,12 @@
   crossorigin="anonymous"
   async>
 </script>
-{% elif page.comment_service === 'disqus' && config.disqus_shortname %}
+{% elif page.comment_service === 'disqus' and config.disqus_shortname %}
 <div id="disqus_thread" class="pt-16"></div>
 <script>
 var disqus_config = function () {
-this.page.url = {{ JSON.stringify(page.permalink) }};
-this.page.identifier = {{ JSON.stringify(page.slug) }};
+this.page.url = {{ page.permalink | dump | safe }};
+this.page.identifier = {{ page.slug | dump | safe }};
 this.language = 'zh_TW';
 };
 

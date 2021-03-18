@@ -108,12 +108,12 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin({
       cleanAfterEveryBuildPatterns: [
-        path.join(THEME_DIR, 'source/**/*.swig')
+        path.join(THEME_DIR, 'source/**/*.njk')
       ]
     }),
     new HtmlWebpackPlugin({
-      filename: 'layout.swig',
-      template: path.join(THEME_DIR, 'layout/_layout.swig'),
+      filename: 'layout.njk',
+      template: path.join(THEME_DIR, 'layout/_layout.njk'),
       alwaysWriteToDisk: true,
       scriptLoading: 'defer'
     }),
@@ -152,7 +152,7 @@ module.exports = {
         exclude: [
           /assets\//,
           /\.map$/,
-          /\.swig$/
+          /\.njk$/
         ],
         dontCacheBustURLsMatching: /^\/build\//
       }),
