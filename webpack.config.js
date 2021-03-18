@@ -18,19 +18,18 @@ module.exports = {
   entry: {
     app: path.join(THEME_DIR, 'js/app.js')
   },
-  output: {
-    // FIXME: Use fullhash instead of contenthash because html-webpack-plugin
-    // can't get the correct filename
-    filename: 'build/[name].[fullhash].js',
-    path: path.join(THEME_DIR, 'source'),
-    publicPath: '/'
-  },
   optimization: {
     runtimeChunk: 'single',
-    moduleIds: 'deterministic',
     splitChunks: {
       chunks: 'all'
     }
+  },
+  output: {
+    // NOTE: Use chunkhash instead of contenthash because html-webpack-plugin
+    // can't get correct filenames in production build.
+    filename: 'build/[name].[chunkhash].js',
+    path: path.join(THEME_DIR, 'source'),
+    publicPath: '/'
   },
   module: {
     rules: [
@@ -83,26 +82,16 @@ module.exports = {
       },
       {
         test: /\.(gif|png|jpe?g|svg)$/,
-        use: [
-          {
-            loader: 'url-loader',
-            options: {
-              limit: 8192,
-              fallback: 'file-loader?outputPath=build/images'
-            }
-          },
-          {
-            loader: 'image-webpack-loader'
-          }
-        ]
+        type: 'asset',
+        generator: {
+          filename: 'build/images/[name]-[hash][ext]'
+        }
       },
       {
         test: /\.(eot|ttf|woff)$/,
-        use: {
-          loader: 'file-loader',
-          options: {
-            outputPath: 'build/fonts'
-          }
+        type: 'asset/resource',
+        generator: {
+          filename: 'build/fonts/[name]-[hash][ext]'
         }
       }
     ]
@@ -151,17 +140,15 @@ module.exports = {
       new InjectManifest({
         swSrc: path.join(THEME_DIR, 'js/sw.js'),
         swDest: path.join(THEME_DIR, 'source/sw.js'),
-        exclude: [
-          /assets\//,
-          /\.map$/,
-          /\.njk$/
+        include: [
+          /\.(js|css)$/
         ],
         dontCacheBustURLsMatching: /^\/build\//
       }),
       new MiniCssExtractPlugin({
-        // FIXME: Use fullhash instead of contenthash because html-webpack-plugin
-        // can't get the correct filename
-        filename: 'build/[name].[fullhash].css'
+        // NOTE: Use chunkhash instead of contenthash because html-webpack-plugin
+        // can't get correct filenames in production build.
+        filename: 'build/[name].[chunkhash].css'
       })
     ] : []
   ]
