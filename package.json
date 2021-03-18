@@ -59,7 +59,7 @@
     "postcss-nested": "^5.0.5",
     "prismjs": "^1.23.0",
     "style-loader": "^2.0.0",
-    "tailwindcss": "^1.4.6",
+    "tailwindcss": "^2.0.4",
     "through2": "^4.0.2",
     "url-loader": "^4.1.0",
     "webpack": "^5.26.3",
