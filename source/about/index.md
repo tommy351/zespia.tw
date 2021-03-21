@@ -40,6 +40,10 @@ projects:
     language: Go
     description: Parse Redis RDB dump files.
     url: https://github.com/tommy351/rdb-go
+  - name: tsc-multi
+    language: TypeScript
+    description: Compile multiple TypeScript projects into multiple targets.
+    url: https://github.com/tommy351/tsc-multi
 toys:
   - name: Layercake
     language: Go
