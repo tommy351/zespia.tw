@@ -1,7 +1,7 @@
 title: Zespia
 author: Tommy Chen
 
-url: https://zespia.tw
+url: https://zespia.me
 root: /
 permalink: blog/:year/:month/:day/:title/
 
@@ -37,7 +37,7 @@ post_asset_folder: true
 date_format: MMM D, YYYY
 
 disqus_shortname: zespiatw
-google_analytics: G-SDTKN0VLF5
+google_analytics: G-BNDH7W4D1E
 
 theme: tlwd
 
